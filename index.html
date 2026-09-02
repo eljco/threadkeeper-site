@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threadkeeper — The "I'll do it tomorrow" fix.</title>
+    <script src="https://tailwindcss.com"></script>
+    <style>
+        @import url('https://googleapis.com');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#0B0F19] text-gray-100 min-h-screen flex flex-col justify-between selection:bg-blue-500 selection:text-white">
+
+    <!-- Top Navigation -->
+    <header class="max-w-6xl w-full mx-auto px-6 py-6 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <span class="text-2xl">🧵</span>
+            <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Threadkeeper</span>
+        </div>
+        <div class="hidden sm:flex items-center space-x-6 text-sm text-gray-400">
+            <a href="#features" class="hover:text-white transition">How it works</a>
+            <a href="#privacy" class="hover:text-white transition">Privacy</a>
+        </div>
+    </header>
+
+    <!-- Hero / Main Section -->
+    <main class="max-w-4xl mx-auto px-6 pt-12 pb-24 text-center flex-grow flex flex-col justify-center items-center">
+        <!-- Tagline Badge -->
+        <div class="inline-flex items-center space-x-2 bg-blue-500/10 border border-blue-500/20 px-4 py-1.5 rounded-full text-xs font-medium text-blue-400 mb-8 backdrop-blur-md">
+            <span>✨</span>
+            <span>Now Beta Testing — Secure Your Spot</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 max-w-2xl leading-[1.1]">
+            The <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent">"I'll do it tomorrow"</span> fix.
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="text-lg sm:text-xl text-gray-400 max-w-xl mb-10 leading-relaxed">
+            Stop letting client schedules, follow-ups, and meetups slip away. Forward any email you want to handle later to your AI sidekick. We track it, organize it, and remind you exactly when it's time to act.
+        </p>
+
+        <!-- Dynamic Waiting List Form -->
+        <div class="w-full max-w-md bg-gray-900/50 border border-gray-800 p-2 rounded-2xl flex flex-col sm:flex-row gap-2 shadow-2xl shadow-blue-500/5 backdrop-blur-md">
+            <input type="email" placeholder="Enter your email address" required
+                class="bg-transparent border-0 px-4 py-3 text-white placeholder-gray-500 focus:ring-0 focus:outline-none flex-grow text-sm rounded-xl">
+            <button class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold px-6 py-3 rounded-xl text-sm transition-all duration-200 shadow-lg shadow-blue-500/20 active:scale-[0.98]">
+                Fix My Reminders
+            </button>
+        </div>
+
+        <p class="text-xs text-gray-500 mt-3">⚡ Free forever for our first 50 beta members.</p>
+
+        <!-- Feature Grid Section -->
+        <section id="features" class="grid sm:grid-cols-3 gap-6 mt-24 text-left w-full max-w-5xl">
+            <!-- Card 1 -->
+            <div class="bg-gray-900/30 border border-gray-800/80 p-6 rounded-2xl relative overflow-hidden group hover:border-gray-700 transition">
+                <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 font-bold mb-4">1</div>
+                <h3 class="text-white font-semibold mb-2 text-base">Forward the Mail</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Got a booking or note you want to push to tomorrow? Just forward or BCC it to your unique Threadkeeper inbox.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-gray-900/30 border border-gray-800/80 p-6 rounded-2xl relative overflow-hidden group hover:border-gray-700 transition">
+                <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 font-bold mb-4">2</div>
+                <h3 class="text-white font-semibold mb-2 text-base">AI Extracts Tasks</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Our AI instantly breaks down the timelines, names, and action items, sorting them securely into your schedule backlog.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-gray-900/30 border border-gray-800/80 p-6 rounded-2xl relative overflow-hidden group hover:border-gray-700 transition">
+                <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 font-bold mb-4">3</div>
+                <h3 class="text-white font-semibold mb-2 text-base">Persistent Execution</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">When the time hits, Threadkeeper sends you a clear reminder. No complex dashboards required—it just gets done.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="privacy" class="max-w-6xl w-full mx-auto px-6 py-8 border-t border-gray-950 text-center sm:flex sm:justify-between sm:items-center text-xs text-gray-500">
+        <p>&copy; 2026 Threadkeeper. All rights reserved. Zero cookies, total privacy.</p>
+        <div class="flex justify-center space-x-4 mt-2 sm:mt-0">
+            <span class="text-gray-600">Built for productivity rebels.</span>
+        </div>
+    </footer>
+
+</body>
+</html>
