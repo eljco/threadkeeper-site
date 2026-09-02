@@ -175,7 +175,37 @@
 
       <div class="md:col-span-5">
         <div class="rounded-xl border border-hair bg-surface/60 p-6 sm:p-8">
-          <svg viewBox="0 -15 460 180" class="w-full h-auto overflow-visible" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: an email is forwarded, processed, then returned as a reminder">
+          <svg viewBox="0 0 460 160" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: an email is forwarded, processed, then returned as a reminder">
+            <path d="M 4 60 C 90 60, 90 12, 176 12 C 262 12, 262 108, 348 108 C 400 108, 410 108, 440 108"
+                  fill="none" stroke="#1C1E27" stroke-width="1.5" class="path-line"/>
+            <circle cx="8" cy="60" r="4" fill="#4F5BFF"/>
+            <circle cx="440" cy="108" r="4" fill="#3FA9FF"/>
+            <circle r="4.5" fill="#7C86FF" class="pulse-dot"/>
+
+            <g transform="translate(0,42)">
+              <rect x="0" y="0" width="46" height="34" rx="6" fill="#0D0E13" stroke="#2B2E3B"/>
+              <path d="M4 6 L23 19 L42 6" stroke="#8A8D9B" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="4" y="4" width="38" height="26" rx="3" fill="none" stroke="#8A8D9B" stroke-width="1.4"/>
+            </g>
+            <text x="23" y="94" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="lt">Persiųski mums</text>
+            <text x="23" y="94" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="en" class="hidden">You forward it</text>
+
+            <g transform="translate(153,-6)">
+              <rect x="0" y="0" width="46" height="34" rx="6" fill="#0D0E13" stroke="#4F5BFF"/>
+              <circle cx="23" cy="17" r="7" fill="none" stroke="#7C86FF" stroke-width="1.4"/>
+              <path d="M23 10 L23 17 L27 20" stroke="#7C86FF" stroke-width="1.4" stroke-linecap="round"/>
+            </g>
+            <text x="176" y="46" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="lt">D.I. perskaito</text>
+            <text x="176" y="46" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="en" class="hidden">AI reads it</text>
+
+            <g transform="translate(325,90)">
+              <rect x="0" y="0" width="46" height="34" rx="6" fill="#0D0E13" stroke="#3FA9FF"/>
+              <path d="M23 8 C18 8, 15 12, 15 17 L15 22 L12 25 L34 25 L31 22 L31 17 C31 12, 28 8, 23 8 Z" fill="none" stroke="#3FA9FF" stroke-width="1.3" stroke-linejoin="round"/>
+              <path d="M20 25 C20 27.2, 21.3 28.5, 23 28.5 C24.7 28.5, 26 27.2, 26 25" fill="none" stroke="#3FA9FF" stroke-width="1.3"/>
+            </g>
+            <text x="348" y="146" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="lt">Priminimas grįžta</text>
+            <text x="348" y="146" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="en" class="hidden">Reminder returns</text>
+          </svg>
   <!-- Dotted Path -->
   <path id="forward-path" d="M 4 60 C 90 60, 90 12, 176 12 C 262 12, 262 108, 348 108 C 400 108, 410 108, 440 108"
         fill="none" stroke="#1C1E27" stroke-width="1.5" class="path-line"/>
@@ -183,7 +213,7 @@
   <circle cx="8" cy="60" r="4" fill="#4F5BFF"/>
   <circle cx="440" cy="108" r="4" fill="#3FA9FF"/>
 
-  <!-- Native SVG Pulse Dot Animation -->
+  <!-- Native SVG Pulse Dot Animation (Works on Mobile Safari & All Browsers) -->
   <circle r="4.5" fill="#7C86FF">
     <animateMotion 
       path="M 4 60 C 90 60, 90 12, 176 12 C 262 12, 262 108, 348 108 C 400 108, 410 108, 440 108" 
@@ -198,7 +228,7 @@
     <path d="M4 6 L23 19 L42 6" stroke="#8A8D9B" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
     <rect x="4" y="4" width="38" height="26" rx="3" fill="none" stroke="#8A8D9B" stroke-width="1.4"/>
   </g>
-  <text x="23" y="94" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="lt">Persiųski mums</text>
+  <text x="23" y="94" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="lt">Siųsk mums</text>
   <text x="23" y="94" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="en" class="hidden">You forward it</text>
 
   <!-- Step 2 Icon -->
@@ -219,23 +249,6 @@
   <text x="348" y="146" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="lt">Priminimas grįžta</text>
   <text x="348" y="146" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="en" class="hidden">Reminder returns</text>
 </svg>
-  </section>
-
-  <footer class="border-t border-hair">
-    <div class="max-w-6xl mx-auto px-6 md:px-10 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-mute">
-      <span>
-        &copy; <span id="year"></span> Threadkeeper. 
-        <span data-lang="lt">Sukurta produktyvumo maištininkams. Nėra slapukų, visiškas privatumas.</span>
-        <span data-lang="en" class="hidden">Built for productivity rebels. Zero cookies, total privacy.</span>
-      </span>
-      <span class="flex items-center gap-1.5 text-mute/80">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 3L4 6.5V11C4 15.5 7.5 19.7 12 21C16.5 19.7 20 15.5 20 11V6.5L12 3Z" stroke="#8A8D9B" stroke-width="1.5" stroke-linejoin="round"/>
-        </svg>
-        <span data-lang="lt">Jokių slaptažodžių, niekada nereikia/</span>
-        <span data-lang="en" class="hidden">No password required, ever</span>
-      </span>
-    </div>
   </footer>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
