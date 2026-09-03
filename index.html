@@ -315,6 +315,74 @@
     </div>
   </section>
 
+  <!-- Pre-order / Pricing Section Added Here -->
+  <section id="pricing" class="border-t border-hair">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
+      <div class="max-w-xl mx-auto text-center mb-16">
+        <h2 class="font-display font-semibold text-3xl sm:text-4xl tracking-tight text-bone">
+          <span data-lang="lt">Gauk ankstyvą priėjimą dabar</span>
+          <span data-lang="en" class="hidden">Secure Early Access</span>
+        </h2>
+        <p class="mt-4 text-mute leading-relaxed">
+          <span data-lang="lt">Palaikyk projektą prieš oficialų startą ir užsitikrink išskirtines sąlygas visam laikui arba mėnesiui.</span>
+          <span data-lang="en" class="hidden">Back the project before official launch and lock in exclusive tier rates.</span>
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        
+        <!-- Tier 1: Monthly Pre-order (€9.99/mo) -->
+        <div class="bg-surface border border-hair rounded-xl p-8 flex flex-col justify-between relative">
+          <div>
+            <div class="inline-block px-3 py-1 rounded-full bg-indigo/10 border border-indigo/30 text-indigo-soft text-xs font-mono mb-4">
+              <span data-lang="lt">Mėnesinė prenumerata</span>
+              <span data-lang="en" class="hidden">Monthly Access</span>
+            </div>
+            <h3 class="font-display text-2xl text-bone mb-2">Threadkeeper Pro</h3>
+            <p class="text-mute text-sm mb-6">
+              <span data-lang="lt">Visos automatizacijos funkcijų galimybės su lanksčiais priminimais.</span>
+              <span data-lang="en" class="hidden">Full automation features with custom reminder delays.</span>
+            </p>
+            <div class="font-display text-4xl font-bold text-bone mb-6">
+              €9.99 <span class="text-sm font-normal text-mute">/ <span data-lang="lt">mėn.</span><span data-lang="en" class="hidden">mo</span></span>
+            </div>
+          </div>
+          <button onclick="startCheckout('price_MONTHLY_ID_HERE')" class="w-full rounded-lg bg-hair hover:bg-indigo text-bone font-display font-medium text-sm py-3 transition-colors">
+            <span data-lang="lt">Užsisakyti mėnesiui</span>
+            <span data-lang="en" class="hidden">Get Monthly Plan</span>
+          </button>
+        </div>
+
+        <!-- Tier 2: Lifetime Pre-order (€29.99) -->
+        <div class="bg-surface border border-indigo/40 rounded-xl p-8 flex flex-col justify-between relative shadow-lg shadow-indigo/5">
+          <div class="absolute -top-3 right-6 bg-indigo text-white text-xs font-mono px-3 py-1 rounded-full uppercase tracking-wider">
+            <span data-lang="lt">Populiariausia</span>
+            <span data-lang="en" class="hidden">Best Value</span>
+          </div>
+          <div>
+            <div class="inline-block px-3 py-1 rounded-full bg-sky/10 border border-sky/30 text-sky text-xs font-mono mb-4">
+              <span data-lang="lt">Neterminuota (Lifetime)</span>
+              <span data-lang="en" class="hidden">Lifetime Access</span>
+            </div>
+            <h3 class="font-display text-2xl text-bone mb-2">Threadkeeper Lifetime</h3>
+            <p class="text-mute text-sm mb-6">
+              <span data-lang="lt">Mokėk vieną kartą, naudokis tol, kol gyvuoja paslauga. Jokių papildomų mokesčių.</span>
+              <span data-lang="en" class="hidden">Pay once, use for the lifetime of the service. Zero recurring fees.</span>
+            </p>
+            <div class="font-display text-4xl font-bold text-bone mb-6">
+              €29.99 <span class="text-sm font-normal text-mute">/ <span data-lang="lt">visam laikui</span><span data-lang="en" class="hidden">lifetime</span></span>
+            </div>
+          </div>
+          <button onclick="startCheckout('price_LIFETIME_ID_HERE')" class="w-full rounded-lg bg-indigo hover:bg-indigo-deep text-white font-display font-medium text-sm py-3 transition-colors">
+            <span data-lang="lt">Įsigyti visam laikui</span>
+            <span data-lang="en" class="hidden">Get Lifetime Access</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <section class="border-t border-hair">
     <div class="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-24 text-center">
       <h2 class="font-display font-semibold text-3xl sm:text-4xl tracking-tight text-bone max-w-xl mx-auto">
@@ -361,6 +429,7 @@
         <span data-lang="lt">Jokių slaptažodžių, niekada</span>
         <span data-lang="en" class="hidden">No password required, ever</span>
       </span>
+
     </div>
   </footer>
 
@@ -560,53 +629,81 @@
       e.preventDefault();
 
       const currentLang = localStorage.getItem('preferred_lang') || 'lt';
-      const email = document.getElementById('email').value.trim().toLowerCase();
+      const emailInput = document.getElementById('email');
+      const email = emailInput.value.trim();
+
       if (!email) return;
 
-      if (submittedEmails.has(email) || localStorage.getItem(`signed_up_${email}`)) {
+      if (submittedEmails.has(email)) {
         status.textContent = currentLang === 'lt' 
-          ? 'Ei, tu jau sąraše!' 
-          : "Hey, you're already on the list!";
-        status.classList.remove('text-mute');
-        status.classList.add('text-indigo-soft');
+          ? 'Šis el. paštas jau užregistruotas!' 
+          : 'This email is already signed up!';
+        status.style.color = '#3FA9FF';
         return;
       }
 
       button.disabled = true;
-      button.querySelector(`[data-lang="${currentLang}"]`).textContent = currentLang === 'lt' ? 'Pridedama…' : 'Adding you…';
+      const originalButtonText = button.innerHTML;
+      button.innerHTML = currentLang === 'lt' ? 'Siunčiama...' : 'Sending...';
 
       try {
-        const res = await fetch(FORMSPREE_ENDPOINT, {
+        const response = await fetch(FORMSPREE_ENDPOINT, {
           method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, source: 'landing_page', language: currentLang, _subject: 'New Threadkeeper waitlist signup' }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
         });
 
-        if (!res.ok) throw new Error('submit failed');
-
-        submittedEmails.add(email);
-        localStorage.setItem(`signed_up_${email}`, 'true');
-
-        if (currentLang === 'lt') {
-          button.querySelector(`[data-lang="lt"]`).textContent = 'Ačiū! Tu sąraše';
-          status.textContent = 'Prisijungei! Atsiųsime laišką, kai tik atidarysime Threadkeeper.';
+        if (response.ok) {
+          submittedEmails.add(email);
+          status.textContent = currentLang === 'lt'
+            ? 'Ačiū! Užregistruota sėkmingai.'
+            : 'Thank you! Successfully signed up.';
+          status.style.color = '#3FA9FF';
+          emailInput.value = '';
         } else {
-          button.querySelector(`[data-lang="en"]`).textContent = "You're on the list";
-          status.textContent = "You're in. We'll email you when Threadkeeper opens up.";
+          throw new Error('Formspree error');
         }
-
-        status.classList.remove('text-mute');
-        status.classList.add('text-indigo-soft');
-        form.reset();
       } catch (err) {
+        status.textContent = currentLang === 'lt'
+          ? 'Įvyko klaida. Bandykite dar kartą.'
+          : 'An error occurred. Please try again.';
+        status.style.color = '#ff4f4f';
+      } finally {
         button.disabled = false;
-        button.querySelector(`[data-lang="lt"]`).textContent = 'Pataisyk savo priminimus';
-        button.querySelector(`[data-lang="en"]`).textContent = 'Fix My Reminders';
-        status.textContent = currentLang === 'lt' 
-          ? 'Kažkas nutiko ne taip – ar galėtum pamėginti dar kartą?' 
-          : "Something went wrong — mind trying again in a moment?";
+        button.innerHTML = originalButtonText;
       }
     });
   </script>
+
+  <!-- Stripe Checkout Trigger Helper Script -->
+  <script>
+    async function startCheckout(priceId) {
+      const currentLang = localStorage.getItem('preferred_lang') || 'lt';
+      try {
+        // Replace with your actual deployed backend endpoint URL once ready
+        const backendUrl = 'https://your-backend-url.com/create-checkout-session';
+
+        const response = await fetch(backendUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ priceId: priceId })
+        });
+
+        const data = await response.json();
+
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          alert(currentLang === 'lt' ? 'Nepavyko sukurti apmokėjimo sesijos.' : 'Failed to create checkout session.');
+        }
+      } catch (err) {
+        console.error('Checkout error:', err);
+        alert(currentLang === 'lt' ? 'Klaida jungiantis prie apmokėjimo serverio.' : 'Error connecting to payment server.');
+      }
+    }
+  </script>
+
 </body>
 </html>
