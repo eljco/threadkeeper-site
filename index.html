@@ -142,7 +142,6 @@
           <span data-lang="en" class="hidden">Threadkeeper is an inbox for the things you meant to get back to — the client scheduling thread, the meetup that needs a reply, the task you buried on purpose. Forward it once. We'll bring it back exactly when it matters.</span>
         </p>
 
-        <!-- Countdown Timer Box Added Here -->
         <div class="mt-8 inline-flex items-center gap-3 bg-surface border border-hair rounded-lg px-4 py-2.5 text-xs font-mono text-mute">
           <span class="inline-block w-2 h-2 rounded-full bg-indigo animate-pulse"></span>
           <span data-lang="lt">Oficialus startas po:</span>
@@ -344,9 +343,7 @@
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
-  <!-- Countdown Timer Script (24 Days from now) -->
   <script>
-    // Sets target to exactly 24 days from right now
     const targetDate = new Date().getTime() + (24 * 24 * 60 * 60 * 1000);
 
     function updateCountdown() {
@@ -406,12 +403,23 @@
     const status = document.getElementById('waitlist-status');
     const button = form.querySelector('button');
 
+    const submittedEmails = new Set();
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const currentLang = localStorage.getItem('preferred_lang') || 'lt';
-      const email = document.getElementById('email').value.trim();
+      const email = document.getElementById('email').value.trim().toLowerCase();
       if (!email) return;
+
+      if (submittedEmails.has(email) || localStorage.getItem(`signed_up_${email}`)) {
+        status.textContent = currentLang === 'lt' 
+          ? 'Šis el. paštas jau užregistruotas!' 
+          : 'This email is already on the waitlist!';
+        status.classList.remove('text-mute');
+        status.classList.add('text-indigo-soft');
+        return;
+      }
 
       button.disabled = true;
       button.querySelector(`[data-lang="${currentLang}"]`).textContent = currentLang === 'lt' ? 'Pridedama…' : 'Adding you…';
@@ -424,6 +432,9 @@
         });
 
         if (!res.ok) throw new Error('submit failed');
+
+        submittedEmails.add(email);
+        localStorage.setItem(`signed_up_${email}`, 'true');
 
         if (currentLang === 'lt') {
           button.querySelector(`[data-lang="lt"]`).textContent = 'Ačiū! Tu sąraše';
