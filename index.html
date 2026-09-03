@@ -5,7 +5,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Threadkeeper | Sprendimas tiems, kurie sako „Padarysiu Rytoj“</title>
-<meta name="description" content="Persiųsk bet kurį el. laišką Threadkeeper. Mūsų D.I. ištrauks užduotis ir tvarkaraščius, o tada atsiųs priminimą tiksliai tada, kai ateis laikas veikti." />
+<meta name="description" content="Persiųsk bet kurį el. laišką Threadkeeper. Mūsų D.I. ištrauks užduotis ir tvarkaraščius, o tada atsiųs priminimą tiksliai tada, kada ateis laikas veikti." />
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -331,6 +331,19 @@
         <span data-lang="lt">Sukurta produktyvumo maištininkams. Nėra slapukų, visiškas privatumas.</span>
         <span data-lang="en" class="hidden">Built for productivity rebels. Zero cookies, total privacy.</span>
       </span>
+
+      <div class="flex items-center gap-4 text-mute">
+        <button onclick="openModal('modal-privacy')" class="hover:text-bone underline transition-colors">
+          <span data-lang="lt">Privatumo politika</span>
+          <span data-lang="en" class="hidden">Privacy Policy</span>
+        </button>
+        <span>&bull;</span>
+        <button onclick="openModal('modal-terms')" class="hover:text-bone underline transition-colors">
+          <span data-lang="lt">Naudojimo taisyklės (TOS)</span>
+          <span data-lang="en" class="hidden">Terms of Service</span>
+        </button>
+      </div>
+
       <span class="flex items-center gap-1.5 text-mute/80">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 3L4 6.5V11C4 15.5 7.5 19.7 12 21C16.5 19.7 20 15.5 20 11V6.5L12 3Z" stroke="#8A8D9B" stroke-width="1.5" stroke-linejoin="round"/>
@@ -341,7 +354,65 @@
     </div>
   </footer>
 
+  <div id="modal-privacy" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden">
+    <div class="bg-surface border border-hair rounded-xl max-w-xl w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-display font-semibold text-xl text-bone">Privacy Policy</h2>
+        <button onclick="closeModal('modal-privacy')" class="text-mute hover:text-bone text-lg font-mono">&times;</button>
+      </div>
+      <div class="text-sm text-mute space-y-4 leading-relaxed">
+        <p>Threadkeeper ("we," "our," or "us") respects your privacy. This Privacy Policy explains how we handle your information when you use our website and service.</p>
+        <h3 class="text-bone font-medium text-base pt-2">1. What We Collect</h3>
+        <p>We only collect the email address you provide when signing up for our waitlist or creating an account, along with the emails you choose to forward to us for processing.</p>
+        <h3 class="text-bone font-medium text-base pt-2">2. OpenAI API Processing</h3>
+        <p>Your forwarded email content is processed via the OpenAI API to extract reminders and timelines. We do not control OpenAI's data handling policies.</p>
+        <h3 class="text-bone font-medium text-base pt-2">3. Security</h3>
+        <p>We use industry-standard security measures to protect your data during transit and storage.</p>
+      </div>
+      <div class="mt-6 text-right">
+        <button onclick="closeModal('modal-privacy')" class="bg-indigo text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-deep transition-colors">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-terms" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden">
+    <div class="bg-surface border border-hair rounded-xl max-w-xl w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-display font-semibold text-xl text-bone">Terms of Service (TOS)</h2>
+        <button onclick="closeModal('modal-terms')" class="text-mute hover:text-bone text-lg font-mono">&times;</button>
+      </div>
+      <div class="text-sm text-mute space-y-4 leading-relaxed">
+        <p>By using Threadkeeper, you agree to the following terms and conditions.</p>
+        <h3 class="text-bone font-medium text-base pt-2">1. Subscriptions & Cancellations</h3>
+        <p>You can cancel your subscription at any time. Cancellation takes effect at the end of the current billing cycle.</p>
+        <h3 class="text-bone font-medium text-base pt-2">2. OpenAI & ChatGPT Disclaimer</h3>
+        <p>Threadkeeper relies on third-party artificial intelligence technology via OpenAI APIs. <strong>We are not responsible or liable for anything related to ChatGPT or OpenAI</strong>, including data privacy practices, service outages, hallucinations, or incorrect parsing.</p>
+        <h3 class="text-bone font-medium text-base pt-2">3. Lifetime Subscriptions</h3>
+        <p>A "Lifetime" subscription means the lifetime of the Threadkeeper service itself. If the service is permanently discontinued, the subscription ends.</p>
+        <h3 class="text-bone font-medium text-base pt-2">4. Limitation of Liability</h3>
+        <p>We are not liable for any missed reminders, lost business, or communication failures resulting from the use of the service.</p>
+      </div>
+      <div class="mt-6 text-right">
+        <button onclick="closeModal('modal-terms')" class="bg-indigo text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-deep transition-colors">Close</button>
+      </div>
+    </div>
+  </div>
+
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+  <script>
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.remove('hidden');
+    }
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+    }
+    window.onclick = function(event) {
+      if (event.target.classList.contains('fixed')) {
+        event.target.classList.add('hidden');
+      }
+    }
+  </script>
 
   <script>
     const targetDate = new Date('2026-09-27T18:00:00+03:00').getTime();
@@ -458,4 +529,4 @@
     });
   </script>
 </body>
-                        </html>
+</html>
