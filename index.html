@@ -113,6 +113,11 @@
           <button id="lang-en" onclick="setLanguage('en')" class="px-2.5 py-1 rounded transition-colors text-mute hover:text-bone">EN</button>
         </div>
 
+        <button onclick="openModal('modal-about')" class="hidden md:inline-flex items-center rounded-md bg-surface border border-hair text-bone font-display font-medium text-sm px-4 py-2 hover:bg-hair transition-colors">
+          <span data-lang="lt">Apie mus</span>
+          <span data-lang="en" class="hidden">About Us</span>
+        </button>
+
         <a href="#waitlist" class="hidden sm:inline-flex items-center rounded-md bg-bone text-ink font-display font-medium text-sm px-4 py-2 hover:bg-indigo-soft hover:text-ink transition-colors">
           <span data-lang="lt">Prisijungti prie laukiančiųjų</span>
           <span data-lang="en" class="hidden">Join the waitlist</span>
@@ -333,6 +338,11 @@
       </span>
 
       <div class="flex items-center gap-4 text-mute">
+        <button onclick="openModal('modal-about')" class="hover:text-bone underline transition-colors">
+          <span data-lang="lt">Apie mus</span>
+          <span data-lang="en" class="hidden">About Us</span>
+        </button>
+        <span>&bull;</span>
         <button onclick="openModal('modal-privacy')" class="hover:text-bone underline transition-colors">
           <span data-lang="lt">Privatumo politika</span>
           <span data-lang="en" class="hidden">Privacy Policy</span>
@@ -354,23 +364,74 @@
     </div>
   </footer>
 
+  <div id="modal-about" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden">
+    <div class="bg-surface border border-hair rounded-xl max-w-xl w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-display font-semibold text-xl text-bone">
+          <span data-lang="lt">Apie mus</span>
+          <span data-lang="en" class="hidden">About Us</span>
+        </h2>
+        <button onclick="closeModal('modal-about')" class="text-mute hover:text-bone text-lg font-mono">&times;</button>
+      </div>
+      <div class="text-sm text-mute space-y-4 leading-relaxed">
+        <div data-lang="lt" class="space-y-4">
+          <p>Įkurta 2026 metų rugsėjį, „Threadkeeper“ buvo sukurta kaip nepriklausoma sistema, skirta išspręsti esminį komunikacijos iššūkį: el. pašto valdymą ir vėluojančius atsakymus.</p>
+          <h3 class="text-bone font-medium text-base pt-2">Mūsų misija</h3>
+          <p>Teikiame supaprastintą apdorojimo infrastruktūrą, leidžiančią vartotojams sklandžiai tvarkyti, sekti ir atidėti korespondenciją be jokios papildomos administracinės naštos ar sudėtingų programinių valdymo skydelių.</p>
+          <h3 class="text-bone font-medium text-base pt-2">Nepriklausoma veikla</h3>
+          <p>„Threadkeeper“ veikia kaip privačiai valdoma paslauga, orientuota išskirtinai į programinės įrangos patikimumą, duomenų privatumo standartus ir efektyvų naudingumą šiuolaikiniams skaitmeniniams darbo procesams.</p>
+        </div>
+        <div data-lang="en" class="space-y-4 hidden">
+          <p>Founded in September 2026, Threadkeeper was created as an independent venture designed to solve a fundamental communication challenge: email management and delayed follow-ups.</p>
+          <h3 class="text-bone font-medium text-base pt-2">Our Mission</h3>
+          <p>We provide a streamlined processing infrastructure that allows users to seamlessly handle, track, and defer correspondence without adding administrative overhead or complex software dashboards.</p>
+          <h3 class="text-bone font-medium text-base pt-2">Independent Ownership</h3>
+          <p>Threadkeeper operates as a privately managed service focused strictly on software reliability, data privacy standards, and efficient utility for modern digital workflows.</p>
+        </div>
+      </div>
+      <div class="mt-6 text-right">
+        <button onclick="closeModal('modal-about')" class="bg-indigo text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-deep transition-colors">
+          <span data-lang="lt">Uždaryti</span>
+          <span data-lang="en" class="hidden">Close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div id="modal-privacy" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden">
     <div class="bg-surface border border-hair rounded-xl max-w-xl w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-4">
-        <h2 class="font-display font-semibold text-xl text-bone">Privacy Policy</h2>
+        <h2 class="font-display font-semibold text-xl text-bone">
+          <span data-lang="lt">Privatumo politika</span>
+          <span data-lang="en" class="hidden">Privacy Policy</span>
+        </h2>
         <button onclick="closeModal('modal-privacy')" class="text-mute hover:text-bone text-lg font-mono">&times;</button>
       </div>
       <div class="text-sm text-mute space-y-4 leading-relaxed">
-        <p>Threadkeeper ("we," "our," or "us") respects your privacy. This Privacy Policy explains how we handle your information when you use our website and service.</p>
-        <h3 class="text-bone font-medium text-base pt-2">1. What We Collect</h3>
-        <p>We only collect the email address you provide when signing up for our waitlist or creating an account, along with the emails you choose to forward to us for processing.</p>
-        <h3 class="text-bone font-medium text-base pt-2">2. OpenAI API Processing</h3>
-        <p>Your forwarded email content is processed via the OpenAI API to extract reminders and timelines. We do not control OpenAI's data handling policies.</p>
-        <h3 class="text-bone font-medium text-base pt-2">3. Security</h3>
-        <p>We use industry-standard security measures to protect your data during transit and storage.</p>
+        <div data-lang="lt" class="space-y-4">
+          <p>Threadkeeper („mes“, „mūsų“) gerbia jūsų privatumą. Ši privatumo politika paaiškina, kaip tvarkome jūsų informaciją naudojantis mūsų svetaine ir paslauga.</p>
+          <h3 class="text-bone font-medium text-base pt-2">1. Kokius duomenis renkame</h3>
+          <p>Renkame tik el. pašto adresą, kurį pateikiate registruodamiesi į laukiančiųjų sąrašą ar kurdami paskyrą, taip pat laiškus, kuriuos nusprendžiate persiųsti mums apdoroti.</p>
+          <h3 class="text-bone font-medium text-base pt-2">2. OpenAI API apdorojimas</h3>
+          <p>Jūsų persiųstų el. laiškų turinys apdorojamas per OpenAI API, siekiant išgauti priminimus ir terminus. Mes nekontroliuojame OpenAI duomenų tvarkymo politikų.</p>
+          <h3 class="text-bone font-medium text-base pt-2">3. Saugumas</h3>
+          <p>Naudojame pramonės standartus atitinkančias saugumo priemones jūsų duomenims apsaugoti perdavimo ir saugojimo metu.</p>
+        </div>
+        <div data-lang="en" class="space-y-4 hidden">
+          <p>Threadkeeper ("we," "our," or "us") respects your privacy. This Privacy Policy explains how we handle your information when you use our website and service.</p>
+          <h3 class="text-bone font-medium text-base pt-2">1. What We Collect</h3>
+          <p>We only collect the email address you provide when signing up for our waitlist or creating an account, along with the emails you choose to forward to us for processing.</p>
+          <h3 class="text-bone font-medium text-base pt-2">2. OpenAI API Processing</h3>
+          <p>Your forwarded email content is processed via the OpenAI API to extract reminders and timelines. We do not control OpenAI's data handling policies.</p>
+          <h3 class="text-bone font-medium text-base pt-2">3. Security</h3>
+          <p>We use industry-standard security measures to protect your data during transit and storage.</p>
+        </div>
       </div>
       <div class="mt-6 text-right">
-        <button onclick="closeModal('modal-privacy')" class="bg-indigo text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-deep transition-colors">Close</button>
+        <button onclick="closeModal('modal-privacy')" class="bg-indigo text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-deep transition-colors">
+          <span data-lang="lt">Uždaryti</span>
+          <span data-lang="en" class="hidden">Close</span>
+        </button>
       </div>
     </div>
   </div>
@@ -378,22 +439,41 @@
   <div id="modal-terms" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden">
     <div class="bg-surface border border-hair rounded-xl max-w-xl w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-4">
-        <h2 class="font-display font-semibold text-xl text-bone">Terms of Service (TOS)</h2>
+        <h2 class="font-display font-semibold text-xl text-bone">
+          <span data-lang="lt">Naudojimo taisyklės (TOS)</span>
+          <span data-lang="en" class="hidden">Terms of Service (TOS)</span>
+        </h2>
         <button onclick="closeModal('modal-terms')" class="text-mute hover:text-bone text-lg font-mono">&times;</button>
       </div>
       <div class="text-sm text-mute space-y-4 leading-relaxed">
-        <p>By using Threadkeeper, you agree to the following terms and conditions.</p>
-        <h3 class="text-bone font-medium text-base pt-2">1. Subscriptions & Cancellations</h3>
-        <p>You can cancel your subscription at any time. Cancellation takes effect at the end of the current billing cycle.</p>
-        <h3 class="text-bone font-medium text-base pt-2">2. OpenAI & ChatGPT Disclaimer</h3>
-        <p>Threadkeeper relies on third-party artificial intelligence technology via OpenAI APIs. <strong>We are not responsible or liable for anything related to ChatGPT or OpenAI</strong>, including data privacy practices, service outages, hallucinations, or incorrect parsing.</p>
-        <h3 class="text-bone font-medium text-base pt-2">3. Lifetime Subscriptions</h3>
-        <p>A "Lifetime" subscription means the lifetime of the Threadkeeper service itself. If the service is permanently discontinued, the subscription ends.</p>
-        <h3 class="text-bone font-medium text-base pt-2">4. Limitation of Liability</h3>
-        <p>We are not liable for any missed reminders, lost business, or communication failures resulting from the use of the service.</p>
+        <div data-lang="lt" class="space-y-4">
+          <p>Naudodamiesi Threadkeeper, sutinkate su šiomis sąlygomis ir taisyklėmis.</p>
+          <h3 class="text-bone font-medium text-base pt-2">1. Prenumeratos ir atšaukimas</h3>
+          <p>Galite bet kada atšaukti savo prenumeratą. Atšaukimas įsigalioja esamo atsiskaitymo ciklui pabaigoje.</p>
+          <h3 class="text-bone font-medium text-base pt-2">2. OpenAI ir ChatGPT atsakomybės apribojimas</h3>
+          <p>Threadkeeper naudoja trečiųjų šalių dirbtinio intelekto technologijas per OpenAI API. <strong>Mes nesame atsakingi už nieką, kas susiję su ChatGPT ar OpenAI</strong>, įskaitant privatumo praktika, paslaugų sutrikimus, haliucinacijas ar neteisingą duomenų nuskaitymą.</p>
+          <h3 class="text-bone font-medium text-base pt-2">3. Neterminuotos prenumeratos</h3>
+          <p>"Lifetime" prenumerata reiškia Threadkeeper paslaugos gyvavimo trukmę. Jei paslauga yra visam laikui nutraukiama, prenumerata baigiasi.</p>
+          <h3 class="text-bone font-medium text-base pt-2">4. Atsakomybės ribojimas</h3>
+          <p>Mes nesame atsakingi už praleistus priminimus, prarastą verslą ar ryšio trikdžius, kilusius dėl paslaugos naudojimo.</p>
+        </div>
+        <div data-lang="en" class="space-y-4 hidden">
+          <p>By using Threadkeeper, you agree to the following terms and conditions.</p>
+          <h3 class="text-bone font-medium text-base pt-2">1. Subscriptions & Cancellations</h3>
+          <p>You can cancel your subscription at any time. Cancellation takes effect at the end of the current billing cycle.</p>
+          <h3 class="text-bone font-medium text-base pt-2">2. OpenAI & ChatGPT Disclaimer</h3>
+          <p>Threadkeeper relies on third-party artificial intelligence technology via OpenAI APIs. <strong>We are not responsible or liable for anything related to ChatGPT or OpenAI</strong>, including data privacy practices, service outages, hallucinations, or incorrect parsing.</p>
+          <h3 class="text-bone font-medium text-base pt-2">3. Lifetime Subscriptions</h3>
+          <p>A "Lifetime" subscription means the lifetime of the Threadkeeper service itself. If the service is permanently discontinued, the subscription ends.</p>
+          <h3 class="text-bone font-medium text-base pt-2">4. Limitation of Liability</h3>
+          <p>We are not liable for any missed reminders, lost business, or communication failures resulting from the use of the service.</p>
+        </div>
       </div>
       <div class="mt-6 text-right">
-        <button onclick="closeModal('modal-terms')" class="bg-indigo text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-deep transition-colors">Close</button>
+        <button onclick="closeModal('modal-terms')" class="bg-indigo text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-deep transition-colors">
+          <span data-lang="lt">Uždaryti</span>
+          <span data-lang="en" class="hidden">Close</span>
+        </button>
       </div>
     </div>
   </div>
