@@ -414,8 +414,8 @@
 
       if (submittedEmails.has(email) || localStorage.getItem(`signed_up_${email}`)) {
         status.textContent = currentLang === 'lt' 
-          ? 'Ei, tu jau sąraše! 🚀' 
-          : "Hey, you're already on the list! 🚀";
+          ? 'Ei, tu jau sąraše!' 
+          : "Hey, you're already on the list!";
         status.classList.remove('text-mute');
         status.classList.add('text-indigo-soft');
         return;
