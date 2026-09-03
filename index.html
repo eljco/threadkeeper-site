@@ -242,8 +242,8 @@
           <span data-lang="en" class="hidden">How it works</span>
         </h2>
         <p class="mt-4 text-mute leading-relaxed">
-          <span data-lang="lt">Jokių naujų programėlių. Threadkeeper veikia tiesiog tavo el. pašte.</span>
-          <span data-lang="en" class="hidden">No new app to open. Threadkeeper lives entirely inside the email habits you already have.</span>
+          <span data-lang="lt">Jokių naujų programėlių. Threadkeeper veikia tiesiog tavo el. pašte, bet suteikia visišką laisvę pasirinkti, kaip nori viską valdyti.</span>
+          <span data-lang="en" class="hidden">No new app to open. Threadkeeper lives inside your habits, with total flexibility over how you want to be notified.</span>
         </p>
       </div>
 
@@ -257,12 +257,12 @@
           </svg>
           <div>
             <h3 class="font-display text-lg text-bone mb-2">
-              <span data-lang="lt">Persiųsk laišką</span>
-              <span data-lang="en" class="hidden">Forward the mail</span>
+              <span data-lang="lt">Persiųsk arba leisk D.I. skaityti pačiam</span>
+              <span data-lang="en" class="hidden">Forward or let AI read automatically</span>
             </h3>
             <p class="text-mute text-sm leading-relaxed">
-              <span data-lang="lt">Persiųsk arba pridėk BCC į Threadkeeper – kliento užklausą, draugo susitikimo planą ar bet ką, ką atidedi vėlesniam laikui.</span>
-              <span data-lang="en" class="hidden">Forward or BCC any message to your unique Threadkeeper inbox — a client's scheduling thread, a friend's meetup plan, anything you're setting aside for later.</span>
+              <span data-lang="lt">Gali tradiciškai persiųsti laiškus rankiniu būdu, arba pasirinkti funkciją, leidžiančią dirbtiniam intelektui pačiam nuskaityti tavo paštą. Nereikia niekur persiuntinėti – D.I. pats supranta laiką bei kontekstą.</span>
+              <span data-lang="en" class="hidden">You can manually forward messages, or opt into letting our AI scan your mail directly. No need to forward anything — the AI picks up timelines and details all by itself.</span>
             </p>
           </div>
         </div>
@@ -278,12 +278,12 @@
           </svg>
           <div>
             <h3 class="font-display text-lg text-bone mb-2">
-              <span data-lang="lt">D.I. ištraukia užduotis</span>
-              <span data-lang="en" class="hidden">AI extracts tasks</span>
+              <span data-lang="lt">Pranešimai telefone ar naršyklėje</span>
+              <span data-lang="en" class="hidden">Phone & browser notifications</span>
             </h3>
             <p class="text-mute text-sm leading-relaxed">
-              <span data-lang="lt">Mūsų dirbtinis intelektas supranta kontekstą, supranta kas svarbu ir nustato, kada tiksliai reikia imtis veiksmų.</span>
-              <span data-lang="en" class="hidden">Our AI reads the context, pulls out timelines and action items, and figures out what actually needs to happen — and when. Handled securely, then forgotten.</span>
+              <span data-lang="lt">Pasirink, kaip nori gauti priminimus. Gali rinktis klasikinį el. pašto pranešimą, arba gauti greitus pranešimus tiesiai į telefoną ar naršyklę (panašiai kaip Snapchat pranešimus), kad visada būtum žingsniu priekyje.</span>
+              <span data-lang="en" class="hidden">Choose your alert style. You can get traditional email reminders, or opt into instant push notifications on your phone or browser (just like Snapchat alerts) so you're always on top of things.</span>
             </p>
           </div>
         </div>
@@ -296,12 +296,12 @@
           </svg>
           <div>
             <h3 class="font-display text-lg text-bone mb-2">
-              <span data-lang="lt">Priminimas grįžta laiku</span>
-              <span data-lang="en" class="hidden">Persistent reminders</span>
+              <span data-lang="lt">Lanksčios pertraukos iki 72 valandų</span>
+              <span data-lang="en" class="hidden">Custom delays up to 72 hours</span>
             </h3>
             <p class="text-mute text-sm leading-relaxed">
-              <span data-lang="lt">Threadkeeper atsiunčia laišką atgal tiksliai tada, kai reikia veikti – neleidžiame nieko užmiršti.</span>
-              <span data-lang="en" class="hidden">Threadkeeper emails you back exactly when it's time to act — and keeps at it if you let it slide, so nothing stays buried twice.</span>
+              <span data-lang="lt">Nustatyk tikslų laiką, kada nori gauti priminimą – nuo 1 valandos, 2h, 3h, 4h ir taip toliau iki pat 72 valandų intervalų. Viskas lengvai konfigūruojama pagal tavo asmeninį ritmą.</span>
+              <span data-lang="en" class="hidden">Select exactly WHEN you want to be reminded — choose from 1h, 2h, 3h, 4h, and all the way up to 72 hours. Tailor every reminder interval precisely to fit your workflow.</span>
             </p>
           </div>
         </div>
@@ -351,7 +351,7 @@
       const difference = targetDate - now;
 
       if (difference <= 0) {
-        document.getElementById('countdown').textContent = "LIVE NOW! 🚀";
+        document.getElementById('countdown').textContent = "LIVE NOW!";
         return;
       }
 
