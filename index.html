@@ -142,7 +142,17 @@
           <span data-lang="en" class="hidden">Threadkeeper is an inbox for the things you meant to get back to — the client scheduling thread, the meetup that needs a reply, the task you buried on purpose. Forward it once. We'll bring it back exactly when it matters.</span>
         </p>
 
-        <div id="waitlist" class="mt-10 max-w-md rounded-xl bg-surface border border-hair p-5 sm:p-6">
+        <!-- Countdown Timer Box Added Here -->
+        <div class="mt-8 inline-flex items-center gap-3 bg-surface border border-hair rounded-lg px-4 py-2.5 text-xs font-mono text-mute">
+          <span class="inline-block w-2 h-2 rounded-full bg-indigo animate-pulse"></span>
+          <span data-lang="lt">Oficialus startas po:</span>
+          <span data-lang="en" class="hidden">Official launch in:</span>
+          <div id="countdown" class="text-bone font-semibold tracking-wider">
+            --d --h --m --s
+          </div>
+        </div>
+
+        <div id="waitlist" class="mt-6 max-w-md rounded-xl bg-surface border border-hair p-5 sm:p-6">
           <p class="font-display text-sm text-bone mb-3">
             <span data-lang="lt">Gauk ankstyvą priėjimą</span>
             <span data-lang="en" class="hidden">Get early access</span>
@@ -333,6 +343,33 @@
   </footer>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+  <!-- Countdown Timer Script (24 Days from now) -->
+  <script>
+    // Sets target to exactly 24 days from right now
+    const targetDate = new Date().getTime() + (24 * 24 * 60 * 60 * 1000);
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        document.getElementById('countdown').textContent = "LIVE NOW! 🚀";
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      document.getElementById('countdown').textContent = 
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 
   <script>
     function setLanguage(lang) {
