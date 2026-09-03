@@ -593,8 +593,8 @@
       });
     }
 
-    // Countdown timer (mock target 14 days out)
-    const countDate = new Date().getTime() + (14 * 24 * 60 * 60 * 1000);
+    // Countdown timer (set back to 26 days)
+    const countDate = new Date().getTime() + (26 * 24 * 60 * 60 * 1000);
     setInterval(() => {
       const now = new Date().getTime();
       const gap = countDate - now;
