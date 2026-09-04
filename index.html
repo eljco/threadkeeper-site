@@ -456,7 +456,7 @@
     </div>
   </footer>
 
-  <div id="modal-about" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden">
+ <div id="modal-about" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden">
     <div class="bg-surface border border-hair rounded-xl max-w-xl w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-4">
         <h2 class="font-display font-semibold text-xl text-bone">
@@ -501,22 +501,46 @@
       </div>
       <div class="text-sm text-mute space-y-4 leading-relaxed">
         <div data-lang="lt" class="space-y-4">
-          <p>Threadkeeper („mes“, „mūsų“) gerbia jūsų privatumą. Ši privatumo politika paaiškina, kaip tvarkome jūsų informaciją naudojantis mūsų svetaine ir paslauga.</p>
-          <h3 class="text-bone font-medium text-base pt-2">1. Kokius duomenis renkame</h3>
-          <p>Renkame tik el. pašto adresą, kurį pateikiate registruodamiesi į laukiančiųjų sąrašą ar kurdami paskyrą, taip pat laiškus, kuriuos nusprendžiate persiųsti mums apdoroti.</p>
-          <h3 class="text-bone font-medium text-base pt-2">2. OpenAI API apdorojimas</h3>
-          <p>Jūsų persiųstų el. laiškų turinys apdorojamas per OpenAI API, siekiant išgauti priminimus ir terminus. Mes nekontroliuojame OpenAI duomenų tvarkymo politikų.</p>
-          <h3 class="text-bone font-medium text-base pt-2">3. Saugumas</h3>
-          <p>Naudojame pramonės standartus atitinkančias saugumo priemones jūsų duomenims apsaugoti perdavimo ir saugojimo metu.</p>
+          <p class="text-xs font-mono text-indigo-soft">Paskutinį kartą atnaujinta: 2026 m. rugsėjis</p>
+          <p>Threadkeeper („mes“, „mūsų“) gerbia jūsų privatumą. Ši privatumo politika paaiškina, kaip apsaugome, tvarkome ir užtikriname jūsų informacijos saugumą naudojantis mūsų svetaine, foninėmis paslaugomis ir el. pašto nukreipimo tinklu.</p>
+          
+          <h3 class="text-bone font-medium text-base pt-2">1. Minimalus duomenų rinkimas</h3>
+          <p>Renkame tik absoliučiai minimalius duomenis, reikalingus jūsų priminimams vykdyti:</p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>El. pašto adresas, kurį pateikiate registruodamiesi į laukiančiųjų sąrašą ar nustatydami savo paskyrą.</li>
+            <li>Specifinės el. pašto antraštės, tekstas ir metaduomenys, kuriuos nusprendžiate persiųsti arba įgaliojate mūsų sistemą nuskaityti planavimo tikslais.</li>
+          </ul>
+
+          <h3 class="text-bone font-medium text-base pt-2">2. Dirbtinio intelekto apdorojimas (Duomenų izoliavimo apsauga)</h3>
+          <p>Kad būtų išgauti tikslūs grafikai ir datos, jūsų el. laiškų turinys saugiai apdorojamas per „Google Gemini API“ sistemą.</p>
+          <p><strong>Privatumo apsauga:</strong> „Threadkeeper“ veikia tik mokamame kūrėjo lygyje (Paid Developer Tier, Tier 1). Pagal mūsų įmonės atitikties sutartį, jūsų privačių el. laiškų turinys, žetonai ir užklausos yra teisiškai apsaugoti.</p>
+          <p><strong>Nėra modelio mokymo:</strong> Jūsų duomenys NIEKADA nenaudojami „Google“ AI modeliams treniruoti, ir jie yra visiškai apsaugoti nuo bet kokio žmogiškojo vertinimo ar peržiūros.</p>
+          <p>Mes taikome griežtą nulinės monetizacijos politiką: jūsų privatus el. pašto turinys niekada nebus nuomojamas, parduodamas ar bendrinamas su išoriniais reklamos tinklais.</p>
+
+          <h3 class="text-bone font-medium text-base pt-2">3. Automatinis duomenų šalinimas ir šifravimas</h3>
+          <p>Visi aktyvūs žetonai, el. pašto žurnalai ir laiko žymos yra kriptografiski užšifruoti mūsų saugioje „Supabase“ duomenų bazės klasterio aplinkoje, naudojant pramonės standartus atitinkančius SSL/TLS perdavimo protokolus.</p>
+          <p><strong>Laikinas saugojimas:</strong> Kai pasirinktas priminimo laiko tarpas yra įvykdomas, išsiunčiamas jums atgal arba rankiniu būdu ištrinamas iš žurnalo, atitinkamas el. pašto teksto turinys yra automatinai ir visiškai ištrinamas iš mūsų aktyvių serverių.</p>
         </div>
         <div data-lang="en" class="space-y-4 hidden">
-          <p>Threadkeeper ("we," "our," or "us") respects your privacy. This Privacy Policy explains how we handle your information when you use our website and service.</p>
-          <h3 class="text-bone font-medium text-base pt-2">1. What We Collect</h3>
-          <p>We only collect the email address you provide when signing up for our waitlist or creating an account, along with the emails you choose to forward to us for processing.</p>
-          <h3 class="text-bone font-medium text-base pt-2">2. OpenAI API Processing</h3>
-          <p>Your forwarded email content is processed via the OpenAI API to extract reminders and timelines. We do not control OpenAI's data handling policies.</p>
-          <h3 class="text-bone font-medium text-base pt-2">3. Security</h3>
-          <p>We use industry-standard security measures to protect your data during transit and storage.</p>
+          <p class="text-xs font-mono text-indigo-soft">Last Updated: September 2026</p>
+          <p>Threadkeeper ("we," "our," or "us") respects your privacy. This Privacy Policy explains how we protect, handle, and secure your information when you use our website, background services, and email routing network.</p>
+          
+          <h3 class="text-bone font-medium text-base pt-2">1. Minimal Data Collection</h3>
+          <p>We only collect the absolute minimum data required to run your reminders:</p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>The email address you provide when joining our waitlist or authenticating your account.</li>
+            <li>The specific email headers, text contents, and metadata that you choose to forward or authorize our system to scan for scheduling purposes.</li>
+          </ul>
+
+          <h3 class="text-bone font-medium text-base pt-2">2. Enterprise-Grade AI Processing (Data Isolation Shield)</h3>
+          <p>To extract clean timelines and dates, your email contents are securely processed via the Google Gemini API framework.</p>
+          <p><strong>The Privacy Shield:</strong> Threadkeeper operates exclusively on a Paid Developer Tier (Tier 1). Under our enterprise compliance agreement, your private email contents, tokens, and prompts are legally protected.</p>
+          <p><strong>Zero Model Training:</strong> Your data is NEVER used to train Google's AI models, and it is entirely blocked from human evaluation or review.</p>
+          <p>We enforce a strict zero-monetization policy: your private email data will never be rented, sold, or shared with external advertising networks.</p>
+
+          <h3 class="text-bone font-medium text-base pt-2">3. Automatic Data Purging & Encryption</h3>
+          <p>All active tokens, email logs, and timestamps are cryptographically locked inside our secure, encrypted Supabase database cluster using industry-standard SSL/TLS transit protocols.</p>
+          <p><strong>Ephemeral Retention:</strong> Once a custom reminder delay is executed, sent back to you, or manually deleted from your log, the corresponding email text content is automatically and permanently purged from our active backend servers.</p>
         </div>
       </div>
       <div class="mt-6 text-right">
@@ -539,26 +563,40 @@
       </div>
       <div class="text-sm text-mute space-y-4 leading-relaxed">
         <div data-lang="lt" class="space-y-4">
-          <p>Naudodamiesi Threadkeeper, sutinkate su šiomis sąlygomis ir taisyklėmis.</p>
-          <h3 class="text-bone font-medium text-base pt-2">1. Prenumeratos ir atšaukimas</h3>
-          <p>Galite bet kada atšaukti savo prenumeratą. Atšaukimas įsigalioja esamo atsiskaitymo ciklui pabaigoje.</p>
-          <h3 class="text-bone font-medium text-base pt-2">2. OpenAI ir ChatGPT atsakomybės apribojimas</h3>
-          <p>Threadkeeper naudoja trečiųjų šalių dirbtinio intelekto technologijas per OpenAI API. <strong>Mes nesame atsakingi už nieką, kas susiję su ChatGPT ar OpenAI</strong>, įskaitant privatumo praktika, paslaugų sutrikimus, haliucinacijas ar neteisingą duomenų nuskaitymą.</p>
-          <h3 class="text-bone font-medium text-base pt-2">3. Neterminuotos prenumeratos</h3>
-          <p>"Lifetime" prenumerata reiškia Threadkeeper paslaugos gyvavimo trukmę. Jei paslauga yra visam laikui nutraukiama, prenumerata baigiasi.</p>
+          <p class="text-xs font-mono text-indigo-soft">Paskutinį kartą atnaujinta: 2026 m. rugsėjis</p>
+          <p>Naudodamiesi paslaugomis, teikiamomis adresu threadkeeper.co, sutinkate laikytis šių sąlygų, nuostatų ir veiklos rėmų bei būti jais saistomi.</p>
+
+          <h3 class="text-bone font-medium text-base pt-2">1. Paskyros tinkamumas ir tėvų sutikimas</h3>
+          <p>„Threadkeeper“ aiškiai leidžia vartotojams iki 18 metų amžiaus kurti aktyvias prenumeratos paskyras ir jas valdyti, jeigu jie turi reikiamą tėvų ar globėjo sutikimą pagal vietinius teisinius rėmus (tokius kaip LR Civilinio kodekso 2.8 straipsnis).</p>
+
+          <h3 class="text-bone font-medium text-base pt-2">2. Prenumeratos, atšaukimas ir atsiskaitymas</h3>
+          <p><strong>Threadkeeper Pro:</strong> Veikia pagal pasikartojantį mėnesinį atsiskaitymo ciklą per mūsų saugų mokėjimų partnerį („Lemon Squeezy“). Prenumeratą galite atšaukti bet kuriuo metu. Atšaukimas įsigalioja pasibaigus dabartiniam aktyviam atsiskaitymo ciklui.</p>
+          <p><strong>Threadkeeper Lifetime:</strong> Yra išskirtinis vienkartinio mokėjimo planas, suteikiantis prieigą prie mūsų automatizavimo funkcijų visą „Threadkeeper“ platformos gyvavimo laikotarpį. Jei paslauga yra visiškai nutraukiama, neterminuota sutartis pasibaigia be jokių papildomų periodinių įsipareigojimų.</p>
+
+          <h3 class="text-bone font-medium text-base pt-2">3. Dirbtinio intelekto infrastruktūra ir paslaugų apribojimai</h3>
+          <p>„Threadkeeper“ remiasi saugiais debesų kompiuterijos tinklais ir įmonės lygio trečiųjų šalių infrastruktūra („Google Gemini API Developer Tier“).</p>
+          <p>Nors išlaikome griežtą duomenų izoliavimo apsaugą, „Threadkeeper“ teisiškai neatsako už netikėtus trečiųjų šalių serverių sutrikimus, telekomunikacijų maršrutizavimo klaidas arba apdorojimo nukrypimus, kilusius dėl pagrindinių AI analizės variklių.</p>
+
           <h3 class="text-bone font-medium text-base pt-2">4. Atsakomybės ribojimas</h3>
-          <p>Mes nesame atsakingi už praleistus priminimus, prarastą verslą ar ryšio trikdžius, kilusius dėl paslaugos naudojimo.</p>
+          <p>„Threadkeeper“ yra nepriklausoma produktyvumo automatizavimo priemonė, skirta el. pašto stebėjimui optimizuoti. Negarantuojame absoliutaus sistemos veikimo įvykus išorinėms tinklo triktims. Mes nesame teisiškai ar finansiškai atsakingi už praleistus kalendoriaus terminus, prarastas verslo galimybes ar komunikacijos planavimo klaidas, kilusias dėl mūsų automatizuotų pranešimų intervalų naudojimo ar netinkamo naudojimo.</p>
         </div>
         <div data-lang="en" class="space-y-4 hidden">
-          <p>By using Threadkeeper, you agree to the following terms and conditions.</p>
-          <h3 class="text-bone font-medium text-base pt-2">1. Subscriptions & Cancellations</h3>
-          <p>You can cancel your subscription at any time. Cancellation takes effect at the end of the current billing cycle.</p>
-          <h3 class="text-bone font-medium text-base pt-2">2. OpenAI & ChatGPT Disclaimer</h3>
-          <p>Threadkeeper relies on third-party artificial intelligence technology via OpenAI APIs. <strong>We are not responsible or liable for anything related to ChatGPT or OpenAI</strong>, including data privacy practices, service outages, hallucinations, or incorrect parsing.</p>
-          <h3 class="text-bone font-medium text-base pt-2">3. Lifetime Subscriptions</h3>
-          <p>A "Lifetime" subscription means the lifetime of the Threadkeeper service itself. If the service is permanently discontinued, the subscription ends.</p>
+          <p class="text-xs font-mono text-indigo-soft">Last Updated: September 2026</p>
+          <p>By utilizing the services provided at threadkeeper.co, you agree to comply with and be bound by the following terms, conditions, and operational frameworks.</p>
+
+          <h3 class="text-bone font-medium text-base pt-2">1. Account Eligibility & Parental Capacity</h3>
+          <p>Threadkeeper explicitly permits users under the age of 18 to establish and manage active subscription accounts, provided they possess the required parental or guardian capacity under local legal frameworks (such as Civil Code Article 2.8 within the Republic of Lithuania).</p>
+
+          <h3 class="text-bone font-medium text-base pt-2">2. Subscriptions, Cancellations, and Billing</h3>
+          <p><strong>Threadkeeper Pro:</strong> Operates on a recurring monthly billing cycle via our secure merchant of record (Lemon Squeezy). You may cancel your subscription at any time. Cancellations take effect at the conclusion of your current active billing cycle.</p>
+          <p><strong>Threadkeeper Lifetime:</strong> Represents an exclusive, one-time payment tier granting access to our automation features for the operational lifetime of the Threadkeeper platform itself. If the platform service is permanently discontinued, the lifetime contract ends with no further recurring liabilities.</p>
+
+          <h3 class="text-bone font-medium text-base pt-2">3. Enterprise AI Infrastructure & Service Limitations</h3>
+          <p>Threadkeeper relies on secure cloud computing pipelines and enterprise-grade third-party infrastructure (Google Gemini API Developer Tier).</p>
+          <p>While we maintain a strict data isolation shield to prevent model training, Threadkeeper is not legally liable for unexpected third-party server outages, telecommunication routing dropouts, or processing hallucinations caused by the underlying AI parsing engines.</p>
+
           <h3 class="text-bone font-medium text-base pt-2">4. Limitation of Liability</h3>
-          <p>We are not liable for any missed reminders, lost business, or communication failures resulting from the use of the service.</p>
+          <p>Threadkeeper is an independent productivity automation utility designed to streamline email tracking. We do not guarantee absolute system delivery in the event of external network disruptions. We are not legally or financially liable for missed calendar deadlines, lost business opportunities, or communication scheduling oversights resulting from the use or misuse of our automated notification intervals.</p>
         </div>
       </div>
       <div class="mt-6 text-right">
