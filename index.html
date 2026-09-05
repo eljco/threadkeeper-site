@@ -130,6 +130,50 @@ html, body, a, button, select, input {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'%3E%3Cpath d='M2,2 L11,20 L14,14 L20,11 Z' fill='%23FF5500' stroke='%23000000' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, auto !important;
 }
 
+  /* ---- Funding bar: wavy "water" fill effect ---- */
+  /* Two SVG waves, each 200% wide with a seamlessly repeating crest, drift
+     sideways forever at different speeds/directions so the whole orange
+     fill reads as one continuously moving body of liquid, not a static bar. */
+  .wave-layer {
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 200%;
+    height: 100%;
+    animation: wave-move linear infinite;
+  }
+  .wave-back  { animation-duration: 10s; opacity: 0.65; }
+  .wave-front { animation-duration: 6s; animation-direction: reverse; opacity: 0.9; }
+
+  @keyframes wave-move {
+    0%   { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* A soft light sweep drifting across the fill, reinforcing the sense of motion */
+  .wave-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+    background-size: 250% 100%;
+    animation: shimmer-move 3.5s ease-in-out infinite;
+  }
+  @keyframes shimmer-move {
+    0%   { background-position: 120% 0; }
+    100% { background-position: -20% 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wave-layer, .wave-shimmer { animation: none; }
+  }
+
+  @keyframes donate-pulse {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.03); }
+    100% { transform: scale(1); }
+  }
+  .donate-pulse { animation: donate-pulse 0.4s ease-out; }
+
 </style>
 </head>
 
@@ -471,6 +515,104 @@ html, body, a, button, select, input {
   </div>
 </section>
 
+<!-- Fund the AI: community funding progress bar -->
+<section id="fund-the-ai" class="border-t border-hair">
+  <div class="max-w-2xl mx-auto px-6 md:px-10 py-20 md:py-28">
+
+    <div class="text-center mb-10">
+      <h2 class="font-display font-semibold text-3xl sm:text-4xl tracking-tight text-bone">
+        <span data-lang="lt">Finansuok D.I.</span>
+        <span data-lang="en" class="hidden">Fund the AI</span>
+      </h2>
+      <p class="mt-4 text-mute leading-relaxed">
+        <span data-lang="lt">Kiekvienas laiškas, kurį apdoroja Threadkeeper, kainuoja realius D.I. resursus. Jei nori, gali prisidėti prie bendruomenės tikslo - kiekvienas euras tiesiogiai virsta apdorotais laiškais.</span>
+        <span data-lang="en" class="hidden">Every email Threadkeeper processes costs real AI compute. If you'd like, you can chip in toward the community goal below - every euro converts directly into processed emails.</span>
+      </p>
+    </div>
+
+    <div class="bg-surface border border-hair rounded-xl p-6 md:p-8">
+
+      <div class="flex items-center justify-between mb-4 gap-3 flex-wrap">
+        <h3 class="font-display text-lg text-bone">
+          <span data-lang="lt">Bendruomenės tikslas</span>
+          <span data-lang="en" class="hidden">Community goal</span>
+        </h3>
+        <span class="text-xs text-mute font-mono">
+          <span data-lang="lt">Tikslas: 1 milijardas laiškų</span>
+          <span data-lang="en" class="hidden">Goal: 1 Billion messages</span>
+        </span>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="w-full h-7 md:h-8 rounded-full bg-hair overflow-hidden relative border border-hair">
+        <div id="funding-fill"
+             class="h-full bg-indigo relative overflow-hidden transition-[width] duration-700 ease-out"
+             style="width: 0%;">
+          <svg class="wave-layer wave-back" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,55 C150,95 350,15 600,55 C850,95 1050,15 1200,55 L1200,100 L0,100 Z" fill="#FF7733"></path>
+          </svg>
+          <svg class="wave-layer wave-front" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,60 C150,20 350,95 600,52 C850,15 1050,90 1200,50 L1200,100 L0,100 Z" fill="#CC4400"></path>
+          </svg>
+          <div class="wave-shimmer"></div>
+        </div>
+      </div>
+
+      <div class="mt-2 flex justify-between text-xs text-mute font-mono">
+        <span id="funding-percent">0.00%</span>
+        <span id="funding-total-messages">0 / 1 Billion</span>
+      </div>
+
+      <!-- Hybrid live counter -->
+      <p id="funding-counter-text" class="mt-6 text-center font-display text-lg md:text-2xl text-bone leading-snug">
+        <span id="funding-tokens-today">0</span>
+        <span data-lang="lt">Tokenų</span><span data-lang="en" class="hidden">Tokens</span>
+        / <span id="funding-messages-today">0</span>
+        <span data-lang="lt">laiškų šiandien profinansuota!</span>
+        <span data-lang="en" class="hidden">messages funded today!</span>
+      </p>
+
+      <!-- Donate controls -->
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <button type="button" data-amount="1"
+          class="donate-btn rounded-lg bg-hair hover:bg-indigo text-white font-display font-medium text-sm px-4 py-2 transition-colors">
+          <span data-lang="lt">Aukoti 1€</span>
+          <span data-lang="en" class="hidden">Donate 1€</span>
+        </button>
+        <button type="button" data-amount="5"
+          class="donate-btn rounded-lg bg-hair hover:bg-indigo text-white font-display font-medium text-sm px-4 py-2 transition-colors">
+          <span data-lang="lt">Aukoti 5€</span>
+          <span data-lang="en" class="hidden">Donate 5€</span>
+        </button>
+        <button type="button" data-amount="10"
+          class="donate-btn rounded-lg bg-hair hover:bg-indigo text-white font-display font-medium text-sm px-4 py-2 transition-colors">
+          <span data-lang="lt">Aukoti 10€</span>
+          <span data-lang="en" class="hidden">Donate 10€</span>
+        </button>
+
+        <div class="flex items-center gap-2">
+          <label for="custom-amount" class="sr-only">Custom amount</label>
+          <input id="custom-amount" type="number" min="1" step="1" placeholder="€"
+            class="w-20 rounded-lg bg-ink border border-hair px-3 py-2 text-sm text-bone placeholder:text-mute/70 focus:border-indigo-soft focus:outline-none transition-colors">
+          <button type="button" id="donate-custom-btn"
+            class="rounded-lg bg-hair hover:bg-indigo text-white font-display font-medium text-sm px-4 py-2 transition-colors">
+            <span data-lang="lt">Aukoti</span>
+            <span data-lang="en" class="hidden">Donate</span>
+          </button>
+        </div>
+      </div>
+
+      <p class="mt-4 text-center text-xs text-mute">
+        <span data-lang="lt">1€ ≈ 1 600 000 tokenų ≈ 3 000 apdorotų laiškų.</span>
+        <span data-lang="en" class="hidden">1€ ≈ 1,600,000 tokens ≈ 3,000 processed emails.</span>
+      </p>
+
+      <!-- ADD LEMONSQUEEZY FOR THE DONATIONS HERE BRO -->
+
+    </div>
+  </div>
+</section>
+
 <!-- STEP 3 & 16: Bilingual Compliance FAQ Section Integration -->
 <section id="faq" class="border-t border-hair bg-surface/20">
   <div class="max-w-4xl mx-auto px-6 py-20">
@@ -773,6 +915,42 @@ html, body, a, button, select, input {
     </div>
   </div>
 
+  <div id="modal-funding-preview" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden">
+    <div class="bg-surface border border-hair rounded-xl max-w-md w-full p-6 sm:p-8">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-display font-semibold text-xl text-bone">
+          <span data-lang="lt">Aukos peržiūra</span>
+          <span data-lang="en" class="hidden">Donation Preview</span>
+        </h2>
+        <button onclick="closeModal('modal-funding-preview')" class="text-mute hover:text-bone text-lg font-mono">&times;</button>
+      </div>
+
+      <div class="text-sm text-mute leading-relaxed space-y-4">
+        <p data-lang="lt">
+          <strong id="fp-amount-lt" class="text-bone"></strong> auka finansuotų
+          <strong id="fp-percent-lt" class="text-indigo-soft"></strong> mūsų 1 milijardo laiškų tikslo
+          (<span id="fp-messages-lt"></span> laiškų / <span id="fp-tokens-lt"></span> tokenų).
+        </p>
+        <p data-lang="en" class="hidden">
+          A <strong id="fp-amount-en" class="text-bone"></strong> donation would fund
+          <strong id="fp-percent-en" class="text-indigo-soft"></strong> of our 1 Billion message goal
+          (<span id="fp-messages-en"></span> messages / <span id="fp-tokens-en"></span> tokens).
+        </p>
+        <p class="text-xs text-mute/80 pt-3 border-t border-hair">
+          <span data-lang="lt">Tai tik peržiūra, jokia suma dar nenuskaityta ir prie viso finansuoto kiekio dar nepridėta. Realus mokėjimas bus pridėtas netrukus.</span>
+          <span data-lang="en" class="hidden">This is just a preview, nothing has been charged and it hasn't been added to the total funded yet. Real payment will be added soon.</span>
+        </p>
+      </div>
+
+      <div class="mt-6 text-right">
+        <button onclick="closeModal('modal-funding-preview')" class="bg-indigo text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-deep transition-colors">
+          <span data-lang="lt">Uždaryti</span>
+          <span data-lang="en" class="hidden">Close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
   <script>
@@ -1027,6 +1205,98 @@ html, body, a, button, select, input {
         alert(currentLang === 'lt' ? 'Klaida jungiantis prie apmokėjimo serverio.' : 'Error connecting to payment server.');
       }
     }
+  </script>
+
+  <!-- Fund the AI: progress bar logic -->
+  <script>
+  (function () {
+    // Conversion constants, straight from the Gemini 2.5 Flash-Lite math.
+    const TOKENS_PER_EURO   = 1_600_000;
+    const MESSAGES_PER_EURO = 3_000;
+    const GOAL_MESSAGES     = 1_000_000_000; // community goal, 1 Billion messages
+
+    // Nothing has been financed yet - these all start at 0. Once real Lemon
+    // Squeezy payments are wired in, these should be replaced with numbers
+    // pulled from your backend (updated by a payment webhook), not hardcoded.
+    let totalFundedMessages = 0;
+    let tokensToday   = 0;
+    let messagesToday = 0;
+
+    const fmt = (n) => Math.round(n).toLocaleString('en-US');
+
+    const fillEl         = document.getElementById('funding-fill');
+    const percentEl      = document.getElementById('funding-percent');
+    const totalMsgEl     = document.getElementById('funding-total-messages');
+    const tokensTodayEl  = document.getElementById('funding-tokens-today');
+    const msgTodayEl     = document.getElementById('funding-messages-today');
+
+    if (!fillEl) return; // section not on this page
+
+    function goalLabel() {
+      const lang = localStorage.getItem('preferred_lang') || 'lt';
+      return lang === 'en' ? '1 Billion' : '1 milijardas';
+    }
+
+    function render() {
+      const pct = Math.min(100, (totalFundedMessages / GOAL_MESSAGES) * 100);
+      fillEl.style.width = pct + '%';
+      percentEl.textContent = pct.toFixed(4) + '%';
+      totalMsgEl.textContent = `${fmt(totalFundedMessages)} / ${goalLabel()}`;
+      tokensTodayEl.textContent = fmt(tokensToday);
+      msgTodayEl.textContent = fmt(messagesToday);
+    }
+
+    // Fills in the "this would fund X% of the goal" preview modal for a given
+    // amount, then opens it. This is preview-only: clicking a donate button
+    // does NOT touch totalFundedMessages/tokensToday/messagesToday above -
+    // that only happens once a real payment is actually confirmed.
+    function showFundingPreview(amountEuros) {
+      const messages = amountEuros * MESSAGES_PER_EURO;
+      const tokens    = amountEuros * TOKENS_PER_EURO;
+      const percent   = (messages / GOAL_MESSAGES) * 100;
+
+      const amountText   = `€${amountEuros}`;
+      const percentText  = percent.toFixed(4) + '%';
+      const messagesText = fmt(messages);
+      const tokensText   = fmt(tokens);
+
+      ['lt', 'en'].forEach((lang) => {
+        document.getElementById(`fp-amount-${lang}`).textContent   = amountText;
+        document.getElementById(`fp-percent-${lang}`).textContent  = percentText;
+        document.getElementById(`fp-messages-${lang}`).textContent = messagesText;
+        document.getElementById(`fp-tokens-${lang}`).textContent   = tokensText;
+      });
+
+      // ============================================================
+      // ADD LEMONSQUEEZY FOR THE DONATIONS HERE BRO
+      // This is where a real Lemon Squeezy checkout for `amountEuros` should
+      // be opened (or your backend hit to create one). The preview modal
+      // above is informational only - actual funded totals should only
+      // update once a webhook confirms the payment went through.
+      // ============================================================
+
+      openModal('modal-funding-preview');
+    }
+
+    document.querySelectorAll('.donate-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const amount = parseFloat(btn.dataset.amount);
+        if (amount > 0) showFundingPreview(amount);
+      });
+    });
+
+    const customBtn = document.getElementById('donate-custom-btn');
+    if (customBtn) {
+      customBtn.addEventListener('click', () => {
+        const input = document.getElementById('custom-amount');
+        const amount = parseFloat(input.value);
+        if (amount > 0) showFundingPreview(amount);
+        input.value = '';
+      });
+    }
+
+    render();
+  })();
   </script>
 
 </body>
