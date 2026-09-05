@@ -294,7 +294,7 @@ html, body, a, button, select, input {
               <span data-lang="en" class="hidden">Forward or let AI read automatically</span>
             </h3>
             <p class="text-mute text-sm leading-relaxed">
-              <span data-lang="lt">Gari tradiciškai persiųsti laiškus rankiniu būdu, arba pasirinkti funkciją, leidžiančią dirbtiniam intelektui pačiam nuskaityti tavo paštą. Nereikia niekur persiuntinėti – D.I. pats supranta laiką bei kontekstą.</span>
+              <span data-lang="lt">Gali tradiciškai persiųsti laiškus rankiniu būdu, arba pasirinkti funkciją, leidžiančią dirbtiniam intelektui pačiam nuskaityti tavo paštą. Nereikia niekur persiuntinėti – D.I. pats supranta laiką bei kontekstą.</span>
               <span data-lang="en" class="hidden">You can manually forward messages, or opt into letting our AI scan your mail directly. No need to forward anything — the AI picks up timelines and details all by itself.</span>
             </p>
           </div>
@@ -482,6 +482,11 @@ html, body, a, button, select, input {
           <span data-lang="lt">Jūs visiškai valdote savo duomenis. Galite reikalauti pilno paskyros, istorijos ir aktyvių duomenų ištrynimo bet kuriuo metu, parašę mums el. paštu privacy@threadkeeper.co. Visi susiję įrašai bus pašalinti per 48 valandas.</span>
           <span data-lang="en" class="hidden">You have full ownership of your data. You can request complete deletion of your account, history, and active metadata at any time by emailing privacy@threadkeeper.co. All linked records will be purged within 48 hours.</span>
         </p>
+      </div>
+    </div>
+  </div>
+</section>
+
   <footer class="border-t border-hair mt-16 pt-6">
 
     <div class="max-w-6xl mx-auto px-6 md:px-10 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-mute">
@@ -582,7 +587,7 @@ html, body, a, button, select, input {
           <p>Mes taikome griežtą nulinės monetizacijos politiką: jūsų privatus el. pašto turinys niekada nebus nuomojamas, parduodamas ar bendrinamas su išoriniais reklamos tinklais.</p>
 
           <h3 class="text-bone font-medium text-base pt-2">3. Automatinis duomenų šalinimas ir šifravimas</h3>
-          <p>Viri aktyvūs žetonai, el. pašto žurnalai ir laiko žymos yra kriptografiski užšifruoti mūsų saugioje Supabase duomenų bazės klasterio aplinkoje, naudojant pramonės standartus atitinkančius SSL/TLS perdavimo protokolus.</p>
+          <p>Visi aktyvūs žetonai, el. pašto žurnalai ir laiko žymos yra kriptografiski užšifruoti mūsų saugioje Supabase duomenų bazės klasterio aplinkoje, naudojant pramonės standartus atitinkančius SSL/TLS perdavimo protokolus.</p>
           <p><strong>Laikinas saugojimas:</strong> Kai pasirinktas priminimo laiko tarpas yra įvykdomas, išsiunčiamas jums atgal arba rankiniu būdu ištrinamas iš žurnalo, atitinkamas el. pašto teksto turinys yra automatinai ir visiškai ištrinamas iš mūsų aktyvių serverių.</p>
         </div>
         <div data-lang="en" class="space-y-4 hidden">
@@ -686,33 +691,44 @@ html, body, a, button, select, input {
       }
     }
 
-    // STEP 4: Sun/Moon Light-Dark Dynamic Event Listeners
+    // STEP 4: Sun/Moon Light-Dark Dynamic Event Listeners (now persisted to localStorage)
     const themeToggleBtn = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
 
+    const SUN_ICON = `
+      <circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"></circle>
+      <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"></line>
+      <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"></line>
+      <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"></line>
+      <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"></line>
+    `;
+    const MOON_ICON = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="none" stroke="currentColor" stroke-width="2"></path>`;
+
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        document.body.classList.add('light-theme');
+        if (themeIcon) themeIcon.innerHTML = SUN_ICON;
+      } else {
+        document.body.classList.remove('light-theme');
+        if (themeIcon) themeIcon.innerHTML = MOON_ICON;
+      }
+    }
+
     if (themeToggleBtn && themeIcon) {
       themeToggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('light-theme');
-        
-        if (document.body.classList.contains('light-theme')) {
-          // Flip directly to crisp Sun SVG vectors for Light Mode active layers
-          themeIcon.innerHTML = `
-            <circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"></circle>
-            <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"></line>
-            <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"></line>
-            <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"></line>
-            <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"></line>
-          `;
-        } else {
-          // Revert directly back into default Moon profile vectors
-          themeIcon.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="none" stroke="currentColor" stroke-width="2"></path>`;
-        }
+        const isLight = document.body.classList.contains('light-theme');
+        const nextTheme = isLight ? 'dark' : 'light';
+        localStorage.setItem('tk_theme', nextTheme);
+        applyTheme(nextTheme);
       });
     }
+
+    // Apply saved theme on load (defaults to dark if nothing saved)
+    applyTheme(localStorage.getItem('tk_theme') || 'dark');
   </script>
   <script>
     const targetDate = new Date('2026-10-21T18:00:00+03:00').getTime(); // Adjusted precisely to your October 21 launch window
@@ -788,7 +804,19 @@ html, body, a, button, select, input {
     const status = document.getElementById('waitlist-status');
     const button = form.querySelector('button');
 
-    const submittedEmails = new Set();
+    // Persisted across refreshes (was an in-memory Set before, which reset on reload)
+    function getSubmittedEmails() {
+      try {
+        return JSON.parse(localStorage.getItem('tk_submitted_emails') || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+    function addSubmittedEmail(email) {
+      const list = getSubmittedEmails();
+      list.push(email.toLowerCase());
+      localStorage.setItem('tk_submitted_emails', JSON.stringify(list));
+    }
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -810,7 +838,7 @@ html, body, a, button, select, input {
         return;
       }
 
-      if (submittedEmails.has(email)) {
+      if (getSubmittedEmails().includes(email.toLowerCase())) {
         status.textContent = currentLang === 'lt' 
           ? 'Šis el. paštas jau užregistruotas!' 
           : 'This email is already signed up!';
@@ -830,7 +858,7 @@ html, body, a, button, select, input {
         });
 
         if (response.ok) {
-          submittedEmails.add(email);
+          addSubmittedEmail(email);
           localStorage.setItem('tk_rate_limit', Date.now().toString()); // Set Rate Limit Timestamp
           status.textContent = currentLang === 'lt'
             ? 'Ačiū! Užregistruota sėkmingai.'
