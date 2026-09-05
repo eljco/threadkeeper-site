@@ -59,6 +59,24 @@
   body.light-theme .border-hair { border-color: #D2D4DE !important; }
   body.light-theme .text-mute { color: #525666 !important; }
   body.light-theme .grid-veil { opacity: 0.15; }
+  /* The hero diagram panel uses bg-surface/60, a distinct Tailwind class from bg-surface,
+     so it needs its own light-mode override or it stays dark/muddy in light mode. */
+  body.light-theme .bg-surface\/60 {
+    background-color: #EAEAEE !important;
+    border-color: #D2D4DE !important;
+  }
+  /* The email input uses bg-ink (same as the page's dark background), which has no
+     light-mode override, so it stayed pitch black in light mode. Fix it here. */
+  body.light-theme .bg-ink {
+    background-color: #FFFFFF !important;
+    border-color: #D2D4DE !important;
+  }
+  /* The Lifetime card combines .bg-surface (which forces a gray border in light mode)
+     with .border-indigo/40 (its own orange accent border). The bg-surface rule was
+     winning and silently killing the orange outline in light mode. Restore it here. */
+  body.light-theme .border-indigo\/40 {
+    border-color: #FF5500 !important;
+  }
 
   .font-display { font-family: 'Space Grotesk', sans-serif; }
 
@@ -173,7 +191,7 @@ html, body, a, button, select, input {
 
         <p class="mt-6 text-lg text-mute max-w-lg leading-relaxed">
           <span data-lang="lt">Threadkeeper – tai tavo pašto dėžutė svarbiausiems reikalams, į kuriuos turi atsakyti. Persiųsk vieną kartą – mes grąžinsime ją tada, kai tai bus svarbu.</span>
-          <span data-lang="en" class="hidden">Threadkeeper is an inbox for the things you meant to get back to — the client scheduling thread, the meetup that needs a reply, the task you buried on purpose. Forward it once. We'll bring it back exactly when it matters.</span>
+          <span data-lang="en" class="hidden">Threadkeeper is an inbox for the things you meant to get back to - the client scheduling thread, the meetup that needs a reply, the task you buried on purpose. Forward it once. We'll bring it back exactly when it matters.</span>
         </p>
 
         <div class="mt-8 inline-flex items-center gap-3 bg-surface border border-hair rounded-lg px-4 py-2.5 text-xs font-mono text-mute">
@@ -295,7 +313,7 @@ html, body, a, button, select, input {
             </h3>
             <p class="text-mute text-sm leading-relaxed">
               <span data-lang="lt">Gali tradiciškai persiųsti laiškus rankiniu būdu, arba pasirinkti funkciją, leidžiančią dirbtiniam intelektui pačiam nuskaityti tavo paštą. Nereikia niekur persiuntinėti – D.I. pats supranta laiką bei kontekstą.</span>
-              <span data-lang="en" class="hidden">You can manually forward messages, or opt into letting our AI scan your mail directly. No need to forward anything — the AI picks up timelines and details all by itself.</span>
+              <span data-lang="en" class="hidden">You can manually forward messages, or opt into letting our AI scan your mail directly. No need to forward anything - the AI picks up timelines and details all by itself.</span>
             </p>
           </div>
         </div>
@@ -334,7 +352,7 @@ html, body, a, button, select, input {
             </h3>
             <p class="text-mute text-sm leading-relaxed">
               <span data-lang="lt">Nustatyk tikslų laiką, kada nori gauti priminimą – nuo 1 valandos, 2h, 3h, 4h ir taip toliau iki pat 72 valandų intervalų. Viskas lengvai konfigūruojama pagal tavo asmeninį ritmą.</span>
-              <span data-lang="en" class="hidden">Select exactly WHEN you want to be reminded — choose from 1h, 2h, 3h, 4h, and all the way up to 72 hours. Tailor every reminder interval precisely to fit your workflow.</span>
+              <span data-lang="en" class="hidden">Select exactly WHEN you want to be reminded - choose from 1h, 2h, 3h, 4h, and all the way up to 72 hours. Tailor every reminder interval precisely to fit your workflow.</span>
             </p>
           </div>
         </div>
@@ -358,29 +376,33 @@ html, body, a, button, select, input {
 
     <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
       
-      <!-- Tier 1: Trial (€2.99) -->
+      <!-- Tier 1: 7-Day Free Trial, then €9.99/mo -->
       <div class="bg-surface border border-hair rounded-xl p-8 flex flex-col justify-between relative">
         <div>
           <div class="inline-block px-3 py-1 rounded-full bg-indigo/10 border border-indigo/30 text-indigo-soft text-xs mb-4">
-            <span data-lang="lt">Bandomasis laikotarpis</span>
-            <span data-lang="en" class="hidden">Trial Access</span>
+            <span data-lang="lt">7 dienų nemokamas bandymas</span>
+            <span data-lang="en" class="hidden">7-Day Free Trial</span>
           </div>
           <h3 class="font-display text-2xl text-bone mb-2">Threadkeeper Trial</h3>
           <p class="text-mute text-sm mb-6">
-            <span data-lang="lt">Išbandyk visas pagrindines funkcijas nedidele kaina.</span>
-            <span data-lang="en" class="hidden">Test out core features with a low-cost trial.</span>
+            <span data-lang="lt">Pirmąją savaitę naudokis visomis funkcijomis nemokamai. Jei neatšauksi, po 7 dienų automatiškai pereisi prie įprastos kainos.</span>
+            <span data-lang="en" class="hidden">Try every feature free for the first week. If you don't cancel, you'll automatically move to the regular price after day 7.</span>
           </p>
-          <div class="font-display text-4xl font-bold text-bone mb-6">
-            €2.99 <span class="text-sm font-normal text-mute">/ <span data-lang="lt">bandymui</span><span data-lang="en" class="hidden">trial</span></span>
+          <div class="font-display text-4xl font-bold text-bone mb-2">
+            €0 <span class="text-sm font-normal text-mute">/ <span data-lang="lt">pirmoms 7 dienoms</span><span data-lang="en" class="hidden">first 7 days</span></span>
           </div>
+          <p class="text-xs text-mute mb-6">
+            <span data-lang="lt">Vėliau - įprasta kaina €9.99 / mėn.</span>
+            <span data-lang="en" class="hidden">Then billed at the regular price of €9.99 / mo.</span>
+          </p>
         </div>
-        <a href="https://threadkeeperbusiness.lemonsqueezy.com/checkout/buy/9f692943-be2b-43e6-8b08-8fbca75c9e57" target="_blank" rel="noopener noreferrer" class="w-full text-center block rounded-lg bg-hair hover:bg-indigo text-bone font-display font-medium text-sm py-3 transition-colors">
-          <span data-lang="lt">Išbandyti</span>
-          <span data-lang="en" class="hidden">Start Trial</span>
+        <a href="https://threadkeeperbusiness.lemonsqueezy.com/checkout/buy/9f692943-be2b-43e6-8b08-8fbca75c9e57" target="_blank" rel="noopener noreferrer" class="w-full text-center block rounded-lg bg-hair hover:bg-indigo text-white font-display font-medium text-sm py-3 transition-colors">
+          <span data-lang="lt">Pradėti nemokamą bandymą</span>
+          <span data-lang="en" class="hidden">Start Free Trial</span>
         </a>
       </div>
 
-      <!-- Tier 2: Monthly Pro (€9.99/mo) -->
+      <!-- Tier 2: Monthly Pro (€5.99/mo for first 50 users, €9.99/mo regular) -->
       <div class="bg-surface border border-hair rounded-xl p-8 flex flex-col justify-between relative">
         <div>
           <div class="inline-block px-3 py-1 rounded-full bg-indigo/10 border border-indigo/30 text-indigo-soft text-xs mb-4">
@@ -388,21 +410,27 @@ html, body, a, button, select, input {
             <span data-lang="en" class="hidden">Monthly Access</span>
           </div>
           <h3 class="font-display text-2xl text-bone mb-2">Threadkeeper Pro</h3>
-          <p class="text-mute text-sm mb-6">
+          <p class="text-mute text-sm mb-4">
             <span data-lang="lt">Visos automatizacijos funkcijų galimybės su lanksčiais priminimais.</span>
             <span data-lang="en" class="hidden">Full automation features with custom reminder delays.</span>
           </p>
+          <div class="inline-block px-3 py-1 rounded-full bg-indigo/10 border border-indigo/30 text-indigo-soft text-xs mb-4">
+            <span data-lang="lt">Pirmiesiems 50 vartotojų</span>
+            <span data-lang="en" class="hidden">For our first 50 users</span>
+          </div>
           <div class="font-display text-4xl font-bold text-bone mb-6">
-            €9.99 <span class="text-sm font-normal text-mute">/ <span data-lang="lt">mėn.</span><span data-lang="en" class="hidden">mo</span></span>
+            €5.99
+            <span class="text-lg font-normal text-mute line-through align-middle ml-1">€9.99</span>
+            <span class="text-sm font-normal text-mute block mt-1">/ <span data-lang="lt">mėn.</span><span data-lang="en" class="hidden">mo</span></span>
           </div>
         </div>
-        <a href="https://threadkeeperbusiness.lemonsqueezy.com/checkout/buy/9f692943-be2b-43e6-8b08-8fbca75c9e57" target="_blank" rel="noopener noreferrer" class="w-full text-center block rounded-lg bg-hair hover:bg-indigo text-bone font-display font-medium text-sm py-3 transition-colors">
+        <a href="https://threadkeeperbusiness.lemonsqueezy.com/checkout/buy/9f692943-be2b-43e6-8b08-8fbca75c9e57" target="_blank" rel="noopener noreferrer" class="w-full text-center block rounded-lg bg-hair hover:bg-indigo text-white font-display font-medium text-sm py-3 transition-colors">
           <span data-lang="lt">Užsisakyti mėnesiui</span>
           <span data-lang="en" class="hidden">Get Monthly Plan</span>
         </a>
       </div>
 
-      <!-- Tier 3: Lifetime Pre-order (€29.99) -->
+      <!-- Tier 3: Lifetime Pre-order (€29.99 for first 50 users, €59.99 regular) -->
       <div class="bg-surface border border-indigo/40 rounded-xl p-8 flex flex-col justify-between relative shadow-lg shadow-indigo/5">
         <div class="absolute -top-3 right-6 bg-indigo text-white text-xs font-mono px-3 py-1 rounded-full uppercase tracking-wider">
           <span data-lang="lt">Populiariausia</span>
@@ -414,12 +442,18 @@ html, body, a, button, select, input {
             <span data-lang="en" class="hidden">Lifetime Access</span>
           </div>
           <h3 class="font-display text-2xl text-bone mb-2">Threadkeeper Lifetime</h3>
-          <p class="text-mute text-sm mb-6">
+          <p class="text-mute text-sm mb-4">
             <span data-lang="lt">Mokėk vieną kartą, naudokis tol, kol gyvuoja paslauga. Jokių papildomų mokesčių.</span>
             <span data-lang="en" class="hidden">Pay once, use for the lifetime of the service. Zero recurring fees.</span>
           </p>
+          <div class="inline-block px-3 py-1 rounded-full bg-indigo/10 border border-indigo/30 text-indigo-soft text-xs mb-4">
+            <span data-lang="lt">Pirmiesiems 50 vartotojų</span>
+            <span data-lang="en" class="hidden">For our first 50 users</span>
+          </div>
           <div class="font-display text-4xl font-bold text-bone mb-6">
-            €29.99 <span class="text-sm font-normal text-mute">/ <span data-lang="lt">visam laikui</span><span data-lang="en" class="hidden">lifetime</span></span>
+            €29.99
+            <span class="text-lg font-normal text-mute line-through align-middle ml-1">€99.99</span>
+            <span class="text-sm font-normal text-mute block mt-1">/ <span data-lang="lt">visam laikui</span><span data-lang="en" class="hidden">lifetime</span></span>
           </div>
         </div>
         <a href="https://threadkeeperbusiness.lemonsqueezy.com/checkout/buy/710f8894-8bd1-4754-8c91-a23b01c55a8d" target="_blank" rel="noopener noreferrer" class="w-full text-center block rounded-lg bg-indigo hover:bg-indigo-deep text-white font-display font-medium text-sm py-3 transition-colors">
@@ -429,6 +463,11 @@ html, body, a, button, select, input {
       </div>
 
     </div>
+
+    <p class="text-center text-xs text-mute mt-8">
+      <span data-lang="lt">Prenumeratą galite atšaukti bet kada, be jokių papildomų klausimų.</span>
+      <span data-lang="en" class="hidden">Cancel your subscription anytime, no questions asked.</span>
+    </p>
   </div>
 </section>
 
@@ -511,6 +550,11 @@ html, body, a, button, select, input {
         <button onclick="openModal('modal-terms')" class="hover:text-bone underline transition-colors">
           <span data-lang="lt">Naudojimo taisyklės (TOS)</span>
           <span data-lang="en" class="hidden">Terms of Service</span>
+        </button>
+        <span>&bull;</span>
+        <button onclick="openModal('modal-reviews')" class="hover:text-bone underline transition-colors">
+          <span data-lang="lt">Mūsų atsiliepimai</span>
+          <span data-lang="en" class="hidden">Our Reviews</span>
         </button>
       </div>
 
@@ -647,6 +691,10 @@ html, body, a, button, select, input {
 
           <h3 class="text-bone font-medium text-base pt-2">4. Atsakomybės ribojimas</h3>
           <p>„Threadkeeper“ yra nepriklausoma produktyvumo automatizavimo priemonė, skirta el. pašto stebėjimui optimizuoti. Negarantuojame absoliutaus sistemos veikimo įvykus išorinėms tinklo triktims. Mes nesame teisiškai ar finansiškai atsakingi už praleistus kalendoriaus terminus, prarastas verslo galimybes ar komunikacijos planavimo klaidas, kilusias dėl mūsų automatizuotų pranešimų intervalų naudojimo ar netinkamo naudojimo.</p>
+
+          <h3 class="text-bone font-medium text-base pt-2">5. ES vartotojų teisė atsisakyti sutarties (14 dienų)</h3>
+          <p>Jei esate ES vartotojas, pagal Direktyvą 2011/83/ES paprastai turite teisę atsisakyti nuotolinės sutarties per 14 dienų nuo jos sudarymo, nenurodydami priežasties.</p>
+          <p>Kadangi „Threadkeeper“ yra skaitmeninio turinio / paslaugos, teikiama ne fizinėje laikmenoje, ši teisė gali būti prarasta, jei aiškiai sutinkate, kad paslaugos teikimas prasidėtų nedelsiant, ir patvirtinate, jog suprantate, kad, paslaugą pradėjus teikti visa apimtimi, prarasite teisę atsisakyti sutarties. Norėdami pasinaudoti šia teise arba gauti daugiau informacijos, susisiekite el. paštu privacy@threadkeeper.co.</p>
         </div>
         <div data-lang="en" class="space-y-4 hidden">
           <p class="text-xs font-mono text-indigo-soft">Last Updated: September 2026</p>
@@ -665,10 +713,59 @@ html, body, a, button, select, input {
 
           <h3 class="text-bone font-medium text-base pt-2">4. Limitation of Liability</h3>
           <p>Threadkeeper is an independent productivity automation utility designed to streamline email tracking. We do not guarantee absolute system delivery in the event of external network disruptions. We are not legally or financially liable for missed calendar deadlines, lost business opportunities, or communication scheduling oversights resulting from the use or misuse of our automated notification intervals.</p>
+
+          <h3 class="text-bone font-medium text-base pt-2">5. EU Right of Withdrawal (14 Days)</h3>
+          <p>If you are an EU consumer, under Directive 2011/83/EU you generally have the right to withdraw from a distance contract within 14 days of entering into it, without giving any reason.</p>
+          <p>Because Threadkeeper is digital content/a service not supplied on a physical medium, this right may be lost if you expressly consent to the service beginning immediately and acknowledge that you will lose your right of withdrawal once the service has been fully performed. To exercise this right or for more information, contact us at privacy@threadkeeper.co.</p>
         </div>
       </div>
       <div class="mt-6 text-right">
         <button onclick="closeModal('modal-terms')" class="bg-indigo text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-deep transition-colors">
+          <span data-lang="lt">Uždaryti</span>
+          <span data-lang="en" class="hidden">Close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-reviews" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden">
+    <div class="bg-surface border border-hair rounded-xl max-w-xl w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-display font-semibold text-xl text-bone">
+          <span data-lang="lt">Mūsų atsiliepimai</span>
+          <span data-lang="en" class="hidden">Our Reviews</span>
+        </h2>
+        <button onclick="closeModal('modal-reviews')" class="text-mute hover:text-bone text-lg font-mono">&times;</button>
+      </div>
+
+      <a href="https://www.trustpilot.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-indigo-soft hover:underline mb-6">
+        <span data-lang="lt">Peržiūrėti mus Trustpilot svetainėje</span>
+        <span data-lang="en" class="hidden">View us on Trustpilot</span>
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+
+      <div class="flex items-center gap-2 mb-6">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#FBBF24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.5l2.9 6.1 6.6.7-4.9 4.6 1.3 6.6-5.9-3.4-5.9 3.4 1.3-6.6-4.9-4.6 6.6-.7z"/>
+        </svg>
+        <span class="font-display text-lg text-bone">0 / 5</span>
+        <span class="text-sm text-mute">
+          <span data-lang="lt">(dar nėra atsiliepimų)</span>
+          <span data-lang="en" class="hidden">(no reviews yet)</span>
+        </span>
+      </div>
+
+      <div class="text-sm text-mute space-y-3 leading-relaxed">
+        <div data-lang="lt">
+          <p>Kadangi „Threadkeeper“ dar tik ruošiasi oficialiam startui, atsiliepimų kol kas neturime. Kai tik pirmieji vartotojai pradės naudotis paslauga, jų atsiliepimus rasite čia ir Trustpilot puslapyje.</p>
+        </div>
+        <div data-lang="en" class="hidden">
+          <p>Since Threadkeeper is still ahead of its official launch, there aren't any reviews yet. Once our first users get started, you'll find their feedback here and on our Trustpilot page.</p>
+        </div>
+      </div>
+
+      <div class="mt-6 text-right">
+        <button onclick="closeModal('modal-reviews')" class="bg-indigo text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-deep transition-colors">
           <span data-lang="lt">Uždaryti</span>
           <span data-lang="en" class="hidden">Close</span>
         </button>
