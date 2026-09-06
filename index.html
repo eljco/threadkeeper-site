@@ -19,7 +19,6 @@
           hair: '#1C1E27',
           bone: '#F5F6F8',
           mute: '#8A8D9B',
-          // STEP 5: Rebrand Color From Purple To Orange Completely
           indigo: {
             DEFAULT: '#FF5500',
             soft: '#FF7733',
@@ -49,7 +48,6 @@
     transition: background-color 0.3s, color 0.3s;
   }
   
-  /* STEP 4: Theme Mode Specific Token Mappings */
   body.light-theme {
     background-color: #F5F6F8 !important;
     color: #030304 !important;
@@ -59,40 +57,30 @@
   body.light-theme .border-hair { border-color: #D2D4DE !important; }
   body.light-theme .text-mute { color: #525666 !important; }
   body.light-theme .grid-veil { opacity: 0.15; }
-  /* The hero diagram panel uses bg-surface/60, a distinct Tailwind class from bg-surface,
-     so it needs its own light-mode override or it stays dark/muddy in light mode. */
   body.light-theme .bg-surface\/60 {
     background-color: #EAEAEE !important;
     border-color: #D2D4DE !important;
   }
-  /* The email input uses bg-ink (same as the page's dark background), which has no
-     light-mode override, so it stayed pitch black in light mode. Fix it here. */
   body.light-theme .bg-ink {
     background-color: #FFFFFF !important;
     border-color: #D2D4DE !important;
   }
-  /* The Lifetime card combines .bg-surface (which forces a gray border in light mode)
-     with .border-indigo/40 (its own orange accent border). The bg-surface rule was
-     winning and silently killing the orange outline in light mode. Restore it here. */
   body.light-theme .border-indigo\/40 {
     border-color: #FF5500 !important;
   }
 
   .font-display { font-family: 'Space Grotesk', sans-serif; }
 
-  /* Focus visibility - Swapped focus ring highlight token to Orange */
   a:focus-visible, button:focus-visible, input:focus-visible {
     outline: 2px solid #FF7733;
     outline-offset: 3px;
     border-radius: 4px;
   }
 
-  /* Faint ambient glow behind the hero - Rebranded radial vector mask to Orange */
   .hero-glow {
     background: radial-gradient(60% 55% at 78% 20%, rgba(255,85,0,0.15) 0%, rgba(255,85,0,0) 70%);
   }
 
-  /* Grain-thin grid */
   .grid-veil {
     background-image:
       linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
@@ -100,7 +88,6 @@
     background-size: 44px 44px;
   }
 
-  /* The single orchestrated motion moment: a pulse traveling the forwarding path */
   @media (prefers-reduced-motion: no-preference) {
     .pulse-dot {
       offset-path: path('M 4 60 C 90 60, 90 12, 176 12 C 262 12, 262 108, 348 108 C 400 108, 410 108, 440 108');
@@ -121,19 +108,13 @@
     stroke-dasharray: 4 6;
   }
 
-  /* STEP 15: Make Selected Text Orange Not Purple Anymore */
   ::selection { background: #FF5500; color: #FFFFFF; }
   ::-webkit-selection { background: #FF5500; color: #FFFFFF; }
 
-   /* STEP 14: Restructured inline data tokens to fix Microsoft Edge hex code string errors */
 html, body, a, button, select, input {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'%3E%3Cpath d='M2,2 L11,20 L14,14 L20,11 Z' fill='%23FF5500' stroke='%23000000' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, auto !important;
 }
 
-  /* ---- Funding bar: wavy "water" fill effect ---- */
-  /* Two SVG waves, each 200% wide with a seamlessly repeating crest, drift
-     sideways forever at different speeds/directions so the whole orange
-     fill reads as one continuously moving body of liquid, not a static bar. */
   .wave-layer {
     position: absolute;
     left: 0;
@@ -150,7 +131,6 @@ html, body, a, button, select, input {
     100% { transform: translateX(-50%); }
   }
 
-  /* A soft light sweep drifting across the fill, reinforcing the sense of motion */
   .wave-shimmer {
     position: absolute;
     inset: 0;
@@ -192,7 +172,6 @@ html, body, a, button, select, input {
       </a>
 
       <div class="flex items-center gap-4">
-        <!-- STEP 4: Moon/Sun Theme Toggle Button Wrapper (Icons instead of text) -->
         <button id="themeToggle" class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-surface border border-hair text-mute hover:text-bone transition-colors" aria-label="Toggle Theme">
           <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -613,7 +592,7 @@ html, body, a, button, select, input {
   </div>
 </section>
 
-<!-- STEP 3 & 16: Bilingual Compliance FAQ Section Integration -->
+<!-- Bilingual Compliance FAQ Section -->
 <section id="faq" class="border-t border-hair bg-surface/20">
   <div class="max-w-4xl mx-auto px-6 py-20">
     <div class="text-center mb-12">
@@ -639,7 +618,7 @@ html, body, a, button, select, input {
         </h4>
         <p class="text-mute text-sm leading-relaxed">
           <span data-lang="lt">Ne. Mes taikome laikiną duomenų saugojimo politiką. Kai tik jūsų nustatytas priminimo laikas pasibaigia arba yra ištrinamas, susijęs laiško turinys yra automatiškai ir negrįžtamai pašalinamas iš mūsų serverių.</span>
-          <span data-lang="en" class="hidden">No. We enforce an ephemeral data retention policy. As soon as your custom reminder delay is executed or manually cleared, the corresponding email text content is permanently purged from our active operational servers.</span>
+          <span data-lang="en" class="hidden">No. We enforce an ephemeral data retention policy. As soon as your custom reminder delay is executed or manually cleared, the corresponding email text content is automatically and permanently purged from our active operational servers.</span>
         </p>
       </div>
       <!-- Q3 -->
@@ -673,7 +652,6 @@ html, body, a, button, select, input {
     <div class="max-w-6xl mx-auto px-6 md:px-10 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-mute">
       <span>
         &copy; <span id="year"></span> Threadkeeper. 
-        <!-- STEP 12: Fixed layout text tracking variables -->
         <span data-lang="lt">Sukurta produktyvumo maištininkams. Saugus ir patikimas privatumas.</span>
         <span data-lang="en" class="hidden">Built for productivity rebels. Safe, verified privacy.</span>
       </span>
@@ -757,34 +735,39 @@ html, body, a, button, select, input {
       <div class="text-sm text-mute space-y-4 leading-relaxed">
         <div data-lang="lt" class="space-y-4">
           <p class="text-xs font-mono text-indigo-soft">Paskutinį kartą atnaujinta: 2026 m. rugsėjis</p>
-          <p>Threadkeeper („mes“, „mūsų“) gerbia jūsų privatumą. Ši privatumo politika paaiškina, kaip apsaugome, tvarkome ir užtikriname jūsų informacijos saugumą naudojantis mūsų svetaine, foninėmis paslaugomis ir el. pašto nukreipimo tinklu.</p>
-          
-          <h3 class="text-bone font-medium text-base pt-2">1. Minimalus duomenų rinkimas</h3>
-          <p>Renkame tik absoliučiai minimalius duomenis, reikalingus jūsų priminimams vykdyti:</p>
+          <p>„The Threadkeeper Project“ („mes“, „mūsų“ arba „mus“), veikianti kaip skaitmeninio automatizavimo paslaugų sistema pagal Lietuvos Respublikos įstatymus, gerbia jūsų privatumą. Ši privatumo politika paaiškina, kaip apsaugome, tvarkome ir užtikriname jūsų informacijos saugumą naudojantis mūsų svetaine, foninėmis paslaugomis ir el. pašto nukreipimo tinklu. BDAR (GDPR) tikslais „The Threadkeeper Project“ komanda veikia kaip Duomenų valdytojas [9.1].</p>
+
+          <h3 class="text-bone font-medium text-base pt-2">1. Teisėtas pagrindas ir minimalus duomenų rinkimas</h3>
+          <p>Pagal BDAR 6 straipsnį, mūsų teisėtas duomenų tvarkymo pagrindas yra jūsų aiškus sutikimas (registracijai į laukiančiųjų sąrašą) ir sutartinis būtinumas (jūsų užsakytoms automatizuotoms paslaugoms vykdyti). Renkame tik absoliučiai minimalius duomenis, reikalingus jūsų produktyvumo priminimams vykdyti:</p>
           <ul class="list-disc pl-5 space-y-1">
-            <li>El. pašto adresas, kurį pateikiate registruodamiesi į laukiančiųjų sąrašą ar nustatydami savo paskyrą.</li>
-            <li>Specifinės el. pašto antraštės, tekstas ir metaduomenys, kuriuos nusprendžiate persiųsti arba įgaliojate mūsų sistemą nuskaityti planavimo tikslais.</li>
+            <li>El. pašto adresą, kurį pateikiate registruodamiesi į laukiančiųjų sąrašą ar autentifikuodami savo paskyrą [9.1].</li>
+            <li>Specifines el. pašto antraštes, tekstinį turinį ir metaduomenis, kuriuos nusprendžiate persiųsti arba įgaliojate mūsų sistemą nuskaityti planavimo tikslais [9.1].</li>
           </ul>
 
-          <h3 class="text-bone font-medium text-base pt-2">2. Dirbtinio intelekto apdorojimas (Duomenų izoliavimo apsauga)</h3>
-          <p>Kad būtų išgauti tikslūs grafikai ir datos, jūsų el. laiškų turinys saugiai apdorojamas per Google Gemini API sistemą.</p>
+          <h3 class="text-bone font-medium text-base pt-2">2. Įmonės lygio D.I. apdorojimas (duomenų izoliavimo apsauga)</h3>
+          <p>Kad būtų išgauti tikslūs grafikai ir datos, jūsų el. laiškų turinys saugiai apdorojamas per „Google Gemini API“ sistemą.</p>
           <p><strong>Privatumo apsauga:</strong> „Threadkeeper“ veikia tik mokamame kūrėjo lygyje (Paid Developer Tier, Tier 1). Pagal mūsų įmonės atitikties sutartį, jūsų privačių el. laiškų turinys, žetonai ir užklausos yra teisiškai apsaugoti.</p>
-          <p><strong>Nėra modelio mokymo:</strong> Jūsų duomenys NIEKADA nenaudojami Google AI modeliams treniruoti, ir jie yra visiškai apsaugoti nuo bet kokio žmogiškojo vertinimo ar peržiūros.</p>
+          <p><strong>Jokio modelio mokymo:</strong> jūsų duomenys NIEKADA nenaudojami „Google“ D.I. modeliams treniruoti, ir jie yra visiškai apsaugoti nuo bet kokio žmogiškojo vertinimo ar peržiūros.</p>
           <p>Mes taikome griežtą nulinės monetizacijos politiką: jūsų privatus el. pašto turinys niekada nebus nuomojamas, parduodamas ar bendrinamas su išoriniais reklamos tinklais.</p>
 
           <h3 class="text-bone font-medium text-base pt-2">3. Automatinis duomenų šalinimas ir šifravimas</h3>
-          <p>Visi aktyvūs žetonai, el. pašto žurnalai ir laiko žymos yra kriptografiski užšifruoti mūsų saugioje Supabase duomenų bazės klasterio aplinkoje, naudojant pramonės standartus atitinkančius SSL/TLS perdavimo protokolus.</p>
-          <p><strong>Laikinas saugojimas:</strong> Kai pasirinktas priminimo laiko tarpas yra įvykdomas, išsiunčiamas jums atgal arba rankiniu būdu ištrinamas iš žurnalo, atitinkamas el. pašto teksto turinys yra automatinai ir visiškai ištrinamas iš mūsų aktyvių serverių.</p>
+          <p>Visi aktyvūs žetonai, el. pašto žurnalai ir laiko žymos yra kriptografiškai užšifruoti mūsų saugioje, užšifruotoje „Supabase“ duomenų bazės klasterio aplinkoje, naudojant pramonės standartus atitinkančius SSL/TLS perdavimo protokolus [9.1].</p>
+          <p><strong>Laikinas saugojimas:</strong> kai pasirinktas priminimo laiko tarpas yra įvykdomas, išsiunčiamas jums atgal arba rankiniu būdu ištrinamas iš žurnalo, atitinkamas el. pašto teksto turinys yra automatiškai, akimirksniu ir visiškai ištrinamas iš mūsų aktyvių serverių [9.1].</p>
+
+          <h3 class="text-bone font-medium text-base pt-2">4. Jūsų BDAR teisės ir kontaktai</h3>
+          <p>Pagal BDAR jūs turite teisę susipažinti su savo duomenimis, juos ištaisyti arba reikalauti visiško jų ištrynimo (teisė būti pamirštam). Norėdami pasinaudoti šiomis teisėmis arba susisiekti su duomenų valdytoju, rašykite mūsų specialiu adresu privacy@threadkeeper.co. Visi patvirtinti ištrynimo prašymai yra pilnai įvykdomi visose mūsų duomenų bazės sistemose per 48 valandas.</p>
+
+          <p class="pt-2">Oficialus komunikacijos centras:<br>Threadkeeper Project, [ĮRAŠYKITE SKAITMENINĮ PO DĖŽUTĖS ADRESĄ ČIA], Tauragė, Lietuva.</p>
         </div>
         <div data-lang="en" class="space-y-4 hidden">
           <p class="text-xs font-mono text-indigo-soft">Last Updated: September 2026</p>
-<p>Threadkeeper ("we," "our," or "us") respects your privacy. This Privacy Policy explains how we protect, handle, and secure your information when you use our website, background services, and email routing network.</p>
-          
-          <h3 class="text-bone font-medium text-base pt-2">1. Minimal Data Collection</h3>
-          <p>We only collect the absolute minimum data required to run your reminders:</p>
+          <p>The Threadkeeper Project ("we," "our," or "us"), operating as a digital automation utility framework in accordance with the laws of the Republic of Lithuania, respects your privacy. This Privacy Policy explains how we protect, handle, and secure your information when you use our website, background services, and email routing network. For the purposes of the General Data Protection Regulation (GDPR), the Threadkeeper Project Team acts as the Data Controller [9.1].</p>
+
+          <h3 class="text-bone font-medium text-base pt-2">1. Lawful Basis & Minimal Data Collection</h3>
+          <p>In accordance with GDPR Article 6, our lawful basis for processing your data is your explicit Consent (for waitlist registrations) and Contractual Necessity (to execute the automated services you request). We strictly collect the absolute minimum data required to run your productivity reminders:</p>
           <ul class="list-disc pl-5 space-y-1">
-            <li>The email address you provide when joining our waitlist or authenticating your account.</li>
-            <li>The specific email headers, text contents, and metadata that you choose to forward or authorize our system to scan for scheduling purposes.</li>
+            <li>The email address you provide when joining our waitlist or authenticating your account [9.1].</li>
+            <li>The specific email headers, text contents, and metadata that you choose to forward or authorize our system to scan for scheduling purposes [9.1].</li>
           </ul>
 
           <h3 class="text-bone font-medium text-base pt-2">2. Enterprise-Grade AI Processing (Data Isolation Shield)</h3>
@@ -794,8 +777,13 @@ html, body, a, button, select, input {
           <p>We enforce a strict zero-monetization policy: your private email data will never be rented, sold, or shared with external advertising networks.</p>
 
           <h3 class="text-bone font-medium text-base pt-2">3. Automatic Data Purging & Encryption</h3>
-          <p>All active tokens, email logs, and timestamps are cryptographically locked inside our secure, encrypted Supabase database cluster using industry-standard SSL/TLS transit protocols.</p>
-          <p><strong>Ephemeral Retention:</strong> Once a custom reminder delay is executed, sent back to you, or manually deleted from your log, the corresponding email text content is automatically and permanently purged from our active backend servers.</p>
+          <p>All active tokens, email logs, and timestamps are cryptographically locked inside our secure, encrypted Supabase database cluster using industry-standard SSL/TLS transit protocols [9.1].</p>
+          <p><strong>Ephemeral Retention:</strong> Once a custom reminder delay is executed, sent back to you, or manually deleted from your log, the corresponding email text content is automatically, instantly, and permanently purged from our active backend servers [9.1].</p>
+
+          <h3 class="text-bone font-medium text-base pt-2">4. Your GDPR Rights & Contact</h3>
+          <p>Under the GDPR, you possess the Right to Access, Rectify, or Request the complete erasure of your data (The Right to Be Forgotten). To exercise these rights, or to contact the controller, please message our dedicated node at privacy@threadkeeper.co. All verified erasure requests are fully executed across our database instances within 48 hours.</p>
+
+          <p class="pt-2">Official Communications Core:<br>Threadkeeper Project, [INSERT DIGITAL PO BOX HERE], Tauragė, Lithuania.</p>
         </div>
       </div>
       <div class="mt-6 text-right">
@@ -819,46 +807,49 @@ html, body, a, button, select, input {
       <div class="text-sm text-mute space-y-4 leading-relaxed">
         <div data-lang="lt" class="space-y-4">
           <p class="text-xs font-mono text-indigo-soft">Paskutinį kartą atnaujinta: 2026 m. rugsėjis</p>
-          <p>Naudodamiesi paslaugomis, teikiamomis adresu threadkeeper.co, sutinkate laikytis šių sąlygų, nuostatų ir veiklos rėmų bei būti jais saistomi.</p>
+          <p>Naudodamiesi paslaugomis, teikiamomis adresu threadkeeper.co, sutinkate laikytis šių sąlygų, nuostatų ir veiklos rėmų bei būti jais saistomi. Visais atsiskaitymo klausimais „Threadkeeper Project“ veikia per registruotą įgaliotą prekybininką (Merchant of Record).</p>
 
           <h3 class="text-bone font-medium text-base pt-2">1. Paskyros tinkamumas ir tėvų sutikimas</h3>
           <p>„Threadkeeper“ aiškiai leidžia vartotojams iki 18 metų amžiaus kurti aktyvias prenumeratos paskyras ir jas valdyti, jeigu jie turi reikiamą tėvų ar globėjo sutikimą pagal vietinius teisinius rėmus (tokius kaip LR Civilinio kodekso 2.8 straipsnis).</p>
-          <h3 class="text-bone font-medium text-base pt-2">2. Prenumeratos, atšaukimas ir atsiskaitymas</h3>
-          <p><strong>Threadkeeper Pro:</strong> Veikia pagal pasikartojantį mėnesinį atsiskaitymo ciklą per mūsų saugų mokėjimų partnerį („Lemon Squeezy“). Prenumeratą galite atšaukti bet kuriuo metu. Atšaukimas įsigalioja pasibaigus dabartiniam aktyviam atsiskaitymo ciklui.</p>
-          <p><strong>Threadkeeper Lifetime:</strong> Yra išskirtinis vienkartinio mokėjimo planas, suteikiantis prieigą prie mūsų automatizavimo funkcijų visą „Threadkeeper“ platformos gyvavimo laikotarpį. Jei paslauga yra visiškai nutraukiama, neterminuota sutartis pasibaigia be jokių papildomų periodinių įsipareigojimų.</p>
+
+          <h3 class="text-bone font-medium text-base pt-2">2. Prenumeratos, atšaukimas ir atsiskaitymas per „Lemon Squeezy“</h3>
+          <p>Mūsų užsakymų apdorojimą teisiškai vykdo mūsų internetinis perpardavėjas „Lemon Squeezy“ („Lemon Squeezy, LLC“). „Lemon Squeezy“ yra visų „Threadkeeper“ sandorių įgaliotas prekybininkas (Merchant of Record). Jie tvarko visus klientų aptarnavimo klausimus, atsiskaitymo pakeitimus, pasaulinį mokesčių atitikties užtikrinimą ir grąžinimus.</p>
+          <p><strong>Threadkeeper Pro:</strong> veikia pagal pasikartojantį mėnesinį atsiskaitymo ciklą. Prenumeratą galite atšaukti bet kuriuo metu per savo „Lemon Squeezy“ kliento paskyrą. Atšaukimas įsigalioja pasibaigus dabartiniam aktyviam atsiskaitymo ciklui.</p>
+          <p><strong>Threadkeeper Lifetime:</strong> yra išskirtinis vienkartinio mokėjimo planas, suteikiantis prieigą prie mūsų automatizavimo funkcijų visą „Threadkeeper“ platformos gyvavimo laikotarpį. Jei paslauga yra visiškai nutraukiama, neterminuota sutartis pasibaigia be jokių papildomų periodinių įsipareigojimų.</p>
 
           <h3 class="text-bone font-medium text-base pt-2">3. Dirbtinio intelekto infrastruktūra ir paslaugų apribojimai</h3>
-          <p>„Threadkeeper“ remiasi saugiais debesų kompiuterijos tinklais ir įmonės lygio trečiųjų šalių infrastruktūra („Google Gemini API Developer Tier“).</p>
-          <p>Nors išlaikome griežtą duomenų izoliavimo apsaugą, „Threadkeeper“ teisiškai neatsako už netikėtus trečiųjų šalių serverių sutrikimus, telekomunikacijų maršrutizavimo klaidas arba apdorojimo nukrypimus, kilusius dėl pagrindinių AI analizės variklių.</p>
+          <p>„Threadkeeper“ remiasi saugiais debesų kompiuterijos tinklais ir įmonės lygio trečiųjų šalių infrastruktūra („Google Gemini API Developer Tier“). Nors išlaikome griežtą duomenų izoliavimo apsaugą, kad būtų išvengta modelio mokymo, „Threadkeeper“ teisiškai neatsako už netikėtus trečiųjų šalių serverių sutrikimus, telekomunikacijų maršrutizavimo klaidas arba apdorojimo haliucinacijas, kilusias dėl pagrindinių AI analizės variklių.</p>
 
           <h3 class="text-bone font-medium text-base pt-2">4. Atsakomybės ribojimas</h3>
           <p>„Threadkeeper“ yra nepriklausoma produktyvumo automatizavimo priemonė, skirta el. pašto stebėjimui optimizuoti. Negarantuojame absoliutaus sistemos veikimo įvykus išorinėms tinklo triktims. Mes nesame teisiškai ar finansiškai atsakingi už praleistus kalendoriaus terminus, prarastas verslo galimybes ar komunikacijos planavimo klaidas, kilusias dėl mūsų automatizuotų pranešimų intervalų naudojimo ar netinkamo naudojimo.</p>
 
-          <h3 class="text-bone font-medium text-base pt-2">5. ES vartotojų teisė atsisakyti sutarties (14 dienų)</h3>
-          <p>Jei esate ES vartotojas, pagal Direktyvą 2011/83/ES paprastai turite teisę atsisakyti nuotolinės sutarties per 14 dienų nuo jos sudarymo, nenurodydami priežasties.</p>
-          <p>Kadangi „Threadkeeper“ yra skaitmeninio turinio / paslaugos, teikiama ne fizinėje laikmenoje, ši teisė gali būti prarasta, jei aiškiai sutinkate, kad paslaugos teikimas prasidėtų nedelsiant, ir patvirtinate, jog suprantate, kad, paslaugą pradėjus teikti visa apimtimi, prarasite teisę atsisakyti sutarties. Norėdami pasinaudoti šia teise arba gauti daugiau informacijos, susisiekite el. paštu privacy@threadkeeper.co.</p>
+          <h3 class="text-bone font-medium text-base pt-2">5. Skaitmeninio turinio pristatymas ir ES teisės atsisakyti sutarties atsisakymas</h3>
+          <p>Įsigydami „Threadkeeper Pro“ arba „Threadkeeper Lifetime“, jūs prašote nedelsiant suteikti prieigą prie skaitmeninio turinio ir automatizuotų paslaugų. Vadovaujantis ES Vartotojų teisių direktyva (2011/83/ES), jūs aiškiai sutinkate su nedelsiamu šios skaitmeninės paslaugos teikimu ir besąlygiškai patvirtinate, kad atsisakote savo 14 dienų teisės atsisakyti sutarties / ją nutraukti, kai tik prasideda skaitmeninis pristatymas. Visi pardavimai apdorojami pagal „Lemon Squeezy“ visuotinius grąžinimo standartus.</p>
+
+          <p class="pt-2">Oficialus veiklos adresas:<br>The Threadkeeper Project, [ĮRAŠYKITE SKAITMENINĮ PO DĖŽUTĖS ADRESĄ ČIA], Tauragė, Lietuva.<br>Kontaktinis centras: privacy@threadkeeper.co</p>
         </div>
         <div data-lang="en" class="space-y-4 hidden">
           <p class="text-xs font-mono text-indigo-soft">Last Updated: September 2026</p>
-          <p>By utilizing the services provided at threadkeeper.co, you agree to comply with and be bound by the following terms, conditions, and operational frameworks.</p>
+          <p>By utilizing the services provided at threadkeeper.co, you agree to comply with and be bound by the following terms, conditions, and operational frameworks. For all billing purposes, the Threadkeeper Project operates via a registered Merchant of Record.</p>
 
           <h3 class="text-bone font-medium text-base pt-2">1. Account Eligibility & Parental Capacity</h3>
           <p>Threadkeeper explicitly permits users under the age of 18 to establish and manage active subscription accounts, provided they possess the required parental or guardian capacity under local legal frameworks (such as Civil Code Article 2.8 within the Republic of Lithuania).</p>
 
-          <h3 class="text-bone font-medium text-base pt-2">2. Subscriptions, Cancellations, and Billing</h3>
-          <p><strong>Threadkeeper Pro:</strong> Operates on a recurring monthly billing cycle via our secure merchant of record (Lemon Squeezy). You may cancel your subscription at any time. Cancellations take effect at the conclusion of your current active billing cycle.</p>
+          <h3 class="text-bone font-medium text-base pt-2">2. Subscriptions, Cancellations, and Billing via Lemon Squeezy</h3>
+          <p>Our order process is conducted and legally fulfilled by our online reseller, Lemon Squeezy (Lemon Squeezy, LLC). Lemon Squeezy is the Merchant of Record for all Threadkeeper transactions. They handle all customer service inquiries, billing adjustments, global tax compliance, and returns.</p>
+          <p><strong>Threadkeeper Pro:</strong> Operates on a recurring monthly billing cycle. You may cancel your subscription at any time through your Lemon Squeezy customer dashboard. Cancellations take effect at the conclusion of your current active billing cycle.</p>
           <p><strong>Threadkeeper Lifetime:</strong> Represents an exclusive, one-time payment tier granting access to our automation features for the operational lifetime of the Threadkeeper platform itself. If the platform service is permanently discontinued, the lifetime contract ends with no further recurring liabilities.</p>
 
           <h3 class="text-bone font-medium text-base pt-2">3. Enterprise AI Infrastructure & Service Limitations</h3>
-          <p>Threadkeeper relies on secure cloud computing pipelines and enterprise-grade third-party infrastructure (Google Gemini API Developer Tier).</p>
-          <p>While we maintain a strict data isolation shield to prevent model training, Threadkeeper is not legally liable for unexpected third-party server outages, telecommunication routing dropouts, or processing hallucinations caused by the underlying AI parsing engines.</p>
+          <p>Threadkeeper relies on secure cloud computing pipelines and enterprise-grade third-party infrastructure (Google Gemini API Developer Tier). While we maintain a strict data isolation shield to prevent model training, Threadkeeper is not legally liable for unexpected third-party server outages, telecommunication routing dropouts, or processing hallucinations caused by the underlying AI parsing engines.</p>
 
           <h3 class="text-bone font-medium text-base pt-2">4. Limitation of Liability</h3>
           <p>Threadkeeper is an independent productivity automation utility designed to streamline email tracking. We do not guarantee absolute system delivery in the event of external network disruptions. We are not legally or financially liable for missed calendar deadlines, lost business opportunities, or communication scheduling oversights resulting from the use or misuse of our automated notification intervals.</p>
 
-          <h3 class="text-bone font-medium text-base pt-2">5. EU Right of Withdrawal (14 Days)</h3>
-          <p>If you are an EU consumer, under Directive 2011/83/EU you generally have the right to withdraw from a distance contract within 14 days of entering into it, without giving any reason.</p>
-          <p>Because Threadkeeper is digital content/a service not supplied on a physical medium, this right may be lost if you expressly consent to the service beginning immediately and acknowledge that you will lose your right of withdrawal once the service has been fully performed. To exercise this right or for more information, contact us at privacy@threadkeeper.co.</p>
+          <h3 class="text-bone font-medium text-base pt-2">5. Digital Content & EU Right of Withdrawal Waiver</h3>
+          <p>By purchasing Threadkeeper Pro or Threadkeeper Lifetime, you are requesting immediate access to digital content and automated services. Pursuant to EU Consumer Rights Directive (2011/83/EU), you explicitly consent to the immediate supply of this digital service and unconditionally acknowledge that you waive your 14-day right of withdrawal/cancellation once the digital delivery is initialized. All sales are processed under Lemon Squeezy's global refund standard frameworks.</p>
+
+          <p class="pt-2">Official Operating Address:<br>The Threadkeeper Project, [INSERT DIGITAL PO BOX HERE], Tauragė, Lithuania.<br>Contact Core: privacy@threadkeeper.co</p>
         </div>
       </div>
       <div class="mt-6 text-right">
@@ -966,7 +957,6 @@ html, body, a, button, select, input {
       }
     }
 
-    // STEP 4: Sun/Moon Light-Dark Dynamic Event Listeners (now persisted to localStorage)
     const themeToggleBtn = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
 
@@ -1002,11 +992,10 @@ html, body, a, button, select, input {
       });
     }
 
-    // Apply saved theme on load (defaults to dark if nothing saved)
     applyTheme(localStorage.getItem('tk_theme') || 'dark');
   </script>
   <script>
-    const targetDate = new Date('2026-10-21T18:00:00+03:00').getTime(); // Adjusted precisely to your October 21 launch window
+    const targetDate = new Date('2026-10-21T18:00:00+03:00').getTime();
 
     function updateCountdown() {
       const now = new Date().getTime();
@@ -1058,17 +1047,30 @@ html, body, a, button, select, input {
     setLanguage(savedLang);
   </script>
 
-  <!-- STEP 6: Interactive HTML GDPR Cookie Consent Banner Markup -->
-  <div id="cookieBanner" class="fixed bottom-6 left-6 right-6 z-50 p-5 bg-surface border border-hair rounded-xl max-w-lg shadow-2xl flex flex-col gap-4 hidden">
-    <div class="text-xs text-mute leading-relaxed">
-      <span data-lang="lt">Mes naudojame tik būtinus funkcinius slapukus jūsų pasirinkimams (kalbai bei temai) išsaugoti. Norėdami tęsti, sutikite su mūsų minimalia privatumo politika.</span>
-      <span data-lang="en" class="hidden">We utilize minimal functional cookies strictly to retain your system preferences (language and theme layers). Please accept to proceed securely.</span>
-    </div>
-    <div class="flex gap-3 justify-end text-xs font-medium font-display">
-      <button onclick="acceptCookies()" class="bg-indigo text-white px-4 py-2 rounded-lg hover:bg-indigo-deep transition-colors">
-        <span data-lang="lt">Sutinku</span>
-        <span data-lang="en" class="hidden">Accept All</span>
-      </button>
+  <div id="cookieBanner" class="fixed bottom-0 inset-x-0 z-50 border-t border-hair bg-surface shadow-2xl hidden">
+    <div class="max-w-4xl mx-auto px-6 py-6 md:py-7 flex flex-col md:flex-row md:items-center gap-5 md:gap-8">
+      <div class="text-sm md:text-[15px] text-bone leading-relaxed flex-1">
+        <p class="font-display font-medium text-base mb-1">
+          <span data-lang="lt">Jūsų privatumas</span>
+          <span data-lang="en" class="hidden">Your privacy</span>
+        </p>
+        <p class="text-mute">
+          <span data-lang="lt">Naudojame tik būtinus funkcinius slapukus jūsų pasirinkimams (kalbai bei temai) išsaugoti — jokių sekimo ar reklamos slapukų. Daugiau informacijos rasite mūsų
+            <button onclick="closeCookieBannerAnd('modal-privacy')" class="underline text-indigo-soft hover:text-bone transition-colors">privatumo politikoje</button>.</span>
+          <span data-lang="en" class="hidden">We only use strictly necessary functional cookies to remember your preferences (language and theme) — no tracking or advertising cookies. Read more in our
+            <button onclick="closeCookieBannerAnd('modal-privacy')" class="underline text-indigo-soft hover:text-bone transition-colors">privacy policy</button>.</span>
+        </p>
+      </div>
+      <div class="flex gap-3 shrink-0 text-sm font-medium font-display">
+        <button onclick="acceptCookies('necessary')" class="rounded-lg bg-hair hover:bg-ink border border-hair text-bone px-5 py-3 transition-colors">
+          <span data-lang="lt">Tik būtini</span>
+          <span data-lang="en" class="hidden">Necessary only</span>
+        </button>
+        <button onclick="acceptCookies('all')" class="rounded-lg bg-indigo hover:bg-indigo-deep text-white px-5 py-3 transition-colors">
+          <span data-lang="lt">Sutinku su visais</span>
+          <span data-lang="en" class="hidden">Accept all</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -1079,7 +1081,6 @@ html, body, a, button, select, input {
     const status = document.getElementById('waitlist-status');
     const button = form.querySelector('button');
 
-    // Persisted across refreshes (was an in-memory Set before, which reset on reload)
     function getSubmittedEmails() {
       try {
         return JSON.parse(localStorage.getItem('tk_submitted_emails') || '[]');
@@ -1102,10 +1103,9 @@ html, body, a, button, select, input {
 
       if (!email) return;
 
-      // STEP 8: Local Frontend Rate Limiting Security Check
       const lastSignup = localStorage.getItem('tk_rate_limit');
       const nowTime = Date.now();
-      if (lastSignup && (nowTime - parseInt(lastSignup)) < 30000) { // 30 second threshold window
+      if (lastSignup && (nowTime - parseInt(lastSignup)) < 30000) {
         status.textContent = currentLang === 'lt' 
           ? 'Per daug užklausų! Palaukite 30 sekundžių.' 
           : 'Too many requests! Please wait 30 seconds.';
@@ -1134,7 +1134,7 @@ html, body, a, button, select, input {
 
         if (response.ok) {
           addSubmittedEmail(email);
-          localStorage.setItem('tk_rate_limit', Date.now().toString()); // Set Rate Limit Timestamp
+          localStorage.setItem('tk_rate_limit', Date.now().toString());
           status.textContent = currentLang === 'lt'
             ? 'Ačiū! Užregistruota sėkmingai.'
             : 'Thank you! Successfully signed up.';
@@ -1155,7 +1155,6 @@ html, body, a, button, select, input {
     });
   </script>
 
-  <!-- STEP 6 & 10: GDPR Cookie Banner Logic Initialization Handler -->
   <script>
     function checkCookieConsent() {
       const banner = document.getElementById('cookieBanner');
@@ -1165,24 +1164,33 @@ html, body, a, button, select, input {
       }
     }
 
-    function acceptCookies() {
+    // choice: 'all' or 'necessary'. Since Threadkeeper only ever sets
+    // strictly-necessary functional cookies (language, theme) today, both
+    // choices behave identically in practice - but the choice itself is
+    // still recorded, so if non-essential cookies are ever added later,
+    // this is the flag to check before setting them.
+    function acceptCookies(choice) {
       const banner = document.getElementById('cookieBanner');
-      localStorage.setItem('tk_cookie_consent', 'accepted');
+      localStorage.setItem('tk_cookie_consent', choice || 'necessary');
       if (banner) {
         banner.classList.add('hidden');
       }
     }
 
-    // Fire the initial compliance status check immediately upon DOM lifecycle load
+    function closeCookieBannerAnd(modalId) {
+      const banner = document.getElementById('cookieBanner');
+      if (banner) banner.classList.add('hidden');
+      openModal(modalId);
+    }
+
     window.addEventListener('DOMContentLoaded', checkCookieConsent);
   </script>
 
-  <!-- Stripe / Lemon Squeezy Checkout Trigger Helper Script -->
+  <!-- Stripe / Lemon Squeezy Checkout Trigger Helper Script (currently unused - pricing buttons are plain links) -->
   <script>
     async function startCheckout(priceId) {
       const currentLang = localStorage.getItem('preferred_lang') || 'lt';
       try {
-        // Replace with your actual deployed Supabase Edge Function / Backend endpoint URL once ready
         const backendUrl = 'https://your-backend-url.com/create-checkout-session';
 
         const response = await fetch(backendUrl, {
@@ -1210,14 +1218,10 @@ html, body, a, button, select, input {
   <!-- Fund the AI: progress bar logic -->
   <script>
   (function () {
-    // Conversion constants, straight from the Gemini 2.5 Flash-Lite math.
     const TOKENS_PER_EURO   = 1_600_000;
     const MESSAGES_PER_EURO = 3_000;
-    const GOAL_MESSAGES     = 1_000_000_000; // community goal, 1 Billion messages
+    const GOAL_MESSAGES     = 1_000_000_000;
 
-    // Nothing has been financed yet - these all start at 0. Once real Lemon
-    // Squeezy payments are wired in, these should be replaced with numbers
-    // pulled from your backend (updated by a payment webhook), not hardcoded.
     let totalFundedMessages = 0;
     let tokensToday   = 0;
     let messagesToday = 0;
@@ -1230,7 +1234,7 @@ html, body, a, button, select, input {
     const tokensTodayEl  = document.getElementById('funding-tokens-today');
     const msgTodayEl     = document.getElementById('funding-messages-today');
 
-    if (!fillEl) return; // section not on this page
+    if (!fillEl) return;
 
     function goalLabel() {
       const lang = localStorage.getItem('preferred_lang') || 'lt';
@@ -1246,10 +1250,6 @@ html, body, a, button, select, input {
       msgTodayEl.textContent = fmt(messagesToday);
     }
 
-    // Fills in the "this would fund X% of the goal" preview modal for a given
-    // amount, then opens it. This is preview-only: clicking a donate button
-    // does NOT touch totalFundedMessages/tokensToday/messagesToday above -
-    // that only happens once a real payment is actually confirmed.
     function showFundingPreview(amountEuros) {
       const messages = amountEuros * MESSAGES_PER_EURO;
       const tokens    = amountEuros * TOKENS_PER_EURO;
@@ -1269,10 +1269,6 @@ html, body, a, button, select, input {
 
       // ============================================================
       // ADD LEMONSQUEEZY FOR THE DONATIONS HERE BRO
-      // This is where a real Lemon Squeezy checkout for `amountEuros` should
-      // be opened (or your backend hit to create one). The preview modal
-      // above is informational only - actual funded totals should only
-      // update once a webhook confirms the payment went through.
       // ============================================================
 
       openModal('modal-funding-preview');
