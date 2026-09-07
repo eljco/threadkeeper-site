@@ -1297,5 +1297,206 @@ html, body, a, button, select, input {
   })();
   </script>
 
+  <!-- ============================================================
+     THREADKEEPER ACCOUNT PANEL
+     Token session capture + Gmail OAuth trigger + buffer_hours slider.
+     Paste this entire block immediately before your closing </body> tag.
+     ============================================================ -->
+<style>
+  #tk-gear {
+    position: fixed; bottom: 24px; right: 24px; z-index: 9998;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: #0D0E13; border: 1px solid #1C1E27;
+    display: none; align-items: center; justify-content: center;
+    cursor: pointer; transition: border-color .2s, transform .2s;
+  }
+  #tk-gear:hover { border-color: #FF7733; transform: rotate(25deg); }
+  #tk-gear svg { width: 20px; height: 20px; stroke: #8A8D9B; }
+  #tk-gear:hover svg { stroke: #FF7733; }
+
+  #tk-modal-backdrop {
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(3,3,4,.7);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    display: none; align-items: center; justify-content: center; padding: 20px;
+  }
+  #tk-modal {
+    position: relative; width: 100%; max-width: 420px;
+    background: #0D0E13; border: 1px solid #1C1E27; border-radius: 14px;
+    padding: 28px; font-family: 'Inter', sans-serif; color: #F5F6F8;
+  }
+  #tk-modal h3 { font-family: 'Space Grotesk', sans-serif; font-size: 18px; margin: 0 0 20px 0; }
+  .tk-field { margin-bottom: 20px; }
+  .tk-label {
+    display: block; font-size: 12px; color: #8A8D9B; margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: .03em;
+  }
+  #tk-gmail-btn {
+    width: 100%; padding: 12px; border-radius: 8px; border: none;
+    background: #FF5500; color: #fff; font-weight: 600; font-size: 14px;
+    cursor: pointer; transition: background .2s;
+  }
+  #tk-gmail-btn:hover { background: #CC4400; }
+  #tk-forward-addr {
+    font-family: 'SFMono-Regular', Consolas, monospace; font-size: 13px;
+    background: #030304; border: 1px solid #1C1E27; border-radius: 8px;
+    padding: 10px 12px; color: #FF7733;
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  }
+  #tk-copy-btn { background: none; border: none; color: #8A8D9B; cursor: pointer; font-size: 12px; flex-shrink: 0; }
+  #tk-copy-btn:hover { color: #F5F6F8; }
+  #tk-slider { width: 100%; accent-color: #FF5500; }
+  #tk-slider-value { font-family: 'Space Grotesk', sans-serif; font-size: 22px; margin-top: 6px; }
+  #tk-slider-status { font-size: 11px; color: #8A8D9B; margin-top: 6px; height: 14px; }
+  #tk-close-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; color: #8A8D9B; font-size: 20px; cursor: pointer; line-height: 1; }
+</style>
+
+<div id="tk-gear" aria-label="Account settings">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="3"></circle>
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+  </svg>
+</div>
+
+<div id="tk-modal-backdrop">
+  <div id="tk-modal">
+    <button id="tk-close-btn" aria-label="Close">&times;</button>
+    <h3>Account settings</h3>
+
+    <div class="tk-field">
+      <span class="tk-label">Gmail sync</span>
+      <button id="tk-gmail-btn">Authorize Gmail Sync</button>
+    </div>
+
+    <div class="tk-field">
+      <span class="tk-label">Your forwarding address</span>
+      <div id="tk-forward-addr">
+        <span id="tk-forward-addr-text">token@threadkeeper.co</span>
+        <button id="tk-copy-btn">Copy</button>
+      </div>
+    </div>
+
+    <div class="tk-field">
+      <span class="tk-label">Reminder buffer</span>
+      <input type="range" id="tk-slider" min="1" max="72" step="1" value="24" />
+      <div id="tk-slider-value">24 hours before</div>
+      <div id="tk-slider-status"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  // ---- FILL THESE IN WITH YOUR REAL VALUES ----
+  const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
+  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_PUBLIC_KEY';
+  const GOOGLE_OAUTH_CLIENT_ID = 'YOUR_GOOGLE_OAUTH_CLIENT_ID.apps.googleusercontent.com';
+  const GOOGLE_OAUTH_REDIRECT_URI = 'https://threadkeeper.co/oauth/gmail/callback';
+  // ----------------------------------------------
+
+  const TOKEN_KEY = 'tk_session_token';
+  const TOKEN_PATTERN = /^[A-Za-z0-9]{10}$/;
+
+  function captureTokenFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const rawToken = params.get('token');
+    if (rawToken && TOKEN_PATTERN.test(rawToken)) {
+      localStorage.setItem(TOKEN_KEY, rawToken);
+      // Strip the token out of the visible URL/history without reloading the page.
+      params.delete('token');
+      const cleanUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '') + window.location.hash;
+      window.history.replaceState({}, document.title, cleanUrl);
+      return rawToken;
+    }
+    return null;
+  }
+
+  const token = captureTokenFromUrl() || localStorage.getItem(TOKEN_KEY);
+
+  const gear = document.getElementById('tk-gear');
+  const backdrop = document.getElementById('tk-modal-backdrop');
+  const closeBtn = document.getElementById('tk-close-btn');
+  const addrText = document.getElementById('tk-forward-addr-text');
+  const copyBtn = document.getElementById('tk-copy-btn');
+  const slider = document.getElementById('tk-slider');
+  const sliderValue = document.getElementById('tk-slider-value');
+  const sliderStatus = document.getElementById('tk-slider-status');
+  const gmailBtn = document.getElementById('tk-gmail-btn');
+
+  if (!token) return; // No valid session: everything stays hidden.
+
+  gear.style.display = 'flex';
+  addrText.textContent = token + '@threadkeeper.co';
+
+  gear.addEventListener('click', () => { backdrop.style.display = 'flex'; });
+  closeBtn.addEventListener('click', () => { backdrop.style.display = 'none'; });
+  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) backdrop.style.display = 'none'; });
+
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(addrText.textContent).then(() => {
+      copyBtn.textContent = 'Copied';
+      setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1500);
+    });
+  });
+
+  gmailBtn.addEventListener('click', () => {
+    const params = new URLSearchParams({
+      client_id: GOOGLE_OAUTH_CLIENT_ID,
+      redirect_uri: GOOGLE_OAUTH_REDIRECT_URI,
+      response_type: 'code',
+      access_type: 'offline',
+      prompt: 'consent',
+      scope: 'https://www.googleapis.com/auth/gmail.readonly',
+      state: token, // ties the OAuth grant back to this Threadkeeper account
+    });
+    window.location.href = 'https://accounts.google.com/o/oauth2/v2/auth?' + params.toString();
+  });
+
+  // Load the user's current buffer_hours so the slider isn't just guessing at 24.
+  (async function loadBufferHours() {
+    try {
+      const res = await fetch(
+        `${SUPABASE_URL}/rest/v1/threadkeeper_users?token=eq.${encodeURIComponent(token)}&select=buffer_hours`,
+        { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` } }
+      );
+      const rows = await res.json();
+      if (rows && rows[0] && typeof rows[0].buffer_hours === 'number') {
+        slider.value = rows[0].buffer_hours;
+        sliderValue.textContent = rows[0].buffer_hours + ' hours before';
+      }
+    } catch (err) {
+      console.error('Could not load buffer_hours:', err);
+    }
+  })();
+
+  slider.addEventListener('input', () => {
+    sliderValue.textContent = slider.value + ' hours before';
+  });
+
+  slider.addEventListener('change', async () => {
+    const hours = parseInt(slider.value, 10);
+    sliderStatus.textContent = 'Saving...';
+    try {
+      // Calls a Postgres RPC function rather than PATCHing the table directly -
+      // see the SQL below, this is what makes it work with RLS on.
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/update_buffer_hours`, {
+        method: 'POST',
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ p_token: token, p_hours: hours }),
+      });
+      if (!res.ok) throw new Error('RPC call failed: ' + res.status);
+      sliderStatus.textContent = 'Saved';
+      setTimeout(() => { sliderStatus.textContent = ''; }, 1500);
+    } catch (err) {
+      console.error(err);
+      sliderStatus.textContent = 'Failed to save, try again';
+    }
+  });
+})();
+</script>
 </body>
 </html>
