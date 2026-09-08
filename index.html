@@ -8,6 +8,7 @@
 <meta name="description" content="Persiųsk bet kurį el. laišką Threadkeeper. Mūsų D.I. ištrauks užduotis ir tvarkaraščius, o tada atsiųs priminimą tiksliai tada, kada ateis laikas veikti." />
 
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
   tailwind.config = {
     theme: {
@@ -188,10 +189,26 @@ html, body, a, button, select, input {
           <span data-lang="en" class="hidden">About Us</span>
         </button>
 
-        <a href="#waitlist" class="hidden sm:inline-flex items-center rounded-md bg-bone text-ink font-display font-medium text-sm px-4 py-2 hover:bg-indigo-soft hover:text-ink transition-colors">
-          <span data-lang="lt">Prisijungti prie laukiančiųjų</span>
-          <span data-lang="en" class="hidden">Join the waitlist</span>
-        </a>
+        <!-- Signed-out state: Log In / Sign Up -->
+        <div id="tk-auth-signed-out" class="flex items-center gap-2">
+          <button onclick="tkOpenAuthModal('login')" class="inline-flex items-center rounded-md bg-surface border border-hair text-bone font-display font-medium text-sm px-4 py-2 hover:bg-hair transition-colors">
+            <span data-lang="lt">Prisijungti</span>
+            <span data-lang="en" class="hidden">Log In</span>
+          </button>
+          <button onclick="tkOpenAuthModal('signup')" class="hidden sm:inline-flex items-center rounded-md bg-bone text-ink font-display font-medium text-sm px-4 py-2 hover:bg-indigo-soft hover:text-ink transition-colors">
+            <span data-lang="lt">Registruotis</span>
+            <span data-lang="en" class="hidden">Sign Up</span>
+          </button>
+        </div>
+
+        <!-- Signed-in state: email + log out -->
+        <div id="tk-auth-signed-in" class="hidden items-center gap-3">
+          <span id="tk-auth-email" class="hidden sm:inline text-xs text-mute font-mono"></span>
+          <button onclick="tkSignOut()" class="inline-flex items-center rounded-md bg-surface border border-hair text-bone font-display font-medium text-sm px-4 py-2 hover:bg-hair transition-colors">
+            <span data-lang="lt">Atsijungti</span>
+            <span data-lang="en" class="hidden">Log Out</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -689,7 +706,50 @@ html, body, a, button, select, input {
     </div>
   </footer>
 
-<div id="modal-about" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden">
+<div id="modal-auth" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden">
+    <div class="bg-surface border border-hair rounded-xl max-w-sm w-full p-6 sm:p-8">
+      <div class="flex justify-between items-center mb-2">
+        <h2 id="tk-auth-title" class="font-display font-semibold text-xl text-bone">
+          <span data-lang="lt">Prisijungti</span>
+          <span data-lang="en" class="hidden">Log In</span>
+        </h2>
+        <button onclick="closeModal('modal-auth')" class="text-mute hover:text-bone text-lg font-mono">&times;</button>
+      </div>
+
+      <p class="text-sm text-mute mb-6 leading-relaxed">
+        <span data-lang="lt">Jokių slaptažodžių. Įvesk el. paštą – atsiųsime prisijungimo nuorodą.</span>
+        <span data-lang="en" class="hidden">No passwords. Enter your email and we'll send you a one-time sign-in link.</span>
+      </p>
+
+      <form id="tk-auth-form" class="space-y-4">
+        <div>
+          <label for="tk-auth-email-input" class="sr-only">Email</label>
+          <input
+            id="tk-auth-email-input"
+            type="email"
+            required
+            placeholder="you@work.com"
+            autocomplete="email"
+            class="w-full rounded-lg bg-ink border border-hair px-4 py-3 text-sm text-bone placeholder:text-mute/70 focus:border-indigo-soft focus:outline-none transition-colors"
+          />
+        </div>
+        <button
+          type="submit"
+          id="tk-auth-submit"
+          class="w-full rounded-lg bg-indigo hover:bg-indigo-deep text-white font-display font-medium text-sm px-5 py-3 transition-colors disabled:opacity-60"
+        >
+          <span id="tk-auth-submit-label">
+            <span data-lang="lt">Siųsti nuorodą</span>
+            <span data-lang="en" class="hidden">Send magic link</span>
+          </span>
+        </button>
+      </form>
+
+      <p id="tk-auth-status" class="mt-4 text-xs text-mute"></p>
+    </div>
+  </div>
+
+  <div id="modal-about" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden">
     <div class="bg-surface border border-hair rounded-xl max-w-xl w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-4">
         <h2 class="font-display font-semibold text-xl text-bone">
@@ -1047,6 +1107,129 @@ html, body, a, button, select, input {
 
     const savedLang = localStorage.getItem('preferred_lang') || 'lt';
     setLanguage(savedLang);
+  </script>
+
+  <!-- ============================================================
+       PASSWORDLESS AUTH (Supabase magic link)
+       No password field exists anywhere on this page. The only thing
+       we ever ask for is an email address; Supabase emails a one-time
+       sign-in link and hands back a session token. We never see, send,
+       or store a password - Supabase's client SDK manages the session
+       for us under the hood.
+
+       Fill in your real project values below (same project as the
+       SUPABASE_URL / SUPABASE_ANON_KEY used further down for
+       buffer_hours - keep them in sync if you change one).
+       ============================================================ -->
+  <script>
+    const TK_SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
+    const TK_SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_PUBLIC_KEY';
+
+    const tkSupabase = window.supabase
+      ? window.supabase.createClient(TK_SUPABASE_URL, TK_SUPABASE_ANON_KEY)
+      : null;
+
+    const authModalTitleLt = { login: 'Prisijungti', signup: 'Registruotis' };
+    const authModalTitleEn = { login: 'Log In', signup: 'Sign Up' };
+    let tkAuthMode = 'login';
+
+    function tkOpenAuthModal(mode) {
+      tkAuthMode = mode; // 'login' or 'signup'
+      const titleEl = document.getElementById('tk-auth-title');
+      titleEl.innerHTML = `
+        <span data-lang="lt">${authModalTitleLt[mode]}</span>
+        <span data-lang="en" class="${(localStorage.getItem('preferred_lang') || 'lt') === 'en' ? '' : 'hidden'}">${authModalTitleEn[mode]}</span>
+      `;
+      document.getElementById('tk-auth-status').textContent = '';
+      openModal('modal-auth');
+    }
+
+    function tkCurrentLang() {
+      return localStorage.getItem('preferred_lang') || 'lt';
+    }
+
+    function tkSetAuthStatus(msg, isError) {
+      const el = document.getElementById('tk-auth-status');
+      el.textContent = msg;
+      el.style.color = isError ? '#FF5500' : '#8A8D9B';
+    }
+
+    function tkRenderAuthState(session) {
+      const signedOut = document.getElementById('tk-auth-signed-out');
+      const signedIn = document.getElementById('tk-auth-signed-in');
+      const emailEl = document.getElementById('tk-auth-email');
+      if (session && session.user) {
+        signedOut.classList.add('hidden');
+        signedIn.classList.remove('hidden');
+        signedIn.classList.add('flex');
+        emailEl.textContent = session.user.email || '';
+      } else {
+        signedOut.classList.remove('hidden');
+        signedIn.classList.add('hidden');
+        signedIn.classList.remove('flex');
+        emailEl.textContent = '';
+      }
+    }
+
+    async function tkSignOut() {
+      if (!tkSupabase) return;
+      await tkSupabase.auth.signOut();
+      tkRenderAuthState(null);
+    }
+
+    if (tkSupabase) {
+      // Restore session on load (Supabase persists its own session token,
+      // never a password, in localStorage under its own key).
+      tkSupabase.auth.getSession().then(({ data }) => tkRenderAuthState(data.session));
+
+      tkSupabase.auth.onAuthStateChange((_event, session) => {
+        tkRenderAuthState(session);
+        if (session) closeModal('modal-auth');
+      });
+
+      const authForm = document.getElementById('tk-auth-form');
+      authForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const lang = tkCurrentLang();
+        const email = document.getElementById('tk-auth-email-input').value.trim();
+        if (!email) return;
+
+        const submitBtn = document.getElementById('tk-auth-submit');
+        submitBtn.disabled = true;
+        tkSetAuthStatus(lang === 'lt' ? 'Siunčiama...' : 'Sending...', false);
+
+        try {
+          const { error } = await tkSupabase.auth.signInWithOtp({
+            email: email,
+            options: {
+              // signup: creates the account if it doesn't exist yet.
+              // login: only signs in an existing account.
+              shouldCreateUser: tkAuthMode === 'signup',
+              emailRedirectTo: window.location.origin + window.location.pathname,
+            },
+          });
+
+          if (error) throw error;
+
+          tkSetAuthStatus(
+            lang === 'lt'
+              ? 'Patikrink savo el. paštą – nusiuntėme prisijungimo nuorodą.'
+              : 'Check your email - we sent you a sign-in link.',
+            false
+          );
+        } catch (err) {
+          console.error(err);
+          tkSetAuthStatus(
+            lang === 'lt' ? 'Nepavyko išsiųsti nuorodos. Bandyk dar kartą.' : 'Could not send the link. Please try again.',
+            true
+          );
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    } else {
+      console.warn('Supabase SDK failed to load - auth buttons are inert until it does.');
+    }
   </script>
 
   <div id="cookieBanner" class="fixed bottom-0 inset-x-0 z-50 border-t border-hair bg-surface shadow-2xl hidden">
