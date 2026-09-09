@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="lt" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSI+PHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSIjMDAwMDAwIi8+PHJlY3QgeD0iMyIgeT0iNSIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE0IiByeD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY3QjM1IiBzdHJva2Utd2lkdGg9IjEuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTMgN2w5IDUuNyBMMjEgNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY3QjM1IiBzdHJva2Utd2lkdGg9IjEuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>404 | Threadkeeper</title>
+<meta name="robots" content="noindex" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#030304', surface: '#0D0E13', hair: '#1C1E27',
+          bone: '#F5F6F8', mute: '#8A8D9B',
+          indigo: { DEFAULT: '#FF5500', soft: '#FF7733', deep: '#CC4400' },
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          body: ['"Inter"', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  html { background-color: #030304; }
+  body { font-family: 'Inter', sans-serif; background-color: #030304; -webkit-font-smoothing: antialiased; }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  a:focus-visible, button:focus-visible { outline: 2px solid #FF7733; outline-offset: 3px; border-radius: 4px; }
+  ::selection { background: #FF5500; color: #FFFFFF; }
+
+  .grid-veil {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .hero-glow {
+    background: radial-gradient(50% 50% at 50% 30%, rgba(255,85,0,0.14) 0%, rgba(255,85,0,0) 70%);
+  }
+</style>
+</head>
+
+<body class="bg-ink text-bone font-body antialiased min-h-screen relative overflow-hidden">
+  <div class="absolute inset-0 grid-veil hero-glow [mask-image:radial-gradient(ellipse_70%_60%_at_50%_30%,#000_20%,transparent_75%)]"></div>
+
+  <div class="relative min-h-screen flex flex-col items-center justify-center text-center px-6">
+
+    <!-- A snapped thread: two dashed lines that no longer meet -->
+    <svg width="140" height="60" viewBox="0 0 140 60" class="mb-8" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M 5 30 C 30 30, 40 10, 55 10" fill="none" stroke="#FF7733" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 6"/>
+      <path d="M 85 50 C 100 50, 110 30, 135 30" fill="none" stroke="#FF7733" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 6"/>
+      <circle cx="55" cy="10" r="4" fill="#FF5500"/>
+      <circle cx="85" cy="50" r="4" fill="#FF5500"/>
+    </svg>
+
+    <p class="font-display text-sm text-indigo-soft mb-3 tracking-wide">
+      <span data-lang="lt">404</span><span data-lang="en" class="hidden">404</span>
+    </p>
+
+    <h1 class="font-display font-semibold text-3xl sm:text-4xl tracking-tight text-bone mb-4">
+      <span data-lang="lt">Šis siūlas nutrūko</span>
+      <span data-lang="en" class="hidden">This thread got lost</span>
+    </h1>
+
+    <p class="text-mute max-w-sm leading-relaxed mb-10">
+      <span data-lang="lt">Puslapio, kurio ieškai, čia nėra. Galbūt jis buvo perkeltas, arba adresas tiesiog neteisingas.</span>
+      <span data-lang="en" class="hidden">The page you're looking for isn't here. It may have moved, or the address just isn't right.</span>
+    </p>
+
+    <a href="/" class="inline-flex items-center rounded-lg bg-indigo hover:bg-indigo-deep text-white font-display font-medium text-sm px-6 py-3 transition-colors">
+      <span data-lang="lt">Grįžti į pradžią</span>
+      <span data-lang="en" class="hidden">Back to Threadkeeper</span>
+    </a>
+  </div>
+
+  <script>
+    // Match whatever language the person had selected on the main site.
+    (function () {
+      const lang = localStorage.getItem('preferred_lang') || 'lt';
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.classList.toggle('hidden', el.getAttribute('data-lang') !== lang);
+      });
+    })();
+  </script>
+</body>
+</html>
