@@ -161,25 +161,25 @@ html, body, a, button, select, input {
 <body class="bg-ink text-bone font-body antialiased">
 
   <header class="relative z-10 border-b border-hair">
-    <div class="max-w-6xl mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
-      <a href="#top" class="flex items-center gap-2.5">
-       <span class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-indigo/10 border border-indigo/30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 py-4 sm:py-5 flex items-center justify-between gap-2">
+      <a href="#top" class="flex items-center gap-2 sm:gap-2.5 shrink-0 min-w-0">
+       <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-indigo/10 border border-indigo/30">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3 6.5L12 13L21 6.5" stroke="#FF7733" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M3 6.5C3 5.67157 3.67157 5 4.5 5H19.5C20.3284 5 21 5.67157 21 6.5V17.5C21 18.3284 20.3284 19 19.5 19H4.5C3.67157 19 3 18.3284 3 17.5V6.5Z" stroke="#FF7733" stroke-width="1.8" stroke-linejoin="round"/>
           </svg>
         </span>
-        <span class="font-display font-semibold text-lg tracking-tight text-bone">Threadkeeper</span>
+        <span class="font-display font-semibold text-base sm:text-lg tracking-tight text-bone truncate">Threadkeeper</span>
       </a>
 
-      <div class="flex items-center gap-4">
-        <button id="themeToggle" class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-surface border border-hair text-mute hover:text-bone transition-colors" aria-label="Toggle Theme">
+      <div class="flex items-center gap-1.5 sm:gap-4">
+        <button id="themeToggle" class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-surface border border-hair text-mute hover:text-bone transition-colors" aria-label="Toggle Theme">
           <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
         </button>
 
-        <div class="flex items-center gap-1 bg-surface border border-hair rounded-lg p-1 text-xs font-medium">
+        <div class="flex items-center gap-1 bg-surface border border-hair rounded-lg p-1 text-xs font-medium shrink-0">
           <button id="lang-lt" onclick="setLanguage('lt')" class="px-2.5 py-1 rounded transition-colors text-white bg-indigo font-bold">LT</button>
           <button id="lang-en" onclick="setLanguage('en')" class="px-2.5 py-1 rounded transition-colors text-mute hover:text-bone">EN</button>
         </div>
@@ -190,21 +190,21 @@ html, body, a, button, select, input {
         </button>
 
         <!-- Signed-out state: Log In / Sign Up -->
-        <div id="tk-auth-signed-out" class="flex items-center gap-2">
-          <button onclick="tkOpenAuthModal('login')" class="inline-flex items-center rounded-md bg-surface border border-hair text-bone font-display font-medium text-sm px-4 py-2 hover:bg-hair transition-colors">
+        <div id="tk-auth-signed-out" class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <button onclick="tkOpenAuthModal('login')" class="inline-flex items-center whitespace-nowrap rounded-md bg-surface border border-hair text-bone font-display font-medium text-xs sm:text-sm px-2.5 sm:px-4 py-2 hover:bg-hair transition-colors">
             <span data-lang="lt">Prisijungti</span>
             <span data-lang="en" class="hidden">Log In</span>
           </button>
-          <button onclick="tkOpenAuthModal('signup')" class="hidden sm:inline-flex items-center rounded-md bg-bone text-ink font-display font-medium text-sm px-4 py-2 hover:bg-indigo-soft hover:text-ink transition-colors">
+          <button onclick="tkOpenAuthModal('signup')" class="hidden sm:inline-flex items-center whitespace-nowrap rounded-md bg-bone text-ink font-display font-medium text-sm px-4 py-2 hover:bg-indigo-soft hover:text-ink transition-colors">
             <span data-lang="lt">Registruotis</span>
             <span data-lang="en" class="hidden">Sign Up</span>
           </button>
         </div>
 
         <!-- Signed-in state: email + log out -->
-        <div id="tk-auth-signed-in" class="hidden items-center gap-3">
-          <span id="tk-auth-email" class="hidden sm:inline text-xs text-mute font-mono"></span>
-          <button onclick="tkSignOut()" class="inline-flex items-center rounded-md bg-surface border border-hair text-bone font-display font-medium text-sm px-4 py-2 hover:bg-hair transition-colors">
+        <div id="tk-auth-signed-in" class="hidden items-center gap-2 sm:gap-3 shrink-0">
+          <span id="tk-auth-email" class="hidden sm:inline text-xs text-mute font-mono max-w-[160px] truncate"></span>
+          <button onclick="tkSignOut()" class="inline-flex items-center whitespace-nowrap rounded-md bg-surface border border-hair text-bone font-display font-medium text-xs sm:text-sm px-2.5 sm:px-4 py-2 hover:bg-hair transition-colors">
             <span data-lang="lt">Atsijungti</span>
             <span data-lang="en" class="hidden">Log Out</span>
           </button>
@@ -268,8 +268,8 @@ html, body, a, button, select, input {
             </button>
           </form>
           <p id="waitlist-status" class="mt-3 text-xs text-mute">
-            <span data-lang="lt">Jokių prisijungimų. Jokių slaptažodžių.</span>
-            <span data-lang="en" class="hidden">No dashboard to learn. No password to hand over.</span>
+            <span data-lang="lt">Jokio šlamšto. Gali atsisakyti bet kada.</span>
+            <span data-lang="en" class="hidden">No spam. Unsubscribe anytime.</span>
           </p>
         </div>
       </div>
@@ -695,14 +695,6 @@ html, body, a, button, select, input {
         </button>
       </div>
 
-      <span class="flex items-center gap-1.5 text-mute/80">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 3L4 6.5V11C4 15.5 7.5 19.7 12 21C16.5 19.7 20 15.5 20 11V6.5L12 3Z" stroke="#FF5500" stroke-width="1.5" stroke-linejoin="round"/>
-        </svg>
-        <span data-lang="lt">Jokių slaptažodžių, niekada</span>
-        <span data-lang="en" class="hidden">No password required, ever</span>
-      </span>
-
     </div>
   </footer>
 
@@ -716,9 +708,9 @@ html, body, a, button, select, input {
         <button onclick="closeModal('modal-auth')" class="text-mute hover:text-bone text-lg font-mono">&times;</button>
       </div>
 
-      <p class="text-sm text-mute mb-6 leading-relaxed">
-        <span data-lang="lt">Jokių slaptažodžių. Įvesk el. paštą – atsiųsime prisijungimo nuorodą.</span>
-        <span data-lang="en" class="hidden">No passwords. Enter your email and we'll send you a one-time sign-in link.</span>
+      <p id="tk-auth-subtitle" class="text-sm text-mute mb-6 leading-relaxed">
+        <span data-lang="lt">Prisijunk su savo el. paštu ir slaptažodžiu.</span>
+        <span data-lang="en" class="hidden">Sign in with your email and password.</span>
       </p>
 
       <form id="tk-auth-form" class="space-y-4">
@@ -733,17 +725,46 @@ html, body, a, button, select, input {
             class="w-full rounded-lg bg-ink border border-hair px-4 py-3 text-sm text-bone placeholder:text-mute/70 focus:border-indigo-soft focus:outline-none transition-colors"
           />
         </div>
+        <div>
+          <label for="tk-auth-password-input" class="sr-only">Password</label>
+          <input
+            id="tk-auth-password-input"
+            type="password"
+            required
+            minlength="8"
+            placeholder="••••••••"
+            autocomplete="current-password"
+            class="w-full rounded-lg bg-ink border border-hair px-4 py-3 text-sm text-bone placeholder:text-mute/70 focus:border-indigo-soft focus:outline-none transition-colors"
+          />
+          <p id="tk-auth-password-hint" class="hidden mt-1.5 text-xs text-mute">
+            <span data-lang="lt">Mažiausiai 8 simboliai.</span>
+            <span data-lang="en" class="hidden">At least 8 characters.</span>
+          </p>
+        </div>
         <button
           type="submit"
           id="tk-auth-submit"
           class="w-full rounded-lg bg-indigo hover:bg-indigo-deep text-white font-display font-medium text-sm px-5 py-3 transition-colors disabled:opacity-60"
         >
           <span id="tk-auth-submit-label">
-            <span data-lang="lt">Siųsti nuorodą</span>
-            <span data-lang="en" class="hidden">Send magic link</span>
+            <span data-lang="lt">Prisijungti</span>
+            <span data-lang="en" class="hidden">Log In</span>
           </span>
         </button>
       </form>
+
+      <p class="mt-4 text-xs text-mute text-center">
+        <span id="tk-auth-switch-prompt">
+          <span data-lang="lt">Neturi paskyros?</span>
+          <span data-lang="en" class="hidden">Don't have an account?</span>
+        </span>
+        <button id="tk-auth-switch-btn" onclick="tkSwitchAuthMode()" class="underline text-indigo-soft hover:text-bone transition-colors ml-1">
+          <span id="tk-auth-switch-label">
+            <span data-lang="lt">Registruotis</span>
+            <span data-lang="en" class="hidden">Sign Up</span>
+          </span>
+        </button>
+      </p>
 
       <p id="tk-auth-status" class="mt-4 text-xs text-mute"></p>
     </div>
@@ -1110,12 +1131,13 @@ html, body, a, button, select, input {
   </script>
 
   <!-- ============================================================
-       PASSWORDLESS AUTH (Supabase magic link)
-       No password field exists anywhere on this page. The only thing
-       we ever ask for is an email address; Supabase emails a one-time
-       sign-in link and hands back a session token. We never see, send,
-       or store a password - Supabase's client SDK manages the session
-       for us under the hood.
+       EMAIL + PASSWORD AUTH (Supabase)
+       Standard signup/login with a real password field. Supabase's
+       Auth service hashes and stores the password server-side (bcrypt) -
+       the plaintext password is sent once over HTTPS to Supabase and is
+       never logged, stored, or handled by any code on this page or in
+       our own database. This client only ever holds the session token
+       Supabase hands back after auth succeeds.
 
        Fill in your real project values below (same project as the
        SUPABASE_URL / SUPABASE_ANON_KEY used further down for
@@ -1129,23 +1151,64 @@ html, body, a, button, select, input {
       ? window.supabase.createClient(TK_SUPABASE_URL, TK_SUPABASE_ANON_KEY)
       : null;
 
-    const authModalTitleLt = { login: 'Prisijungti', signup: 'Registruotis' };
-    const authModalTitleEn = { login: 'Log In', signup: 'Sign Up' };
-    let tkAuthMode = 'login';
+    const authCopy = {
+      login: {
+        title: { lt: 'Prisijungti', en: 'Log In' },
+        subtitle: { lt: 'Prisijunk su savo el. paštu ir slaptažodžiu.', en: 'Sign in with your email and password.' },
+        submit: { lt: 'Prisijungti', en: 'Log In' },
+        switchPrompt: { lt: 'Neturi paskyros?', en: "Don't have an account?" },
+        switchLabel: { lt: 'Registruotis', en: 'Sign Up' },
+        passwordAutocomplete: 'current-password',
+      },
+      signup: {
+        title: { lt: 'Registruotis', en: 'Sign Up' },
+        subtitle: { lt: 'Susikurk paskyrą su el. paštu ir slaptažodžiu.', en: 'Create an account with your email and password.' },
+        submit: { lt: 'Registruotis', en: 'Sign Up' },
+        switchPrompt: { lt: 'Jau turi paskyrą?', en: 'Already have an account?' },
+        switchLabel: { lt: 'Prisijungti', en: 'Log In' },
+        passwordAutocomplete: 'new-password',
+      },
+    };
 
-    function tkOpenAuthModal(mode) {
-      tkAuthMode = mode; // 'login' or 'signup'
-      const titleEl = document.getElementById('tk-auth-title');
-      titleEl.innerHTML = `
-        <span data-lang="lt">${authModalTitleLt[mode]}</span>
-        <span data-lang="en" class="${(localStorage.getItem('preferred_lang') || 'lt') === 'en' ? '' : 'hidden'}">${authModalTitleEn[mode]}</span>
-      `;
-      document.getElementById('tk-auth-status').textContent = '';
-      openModal('modal-auth');
-    }
+    let tkAuthMode = 'login';
 
     function tkCurrentLang() {
       return localStorage.getItem('preferred_lang') || 'lt';
+    }
+
+    function tkBilingualSpan(dict) {
+      const lang = tkCurrentLang();
+      return `<span data-lang="lt" class="${lang === 'lt' ? '' : 'hidden'}">${dict.lt}</span>` +
+             `<span data-lang="en" class="${lang === 'en' ? '' : 'hidden'}">${dict.en}</span>`;
+    }
+
+    function tkRenderAuthMode() {
+      const c = authCopy[tkAuthMode];
+      document.getElementById('tk-auth-title').innerHTML = tkBilingualSpan(c.title);
+      document.getElementById('tk-auth-subtitle').innerHTML = tkBilingualSpan(c.subtitle);
+      document.getElementById('tk-auth-submit-label').innerHTML = tkBilingualSpan(c.submit);
+      document.getElementById('tk-auth-switch-prompt').innerHTML = tkBilingualSpan(c.switchPrompt);
+      document.getElementById('tk-auth-switch-label').innerHTML = tkBilingualSpan(c.switchLabel);
+
+      const pwInput = document.getElementById('tk-auth-password-input');
+      pwInput.autocomplete = c.passwordAutocomplete;
+
+      const hint = document.getElementById('tk-auth-password-hint');
+      hint.classList.toggle('hidden', tkAuthMode !== 'signup');
+    }
+
+    function tkOpenAuthModal(mode) {
+      tkAuthMode = mode; // 'login' or 'signup'
+      tkRenderAuthMode();
+      document.getElementById('tk-auth-status').textContent = '';
+      document.getElementById('tk-auth-form').reset();
+      openModal('modal-auth');
+    }
+
+    function tkSwitchAuthMode() {
+      tkAuthMode = tkAuthMode === 'login' ? 'signup' : 'login';
+      tkRenderAuthMode();
+      document.getElementById('tk-auth-status').textContent = '';
     }
 
     function tkSetAuthStatus(msg, isError) {
@@ -1178,8 +1241,8 @@ html, body, a, button, select, input {
     }
 
     if (tkSupabase) {
-      // Restore session on load (Supabase persists its own session token,
-      // never a password, in localStorage under its own key).
+      // Restore session on load. Supabase persists its own session token
+      // (not the password) in localStorage under its own key.
       tkSupabase.auth.getSession().then(({ data }) => tkRenderAuthState(data.session));
 
       tkSupabase.auth.onAuthStateChange((_event, session) => {
@@ -1192,41 +1255,61 @@ html, body, a, button, select, input {
         e.preventDefault();
         const lang = tkCurrentLang();
         const email = document.getElementById('tk-auth-email-input').value.trim();
-        if (!email) return;
+        const password = document.getElementById('tk-auth-password-input').value;
+        if (!email || !password) return;
+
+        if (tkAuthMode === 'signup' && password.length < 8) {
+          tkSetAuthStatus(
+            lang === 'lt' ? 'Slaptažodis turi būti bent 8 simbolių.' : 'Password must be at least 8 characters.',
+            true
+          );
+          return;
+        }
 
         const submitBtn = document.getElementById('tk-auth-submit');
         submitBtn.disabled = true;
-        tkSetAuthStatus(lang === 'lt' ? 'Siunčiama...' : 'Sending...', false);
+        tkSetAuthStatus(lang === 'lt' ? 'Vykdoma...' : 'Working...', false);
 
         try {
-          const { error } = await tkSupabase.auth.signInWithOtp({
-            email: email,
-            options: {
-              // signup: creates the account if it doesn't exist yet.
-              // login: only signs in an existing account.
-              shouldCreateUser: tkAuthMode === 'signup',
-              emailRedirectTo: window.location.origin + window.location.pathname,
-            },
-          });
+          if (tkAuthMode === 'signup') {
+            const { data, error } = await tkSupabase.auth.signUp({ email, password });
+            if (error) throw error;
 
-          if (error) throw error;
-
-          tkSetAuthStatus(
-            lang === 'lt'
-              ? 'Patikrink savo el. paštą – nusiuntėme prisijungimo nuorodą.'
-              : 'Check your email - we sent you a sign-in link.',
-            false
-          );
+            if (data.session) {
+              // Email confirmation is off in this Supabase project - signed in immediately.
+              tkSetAuthStatus(lang === 'lt' ? 'Paskyra sukurta!' : 'Account created!', false);
+            } else {
+              // Email confirmation is on - Supabase sent a verification link.
+              tkSetAuthStatus(
+                lang === 'lt'
+                  ? 'Patikrink savo el. paštą, kad patvirtintum paskyrą.'
+                  : 'Check your email to confirm your account.',
+                false
+              );
+            }
+          } else {
+            const { error } = await tkSupabase.auth.signInWithPassword({ email, password });
+            if (error) throw error;
+            tkSetAuthStatus(lang === 'lt' ? 'Prisijungta!' : 'Logged in!', false);
+          }
         } catch (err) {
           console.error(err);
-          tkSetAuthStatus(
-            lang === 'lt' ? 'Nepavyko išsiųsti nuorodos. Bandyk dar kartą.' : 'Could not send the link. Please try again.',
-            true
-          );
+          const rawMsg = (err && err.message) || '';
+          let friendly = lang === 'lt' ? 'Kažkas nepavyko. Bandyk dar kartą.' : 'Something went wrong. Please try again.';
+          if (/invalid login credentials/i.test(rawMsg)) {
+            friendly = lang === 'lt' ? 'Neteisingas el. paštas arba slaptažodis.' : 'Incorrect email or password.';
+          } else if (/already registered|user already exists/i.test(rawMsg)) {
+            friendly = lang === 'lt' ? 'Šis el. paštas jau užregistruotas. Bandyk prisijungti.' : 'That email is already registered. Try logging in instead.';
+          } else if (/password/i.test(rawMsg) && /least|short|characters/i.test(rawMsg)) {
+            friendly = lang === 'lt' ? 'Slaptažodis per silpnas ar per trumpas.' : 'Password is too weak or too short.';
+          }
+          tkSetAuthStatus(friendly, true);
         } finally {
           submitBtn.disabled = false;
         }
       });
+
+      tkRenderAuthMode();
     } else {
       console.warn('Supabase SDK failed to load - auth buttons are inert until it does.');
     }
