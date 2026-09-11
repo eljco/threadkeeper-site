@@ -309,6 +309,12 @@
       animation: story-slider-thumb 10s ease-in-out infinite;
     }
 
+    @keyframes story-scene-loop-fade {
+      0%, 5%    { opacity: 0.72; }
+      12%, 88%  { opacity: 0; }
+      96%, 100% { opacity: 0.72; }
+    }
+
     @keyframes story-cursor {
       0%, 10% { left: 18%; top: 70%; opacity: 0; }
       18% { opacity: 1; }
@@ -368,6 +374,17 @@
     border-radius: 16px;
     background: linear-gradient(145deg, #111319, #08090D);
     padding: 24px;
+  }
+
+  .story-scene.is-playing::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(145deg, #111319, #08090D);
+    opacity: 0;
   }
 
   .story-window-bar {
@@ -657,6 +674,10 @@
       animation-duration: 10s;
       animation-iteration-count: infinite;
       animation-timing-function: ease-in-out;
+    }
+
+    .story-scene.is-playing::after {
+      animation: story-scene-loop-fade 10s ease-in-out infinite;
     }
 
     @keyframes story-cursor {
