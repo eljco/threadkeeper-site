@@ -1764,12 +1764,15 @@
   <script>
     function setLanguage(lang) {
       localStorage.setItem('preferred_lang', lang);
+      document.documentElement.lang = lang;
 
       document.querySelectorAll('[data-lang]').forEach(el => {
         if (el.getAttribute('data-lang') === lang) {
           el.classList.remove('hidden');
+          el.style.display = '';
         } else {
           el.classList.add('hidden');
+          el.style.display = 'none';
         }
       });
 
