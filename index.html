@@ -361,21 +361,24 @@
     }
   }
 
-  .story-scene {
+    .story-scene {
     position: relative;
-    min-height: 450px;
+    min-height: auto; /* Let container stretch on mobile */
     overflow: hidden;
     border: 1px solid #1C1E27;
     border-radius: 16px;
     background: linear-gradient(145deg, #111319, #08090D);
     padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 
   .story-window-bar {
     display: flex;
     align-items: center;
     gap: 7px;
-    margin-bottom: 22px;
+    margin-bottom: 12px;
   }
 
   .story-window-bar span {
@@ -387,34 +390,29 @@
 
   .story-window-bar span:first-child { background: #FF5500; }
 
+  /* Base styling shared across viewports */
   .story-email {
-    position: absolute;
-    left: 24px;
-    top: 72px;
-    width: min(58%, 360px);
     padding: 18px;
     border: 1px solid #2B2E3B;
     border-radius: 12px;
     background: #0D0E13;
     box-shadow: 0 18px 40px rgba(0,0,0,0.24);
-    opacity: 0;
-    transform: translateY(14px);
   }
 
-  .story-email small,
-  .story-ai small,
-  .story-reminder small {
-    color: #8A8D9B;
-    font-size: 11px;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-  }
-
-  .story-email h3 {
-    margin: 12px 0 8px;
-    color: #F5F6F8;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 19px;
+  /* Desktop-Only Layout Engine (Preserves original coordinates) */
+  @media (min-width: 768px) {
+    .story-scene {
+      min-height: 450px;
+      display: block; /* Return to absolute flow on desktop */
+    }
+    .story-email {
+      position: absolute;
+      left: 24px;
+      top: 72px;
+      width: min(58%, 360px);
+      opacity: 0;
+      transform: translateY(14px);
+    }
   }
 
   .story-email p {
