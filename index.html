@@ -1004,6 +1004,34 @@
     }
   }
 
+
+  /* Final visibility + responsive hardening. Prevent sections from disappearing if an observer is delayed. */
+  html, body { min-height: 100%; }
+  body.light-theme, body.light-theme main, body.light-theme section, body.light-theme footer {
+    background-color: #F5F6F8 !important;
+  }
+  body.light-theme section.border-t { background: transparent !important; }
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .scroll-reveal:not(.is-visible) {
+    opacity: 1;
+    transform: none;
+  }
+  @media (max-width: 767px) {
+    html, body { overflow-x: hidden; }
+    .scroll-reveal { opacity: 1 !important; transform: none !important; }
+    #product-story .max-w-6xl { padding-top: 52px; padding-bottom: 52px; }
+    #product-story .story-scene { min-height: 455px; padding: 16px; }
+    #product-story .story-email { left: 16px; right: 16px; width: auto; top: 58px; }
+    #product-story .story-ai { left: 16px; right: 16px; top: 205px; width: auto; }
+    #product-story .story-settings { left: 16px; right: 16px; top: 290px; width: auto; }
+    #product-story .story-saved { left: 16px; right: 16px; bottom: 86px; font-size: 10px; }
+    #product-story .story-reminder { left: 16px; right: 16px; bottom: 16px; padding: 12px 14px; }
+    #product-story .story-reminder strong { font-size: 11px; }
+  }
+
 </style>
 </head>
 
@@ -1438,7 +1466,13 @@
     })();
   </script>
 
-
+  <script>
+    // Safety net: never leave the rest of the page hidden because IntersectionObserver
+    // was interrupted, blocked, or delayed on a mobile browser.
+    window.setTimeout(() => {
+      document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('is-visible'));
+    }, 350);
+  </script>
 
   <section class="border-t border-hair scroll-reveal">
     <div class="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
