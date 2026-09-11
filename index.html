@@ -827,153 +827,183 @@
   }
 
 
-  /* --- Story demo polish: one clean timeline, compact cards, no ghosting. --- */
-  .story-scene { min-height:400px; padding:22px; border-radius:18px; background:#f8f9fb; border-color:#dfe2e8; box-shadow:0 20px 55px rgba(17,19,25,.08); }
-  .story-window-bar { margin-bottom:0; }
-  .story-window-bar span { background:#c9ccd4; }
-  .story-window-bar span:first-child { background:#ff5500; }
-  .story-email,.story-ai,.story-settings,.story-reminder { background:#fff; border-color:#e1e4ea; color:#171922; box-shadow:0 12px 30px rgba(17,19,25,.08); }
-  .story-email { left:22px; top:66px; width:min(58%,340px); padding:17px 18px; border-radius:14px; }
-  .story-email small,.story-ai small,.story-reminder small { color:#8b8f9c; }
+  /* --- Story demo: deterministic JS-driven timeline. ---
+     We intentionally do not use CSS keyframe animation here. The original page
+     contains several historical animation blocks that can compete with each other.
+     This state-based system is the single source of truth. */
+  .story-scene {
+    min-height: 400px;
+    padding: 22px;
+    border-radius: 18px;
+    background: #f8f9fb;
+    border-color: #dfe2e8;
+    box-shadow: 0 20px 55px rgba(17,19,25,.08);
+    isolation: isolate;
+  }
+  .story-window-bar { margin-bottom: 0; }
+  .story-window-bar span { background: #c9ccd4; }
+  .story-window-bar span:first-child { background: #ff5500; }
+
+  .story-email,
+  .story-ai,
+  .story-settings,
+  .story-saved,
+  .story-reminder {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+    pointer-events: none;
+    transition: opacity 420ms cubic-bezier(.22,1,.36,1),
+                transform 420ms cubic-bezier(.22,1,.36,1);
+    will-change: opacity, transform;
+  }
+
+  .story-email,
+  .story-ai,
+  .story-settings,
+  .story-reminder {
+    background: #fff;
+    border-color: #e1e4ea;
+    color: #171922;
+    box-shadow: 0 12px 30px rgba(17,19,25,.08);
+  }
+
+  .story-email {
+    left: 22px;
+    top: 66px;
+    width: min(58%, 340px);
+    padding: 17px 18px;
+    border-radius: 14px;
+  }
+  .story-email small,
+  .story-ai small,
+  .story-reminder small { color: #8b8f9c; }
   .story-email h3 { color:#171922; margin:10px 0 7px; font-size:18px; }
   .story-email p { color:#737887; font-size:12.5px; line-height:1.55; }
-  .story-ai { top:78px; right:22px; width:145px; min-width:0; padding:12px 13px; border-radius:12px; border:1px solid #f0c7b5; background:#fff7f3; box-shadow:none; }
+
+  .story-ai {
+    top: 78px;
+    right: 22px;
+    width: 145px;
+    min-width: 0;
+    padding: 12px 13px;
+    border-radius: 12px;
+    border: 1px solid #f0c7b5;
+    background: #fff7f3;
+    box-shadow: 0 12px 30px rgba(17,19,25,.06);
+    z-index: 4;
+  }
   .story-ai strong { color:#242631; font-size:12px; }
-  .story-settings { right:22px; top:145px; width:205px; padding:14px; border-radius:12px; background:#fff; }
+  .story-ai strong::after {
+    content: '';
+    animation: none !important;
+  }
+
+  .story-settings {
+    right: 22px;
+    top: 154px;
+    width: 205px;
+    padding: 14px;
+    border-radius: 12px;
+    background: #fff;
+    z-index: 5;
+  }
   .story-settings label { color:#747987; margin-bottom:11px; }
   .story-slider-track { background:#e6e8ed; }
-  .story-slider-fill { background:#ff5500; }
-  .story-slider-thumb { background:#ff6a1a; box-shadow:0 0 0 4px rgba(255,85,0,.10); }
+  .story-slider-fill { background:#ff5500; transition: width 120ms linear; }
+  .story-slider-thumb { background:#ff6a1a; box-shadow:0 0 0 4px rgba(255,85,0,.10); transition:left 120ms linear; }
   .story-settings output { color:#e85a12; font-size:18px; }
-  .story-saved { left:22px; bottom:32px; color:#4f8a63; font-size:11px; font-weight:600; }
-  .story-reminder { left:auto; right:22px; top:auto; bottom:22px; width:min(52%,285px); max-width:none; padding:13px 15px; text-align:left; border:1px solid #f2bda6; border-radius:13px; background:#fff7f3; }
+
+  .story-saved {
+    left: 22px;
+    right: 22px;
+    bottom: 77px;
+    color:#4f8a63;
+    font-size:11px;
+    font-weight:600;
+    line-height:1.4;
+    z-index: 3;
+  }
+
+  .story-reminder {
+    left:22px;
+    right:22px;
+    bottom:22px;
+    top:auto;
+    width:auto;
+    max-width:none;
+    box-sizing:border-box;
+    padding:13px 15px;
+    text-align:left;
+    border:1px solid #f2bda6;
+    border-radius:13px;
+    background:#fff7f3;
+    z-index: 6;
+  }
   .story-reminder small { display:block; color:#b47762; font-size:9px; }
   .story-reminder strong { margin-top:5px; color:#272127; font-size:12px; line-height:1.35; }
-  @media (prefers-reduced-motion:no-preference) {
-    .story-scene.is-playing .story-email { animation:tk-email 10s ease-in-out infinite; }
-    .story-scene.is-playing .story-ai { animation:tk-ai 10s ease-in-out infinite; }
-    .story-scene.is-playing .story-settings { animation:tk-settings 10s ease-in-out infinite; }
-    .story-scene.is-playing .story-saved { animation:tk-saved 10s ease-in-out infinite; }
-    .story-scene.is-playing .story-reminder { animation:tk-reminder 10s ease-in-out infinite; }
-    @keyframes tk-email { 0%,6%{opacity:0;transform:translateY(10px)} 12%,74%{opacity:1;transform:none} 82%,100%{opacity:0;transform:translateY(-5px)} }
-    @keyframes tk-ai { 0%,22%{opacity:0;transform:translateY(8px)} 28%,55%{opacity:1;transform:none} 63%,100%{opacity:0;transform:translateY(-4px)} }
-    @keyframes tk-settings { 0%,42%{opacity:0;transform:translateY(8px) scale(.98)} 49%,72%{opacity:1;transform:none} 80%,100%{opacity:0;transform:translateY(-5px) scale(.98)} }
-    @keyframes tk-saved { 0%,70%{opacity:0;transform:translateY(5px)} 77%,88%{opacity:1;transform:none} 94%,100%{opacity:0;transform:translateY(-3px)} }
-    @keyframes tk-reminder { 0%,82%{opacity:0;transform:translateY(10px)} 89%,97%{opacity:1;transform:none} 100%{opacity:0;transform:translateY(-4px)} }
+
+  /* Visible state — applied by JS, not CSS animation. */
+  .story-scene.tk-email .story-email,
+  .story-scene.tk-ai .story-ai,
+  .story-scene.tk-settings .story-settings,
+  .story-scene.tk-saved .story-saved,
+  .story-scene.tk-reminder .story-reminder {
+    opacity: 1;
+    transform: translate3d(0,0,0);
+    pointer-events: auto;
   }
+
+  /* Keep the current story context lightly present while the next step appears. */
+  .story-scene.tk-ai .story-email,
+  .story-scene.tk-settings .story-email,
+  .story-scene.tk-saved .story-email,
+  .story-scene.tk-reminder .story-email {
+    opacity: .28;
+    transform: translate3d(0,-4px,0);
+  }
+  .story-scene.tk-settings .story-ai,
+  .story-scene.tk-saved .story-ai,
+  .story-scene.tk-reminder .story-ai {
+    opacity: .18;
+    transform: translate3d(0,-4px,0);
+  }
+  .story-scene.tk-saved .story-settings,
+  .story-scene.tk-reminder .story-settings {
+    opacity: .18;
+    transform: translate3d(0,-4px,0);
+  }
+
   @media (max-width:640px) {
     .story-scene{min-height:500px;padding:18px}
     .story-email{left:18px;top:62px;width:calc(100% - 36px)}
     .story-ai{left:18px;right:18px;top:210px;width:auto}
     .story-settings{left:18px;right:18px;top:275px;width:auto}
-    .story-saved{left:18px;bottom:105px}
-    .story-reminder{left:18px;right:18px;bottom:18px;width:auto}
-  }
-
-</style>
-
-<style id="story-polish-v2">
-  /* Final story pass: one animation per element, no competing keyframes. */
-  .story-scene.is-playing .story-email {
-    animation: tk-story-email 10s ease-in-out infinite !important;
-    will-change: opacity, transform;
-  }
-  .story-scene.is-playing .story-ai {
-    animation: tk-story-ai 10s ease-in-out infinite !important;
-    will-change: opacity, transform;
-    backface-visibility: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
-  .story-scene.is-playing .story-settings {
-    animation: tk-story-settings 10s ease-in-out infinite !important;
-    will-change: opacity, transform;
-  }
-  .story-scene.is-playing .story-saved {
-    animation: tk-story-saved 10s ease-in-out infinite !important;
-    will-change: opacity, transform;
-  }
-  .story-scene.is-playing .story-reminder {
-    animation: tk-story-reminder 10s ease-in-out infinite !important;
-    will-change: opacity, transform;
-  }
-
-  /* Keep the AI copy on a single composited layer. The old pseudo-element
-     animation was visually flickering against the card during transitions. */
-  .story-ai strong::after {
-    animation: none !important;
-    content: '...';
-  }
-
-  .story-saved {
-    left: 24px !important;
-    right: 24px !important;
-    bottom: 78px !important;
-    text-align: left;
-    font-size: 12px;
-    line-height: 1.4;
-  }
-
-  .story-reminder {
-    left: 24px !important;
-    right: 24px !important;
-    bottom: 22px !important;
-    top: auto !important;
-    width: auto !important;
-    max-width: none !important;
-    box-sizing: border-box;
-    padding: 13px 16px !important;
-    text-align: left !important;
-    border-radius: 11px !important;
-  }
-
-  .story-reminder strong {
-    margin-top: 5px !important;
-    line-height: 1.3 !important;
-  }
-
-  @keyframes tk-story-email {
-    0%, 5% { opacity: 0; transform: translate3d(0, 10px, 0); }
-    11%, 58% { opacity: 1; transform: translate3d(0, 0, 0); }
-    65%, 100% { opacity: 0; transform: translate3d(0, -5px, 0); }
-  }
-
-  @keyframes tk-story-ai {
-    0%, 18% { opacity: 0; transform: translate3d(0, 8px, 0); }
-    25%, 58% { opacity: 1; transform: translate3d(0, 0, 0); }
-    65%, 100% { opacity: 0; transform: translate3d(0, -5px, 0); }
-  }
-
-  @keyframes tk-story-settings {
-    0%, 38% { opacity: 0; transform: translate3d(0, 8px, 0) scale(.99); }
-    45%, 74% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
-    81%, 100% { opacity: 0; transform: translate3d(0, -5px, 0) scale(.99); }
-  }
-
-  @keyframes tk-story-saved {
-    0%, 75% { opacity: 0; transform: translate3d(0, 5px, 0); }
-    81%, 93% { opacity: 1; transform: translate3d(0, 0, 0); }
-    100% { opacity: 0; transform: translate3d(0, -3px, 0); }
-  }
-
-  @keyframes tk-story-reminder {
-    0%, 84% { opacity: 0; transform: translate3d(0, 10px, 0); }
-    90%, 97% { opacity: 1; transform: translate3d(0, 0, 0); }
-    100% { opacity: 0; transform: translate3d(0, -4px, 0); }
-  }
-
-  @media (max-width: 640px) {
-    .story-saved { left: 18px !important; right: 18px !important; bottom: 96px !important; }
-    .story-reminder { left: 18px !important; right: 18px !important; bottom: 20px !important; }
+    .story-saved{left:18px;right:18px;bottom:105px}
+    .story-reminder{left:18px;right:18px;bottom:18px}
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .story-email, .story-ai, .story-settings, .story-saved, .story-reminder {
-      animation: none !important;
-      opacity: 1 !important;
-      transform: none !important;
-    }
-    .story-ai strong::after { animation: none !important; }
+    .story-email,
+    .story-ai,
+    .story-settings,
+    .story-saved,
+    .story-reminder { transition:none; }
   }
+
+  /* JS timeline owns these properties; old keyframes are neutralized. */
+  @media (prefers-reduced-motion: no-preference) {
+    .story-scene.is-playing .story-email,
+    .story-scene.is-playing .story-ai,
+    .story-scene.is-playing .story-settings,
+    .story-scene.is-playing .story-saved,
+    .story-scene.is-playing .story-reminder,
+    .story-scene.is-playing .story-slider-fill,
+    .story-scene.is-playing .story-slider-thumb,
+    .story-scene.is-playing .story-settings::after {
+      animation: none !important;
+    }
+  }
+
 </style>
 </head>
 
@@ -1321,15 +1351,35 @@
       const storyHoursOutput = storyScene ? storyScene.querySelector('.story-settings output') : null;
       const storySaved = storyScene ? storyScene.querySelector('.story-saved') : null;
       let storyStartedAt = performance.now();
+      let storyActive = false;
+      let storyFrame = null;
 
-      function updateStoryTiming() {
-        if (!storyScene || !storyScene.classList.contains('is-playing')) return;
+      const STORY_CYCLE = 10000;
+      const STORY_PHASES = [
+        { name: 'tk-email', start: 0, end: 2300 },
+        { name: 'tk-ai', start: 2300, end: 4300 },
+        { name: 'tk-settings', start: 4300, end: 6800 },
+        { name: 'tk-saved', start: 6800, end: 8200 },
+        { name: 'tk-reminder', start: 8200, end: 10000 }
+      ];
 
-        const cycleTime = (performance.now() - storyStartedAt) % 10000;
-        // Slider settles on 49 hours at ~7.4s, then the confirmation waits
-        // another ~0.6s before appearing.
-        const progress = Math.min(1, Math.max(0, (cycleTime - 4900) / 2500));
-        const hours = cycleTime >= 7400 ? 49 : 24 + Math.floor(progress * 25);
+      function setStoryState(state) {
+        if (!storyScene) return;
+        STORY_PHASES.forEach(({ name }) => storyScene.classList.toggle(name, name === state));
+      }
+
+      function updateStoryTimeline(now) {
+        if (!storyScene || !storyActive) return;
+        const elapsed = (now - storyStartedAt) % STORY_CYCLE;
+        const phase = STORY_PHASES.find(({ start, end }) => elapsed >= start && elapsed < end) || STORY_PHASES[0];
+        setStoryState(phase.name);
+
+        // Animate the selected reminder time only during the settings phase.
+        const settingsStart = 4300;
+        const settingsEnd = 6800;
+        const progress = Math.min(1, Math.max(0, (elapsed - settingsStart) / (settingsEnd - settingsStart)));
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const hours = Math.round(24 + eased * 25);
         const isLithuanian = (localStorage.getItem('preferred_lang') || 'lt') === 'lt';
         const hourLabel = isLithuanian ? 'val.' : 'hours';
         const savedLabel = isLithuanian
@@ -1338,10 +1388,28 @@
 
         if (storyHoursOutput) storyHoursOutput.textContent = hours + ' ' + hourLabel;
         if (storySaved) storySaved.textContent = '\u2713 ' + savedLabel;
+
+        const sliderPercent = 30 + eased * 44;
+        const sliderFill = storyScene.querySelector('.story-slider-fill');
+        const sliderThumb = storyScene.querySelector('.story-slider-thumb');
+        if (sliderFill) sliderFill.style.width = sliderPercent + '%';
+        if (sliderThumb) sliderThumb.style.left = sliderPercent + '%';
+
+        storyFrame = requestAnimationFrame(updateStoryTimeline);
       }
 
-      window.updateStoryTiming = updateStoryTiming;
-      window.setInterval(updateStoryTiming, 80);
+      function startStory() {
+        if (!storyScene || storyActive) return;
+        storyActive = true;
+        storyStartedAt = performance.now();
+        storyScene.classList.add('is-playing');
+        setStoryState('tk-email');
+        cancelAnimationFrame(storyFrame);
+        storyFrame = requestAnimationFrame(updateStoryTimeline);
+      }
+
+      window.startThreadkeeperStory = startStory;
+      window.updateStoryTiming = () => updateStoryTimeline(performance.now());
 
       if (!('IntersectionObserver' in window)) {
         revealItems.forEach((item) => item.classList.add('is-visible'));
@@ -1354,14 +1422,19 @@
           if (!entry.isIntersecting) return;
           entry.target.classList.add('is-visible');
           if (entry.target.matches('#product-story')) {
-            storyStartedAt = performance.now();
-            entry.target.querySelector('[data-story-scene]').classList.add('is-playing');
+            startStory();
           }
           observer.unobserve(entry.target);
         });
       }, { threshold: 0.18 });
 
       revealItems.forEach((item) => revealObserver.observe(item));
+
+      if (storyScene) {
+        const rect = storyScene.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;
+        if (inView) startStory();
+      }
     })();
   </script>
 
