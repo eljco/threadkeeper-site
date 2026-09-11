@@ -542,12 +542,16 @@
     .story-email, .story-settings, .story-saved, .story-reminder { opacity: 1 !important; transform: none !important; position: relative !important; top: auto !important; left: auto !important; right: auto !important; }
   }
 
-  /* Interactive Animation Track Loops */
-  .story-scene.is-playing .story-email { animation: story-email 10s ease-in-out infinite; }
-  .story-scene.is-playing .story-ai { animation: story-ai 10s ease-in-out infinite; }
-  .story-scene.is-playing .story-settings { animation: story-settings 10s ease-in-out infinite; }
-  .story-scene.is-playing .story-saved { animation: story-saved 10s ease-in-out infinite; }
-  .story-scene.is-playing .story-reminder { animation: story-reminder 10s ease-in-out infinite; }
+  /* Interactive Animation Track Loops with Initial State Fallbacks */
+  .story-email, .story-ai, .story-settings, .story-saved, .story-reminder {
+    opacity: 0; /* Forces them to stay hidden before the loop triggers */
+  }
+
+  .story-scene.is-playing .story-email { animation: story-email 10s ease-in-out infinite both; }
+  .story-scene.is-playing .story-ai { animation: story-ai 10s ease-in-out infinite both; }
+  .story-scene.is-playing .story-settings { animation: story-settings 10s ease-in-out infinite both; }
+  .story-scene.is-playing .story-saved { animation: story-saved 10s ease-in-out infinite both; }
+  .story-scene.is-playing .story-reminder { animation: story-reminder 10s ease-in-out infinite both; }
 
   @keyframes story-email {
     0%, 8% { opacity: 0; transform: translateY(14px); }
@@ -579,70 +583,8 @@
     100% { opacity: 0; transform: translateY(-6px); }
   }
 
-  .story-scene.is-playing .story-slider-fill { animation: story-slider-fill 10s ease-in-out infinite; }
-  .story-scene.is-playing .story-slider-thumb { animation: story-slider-thumb 10s ease-in-out infinite; }
-  .story-scene.is-playing .story-settings output { font-size: 20px; }
+ 
 
-  @keyframes story-slider-fill { 0%, 49% { width: 30%; } 74%, 100% { width: 74%; } }
-  @keyframes story-slider-thumb { 0%, 49% { left: 30%; } 74%, 100% { left: 74%; } }
-
-</style>
-</head>
-
-<body class="bg-ink text-bone font-body antialiased">
-
-  <header class="relative z-10 border-b border-hair">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 py-4 sm:py-5 flex items-center justify-between gap-2">
-      <a href="#top" class="flex items-center gap-2 sm:gap-2.5 shrink-0 min-w-0">
-       <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-indigo/10 border border-indigo/30">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 6.5L12 13L21 6.5" stroke="#FF7733" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M3 6.5C3 5.67157 3.67157 5 4.5 5H19.5C20.3284 5 21 5.67157 21 6.5V17.5C21 18.3284 20.3284 19 19.5 19H4.5C3.67157 19 3 18.3284 3 17.5V6.5Z" stroke="#FF7733" stroke-width="1.8" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        <span class="font-display font-semibold text-base sm:text-lg tracking-tight text-bone truncate">Threadkeeper</span>
-      </a>
-
-      <div class="flex items-center gap-1.5 sm:gap-4">
-        <button id="themeToggle" class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-surface border border-hair text-mute hover:text-bone transition-colors" aria-label="Toggle Theme">
-          <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </button>
-
-        <div class="flex items-center gap-1 bg-surface border border-hair rounded-lg p-1 text-xs font-medium shrink-0">
-          <button id="lang-lt" onclick="setLanguage('lt')" class="px-2.5 py-1 rounded transition-colors text-white bg-indigo font-bold">LT</button>
-          <button id="lang-en" onclick="setLanguage('en')" class="px-2.5 py-1 rounded transition-colors text-mute hover:text-bone">EN</button>
-        </div>
-
-        <button onclick="openModal('modal-about')" class="hidden md:inline-flex items-center rounded-md bg-surface border border-hair text-bone font-display font-medium text-sm px-4 py-2 hover:bg-hair transition-colors">
-          <span data-lang="lt">Apie mus</span>
-          <span data-lang="en" class="hidden">About Us</span>
-        </button>
-
-        <!-- Signed-out state: Log In / Sign Up -->
-        <div id="tk-auth-signed-out" class="flex items-center gap-1.5 sm:gap-2 shrink-0">
-          <button onclick="tkOpenAuthModal('login')" class="inline-flex items-center whitespace-nowrap rounded-md bg-surface border border-hair text-bone font-display font-medium text-xs sm:text-sm px-2.5 sm:px-4 py-2 hover:bg-hair transition-colors">
-            <span data-lang="lt">Prisijungti</span>
-            <span data-lang="en" class="hidden">Log In</span>
-          </button>
-          <button onclick="tkOpenAuthModal('signup')" class="hidden sm:inline-flex items-center whitespace-nowrap rounded-md bg-bone text-ink font-display font-medium text-sm px-4 py-2 hover:bg-indigo-soft hover:text-ink transition-colors">
-            <span data-lang="lt">Registruotis</span>
-            <span data-lang="en" class="hidden">Sign Up</span>
-          </button>
-        </div>
-
-        <!-- Signed-in state: email + log out -->
-        <div id="tk-auth-signed-in" class="hidden items-center gap-2 sm:gap-3 shrink-0">
-          <span id="tk-auth-email" class="hidden sm:inline text-xs text-mute font-mono max-w-[160px] truncate"></span>
-          <button onclick="tkSignOut()" class="inline-flex items-center whitespace-nowrap rounded-md bg-surface border border-hair text-bone font-display font-medium text-xs sm:text-sm px-2.5 sm:px-4 py-2 hover:bg-hair transition-colors">
-            <span data-lang="lt">Atsijungti</span>
-            <span data-lang="en" class="hidden">Log Out</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
 
   <section id="top" class="relative overflow-hidden hero-glow">
   <div class="absolute inset-0 overflow-hidden pointer-events-none select-none opacity-[0.28] [mask-image:linear-gradient(115deg,transparent_0%,transparent_42%,#000_65%,#000_100%),radial-gradient(70%_70%_at_75%_25%,#000_0%,transparent_80%)] [mask-composite:intersect] [-webkit-mask-composite:source-in]" aria-hidden="true">
