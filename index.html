@@ -21,11 +21,11 @@
           bone: '#F5F6F8',
           mute: '#8A8D9B',
           indigo: {
-            DEFAULT: '#FF5500',
-            soft: '#FF7733',
-            deep: '#CC4400',
+            DEFAULT: '#2563EB',
+            soft: '#60A5FA',
+            deep: '#1D4ED8',
           },
-          sky: '#FF8844',
+          sky: '#93C5FD',
         },
         fontFamily: {
           display: ['"Space Grotesk"', 'sans-serif'],
@@ -186,6 +186,16 @@
     100% { transform: scale(1); }
   }
   .donate-pulse { animation: donate-pulse 0.4s ease-out; }
+
+  /* Blue brand preview: normalize legacy orange accents, including inline SVG attributes. */
+  svg [stroke="#FF5500"], svg [stroke="#FF7733"], svg [stroke="#FF8844"] { stroke: #2563EB !important; }
+  svg [fill="#FF5500"], svg [fill="#FF7733"], svg [fill="#FF8844"] { fill: #2563EB !important; }
+  .story-window-bar span:first-child { background: #2563EB; }
+  .story-slider-fill { background: #2563EB; }
+  .story-slider-thumb { background: #60A5FA; box-shadow: 0 0 0 5px rgba(37,99,235,0.12); }
+  .story-settings::after { background: #60A5FA; box-shadow: 0 0 0 5px rgba(37,99,235,0.12), 0 0 14px rgba(37,99,235,0.65); }
+  .story-settings output, .story-saved { color: #2563EB; }
+  .story-ai, .story-reminder { border-color: rgba(37,99,235,0.35); background: rgba(37,99,235,0.08); }
 
   .scroll-reveal {
     opacity: 0;
@@ -590,6 +600,29 @@
     0%, 49% { left: 30%; }
     74%, 100% { left: 74%; }
   }
+
+  /* Final blue overrides for the hero chat bubbles and light-theme demo. */
+  .word-fill .wf-blue {
+    color: #FFFFFF;
+    background-color: rgba(37,99,235,0.78);
+    border-color: rgba(147,197,253,0.7);
+  }
+  .word-fill .wf-grey {
+    color: #111827;
+    background-color: #D1D5DB;
+    border-color: rgba(17,24,39,0.12);
+  }
+  body.light-theme .word-fill .wf-blue {
+    color: #FFFFFF;
+    background-color: #2563EB;
+    border-color: #60A5FA;
+  }
+  body.light-theme .story-ai,
+  body.light-theme .story-reminder {
+    border-color: rgba(37,99,235,0.45);
+    background: rgba(37,99,235,0.10);
+  }
+  body.light-theme .story-slider-track { background: #CBD5E1; }
 
 
 </style>
