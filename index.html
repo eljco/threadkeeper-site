@@ -199,9 +199,14 @@
       100% { opacity: 0.86; }
     }
 
+    @keyframes bubble-breathe {
+      0%, 100% { filter: brightness(0.9); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+      50% { filter: brightness(1.2); box-shadow: 0 4px 18px rgba(255,85,0,0.18); }
+    }
+
     @keyframes diagram-float {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+      50% { transform: translateY(-10px); }
     }
 
     #top > .relative.z-10 {
@@ -209,7 +214,7 @@
     }
 
     #top .word-fill span {
-      animation: bubble-reveal 1.2s ease-out both;
+      animation: bubble-reveal 1.2s ease-out both, bubble-breathe 4s ease-in-out 1.2s infinite;
     }
 
     #top .word-fill span:nth-child(3n) { animation-delay: 0.12s; }
