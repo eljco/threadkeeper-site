@@ -213,10 +213,11 @@
     }
 
     @keyframes story-reminder-clean {
-      0%, 88% { opacity: 0; transform: translate(-50%, 20px) scale(0.985); }
-      92% { opacity: 0.9; transform: translate(-50%, 4px) scale(0.995); }
-      96% { opacity: 1; transform: translate(-50%, 0) scale(1); }
-      100% { opacity: 0; transform: translate(-50%, -7px) scale(0.985); }
+      0%, 88% { opacity: 0; transform: translate(-50%, 18px) scale(0.985); }
+      92% { opacity: 0.88; transform: translate(-50%, 4px) scale(0.995); }
+      95% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+      98% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -6px) scale(0.985); }
     }
   }
 
@@ -225,9 +226,23 @@
     right: auto;
     bottom: auto;
     top: 50%;
-    width: min(92%, 430px);
+    width: fit-content;
+    max-width: min(88%, 340px);
+    padding: 10px 14px;
     text-align: center;
     transform: translate(-50%, 20px);
+    border-radius: 9px;
+  }
+
+  .story-reminder small {
+    font-size: 10px;
+    letter-spacing: .045em;
+  }
+
+  .story-reminder strong {
+    margin-top: 5px;
+    font-size: 13px;
+    line-height: 1.35;
   }
 
   @media (prefers-reduced-motion: reduce) {
