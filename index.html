@@ -2,7 +2,7 @@
 <html lang="lt" class="scroll-smooth">
 <head> 
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSI+PHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSIjMDAwMDAwIi8+PHJlY3QgeD0iMyIgeT0iNSIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE0IiByeD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY3QjM1IiBzdHJva2Utd2lkdGg9IjEuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTMgN2w5IDUuNyBMMjEgNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY3QjM1IiBzdHJva2Utd2lkdGg9IjEuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+">
-  
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Threadkeeper | Sprendimas tiems, kurie sako „Padarysiu Rytoj“</title>
 <meta name="description" content="Persiųsk bet kurį el. laišką Threadkeeper. Mūsų D.I. ištrauks užduotis ir tvarkaraščius, o tada atsiųs priminimą tiksliai tada, kada ateis laikas veikti." />
@@ -48,7 +48,7 @@
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.3s, color 0.3s;
   }
-  
+
   body.light-theme {
     background-color: #F5F6F8 !important;
     color: #030304 !important;
@@ -57,7 +57,6 @@
   body.light-theme .bg-surface { background-color: #EAEAEE !important; border-color: #D2D4DE !important; }
   body.light-theme .border-hair { border-color: #D2D4DE !important; }
   body.light-theme .text-mute { color: #525666 !important; }
-  body.light-theme .grid-veil { opacity: 0.15; }
   body.light-theme .bg-surface\/60 {
     background-color: #EAEAEE !important;
     border-color: #D2D4DE !important;
@@ -79,14 +78,47 @@
   }
 
   .hero-glow {
-    background: radial-gradient(60% 55% at 78% 20%, rgba(255,85,0,0.15) 0%, rgba(255,85,0,0) 70%);
+    background: radial-gradient(60% 55% at 78% 20%, rgba(255,85,0,0.10) 0%, rgba(255,85,0,0) 70%);
   }
 
-  .grid-veil {
-    background-image:
-      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-    background-size: 44px 44px;
+  .word-fill {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 0.6rem 1.2rem;
+    padding: 1.5rem;
+    line-height: 1.4;
+  }
+  .word-fill span {
+    white-space: nowrap;
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  
+  /* Text message bubble styling with higher visibility */
+  .word-fill .wf-grey { 
+    color: #F5F6F8; 
+    background-color: rgba(28, 30, 39, 0.85); 
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .word-fill .wf-blue { 
+    color: #FFFFFF; 
+    background-color: rgba(255, 85, 0, 0.28); 
+    border: 1px solid rgba(255, 119, 51, 0.45);
+  }
+
+  body.light-theme .word-fill .wf-grey { 
+    color: #111319; 
+    background-color: rgba(210, 212, 222, 0.85); 
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  body.light-theme .word-fill .wf-blue { 
+    color: #CC4400; 
+    background-color: rgba(255, 85, 0, 0.15); 
+    border: 1px solid rgba(255, 85, 0, 0.35);
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -112,9 +144,9 @@
   ::selection { background: #FF5500; color: #FFFFFF; }
   ::-webkit-selection { background: #FF5500; color: #FFFFFF; }
 
-html, body, a, button, select, input {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'%3E%3Cpath d='M2,2 L11,20 L14,14 L20,11 Z' fill='%23FF5500' stroke='%23000000' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, auto !important;
-}
+  html, body, a, button, select, input {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'%3E%3Cpath d='M2,2 L11,20 L14,14 L20,11 Z' fill='%23FF5500' stroke='%23000000' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, auto !important;
+  }
 
   .wave-layer {
     position: absolute;
@@ -124,7 +156,7 @@ html, body, a, button, select, input {
     height: 100%;
     animation: wave-move linear infinite;
   }
-  .wave-back  { animation-duration: 10s; opacity: 0.65; }
+  .wave-back   { animation-duration: 10s; opacity: 0.65; }
   .wave-front { animation-duration: 6s; animation-direction: reverse; opacity: 0.9; }
 
   @keyframes wave-move {
@@ -214,7 +246,130 @@ html, body, a, button, select, input {
   </header>
 
   <section id="top" class="relative overflow-hidden hero-glow">
-    <div class="absolute inset-0 grid-veil [mask-image:radial-gradient(ellipse_70%_60%_at_60%_0%,#000_20%,transparent_75%)]"></div>
+    <div class="absolute inset-0 overflow-hidden pointer-events-none select-none [mask-image:radial-gradient(ellipse_75%_75%_at_50%_30%,#000_35%,transparent_85%)]" aria-hidden="true">
+      <div class="word-fill">
+          <span class="font-display font-semibold text-base wf-grey">Later today</span>
+          <span class="font-display font-medium text-sm wf-blue">Ne šiandien</span>
+          <span class="font-display font-medium text-sm wf-grey rotate-2">Mai târziu</span>
+          <span class="font-display font-semibold text-base wf-blue">Huomenna</span>
+          <span class="font-display font-medium text-2xl wf-grey -rotate-2">O fac mâine</span>
+          <span class="font-display font-medium text-xl wf-blue">Šajā nedēļas nogalē</span>
+          <span class="font-display font-semibold text-2xl wf-grey">Mâine</span>
+          <span class="font-display font-medium text-2xl wf-blue rotate-1">Nākamnedēļ</span>
+          <span class="font-display font-medium text-2xl wf-grey">În curând</span>
+          <span class="font-display font-semibold text-sm wf-blue rotate-1">Senare</span>
+          <span class="font-display font-medium text-lg wf-grey -rotate-2">Imorgon</span>
+          <span class="font-display font-medium text-lg wf-blue">Rytoj</span>
+          <span class="font-display font-semibold text-base wf-grey">Vēlāk</span>
+          <span class="font-display font-medium text-sm wf-blue rotate-1">O fac mâine</span>
+          <span class="font-display font-medium text-2xl wf-grey rotate-2">Pronto</span>
+          <span class="font-display font-semibold text-2xl wf-blue -rotate-2">Next week</span>
+          <span class="font-display font-medium text-lg wf-grey -rotate-1">Netrukus</span>
+          <span class="font-display font-medium text-base wf-blue">Weekendul acesta</span>
+          <span class="font-display font-semibold text-base wf-grey">Den här helgen</span>
+          <span class="font-display font-medium text-2xl wf-blue">Not today</span>
+          <span class="font-display font-medium text-xl wf-grey">Not today</span>
+          <span class="font-display font-semibold text-sm wf-blue">Tomorrow</span>
+          <span class="font-display font-medium text-lg wf-grey -rotate-1">Nu azi</span>
+          <span class="font-display font-medium text-sm wf-blue -rotate-1">Nästa vecka</span>
+          <span class="font-display font-semibold text-2xl wf-grey -rotate-2">I'll get to it</span>
+          <span class="font-display font-medium text-sm wf-blue">Tomorrow</span>
+          <span class="font-display font-medium text-sm wf-grey rotate-2">Padarysiu rytoj</span>
+          <span class="font-display font-semibold text-base wf-blue">Lo haré mañana</span>
+          <span class="font-display font-medium text-2xl wf-grey rotate-2">Rīt</span>
+          <span class="font-display font-medium text-lg wf-blue">Kitą savaitę</span>
+          <span class="font-display font-semibold text-base wf-grey -rotate-1">Vėliau</span>
+          <span class="font-display font-medium text-lg wf-blue">Inte idag</span>
+          <span class="font-display font-medium text-lg wf-grey">Nächste Woche</span>
+          <span class="font-display font-semibold text-2xl wf-blue">Snart</span>
+          <span class="font-display font-medium text-sm wf-grey -rotate-1">Soon</span>
+          <span class="font-display font-medium text-base wf-blue -rotate-2">Mach ich morgen</span>
+          <span class="font-display font-semibold text-lg wf-grey">I'll get to it</span>
+          <span class="font-display font-medium text-2xl wf-blue -rotate-1">Săptămâna viitoare</span>
+          <span class="font-display font-medium text-2xl wf-grey -rotate-1">I'll do it tomorrow</span>
+          <span class="font-display font-semibold text-sm wf-blue -rotate-2">Nu azi</span>
+          <span class="font-display font-medium text-sm wf-grey -rotate-1">Ei tänään</span>
+          <span class="font-display font-medium text-sm wf-blue">Ensi viikolla</span>
+          <span class="font-display font-semibold text-lg wf-grey -rotate-2">Pronto</span>
+          <span class="font-display font-medium text-2xl wf-blue -rotate-1">Netrukus</span>
+          <span class="font-display font-medium text-lg wf-grey">Later</span>
+          <span class="font-display font-semibold text-base wf-blue rotate-2">This weekend</span>
+          <span class="font-display font-medium text-2xl wf-grey">Šį savaitgalį</span>
+          <span class="font-display font-medium text-base wf-blue">Morgen</span>
+          <span class="font-display font-semibold text-xl wf-grey -rotate-1">Mach ich morgen</span>
+          <span class="font-display font-medium text-sm wf-blue -rotate-2">Inte idag</span>
+          <span class="font-display font-medium text-xl wf-grey">Ne šiandien</span>
+          <span class="font-display font-semibold text-xl wf-blue">Soon</span>
+          <span class="font-display font-medium text-xl wf-grey">Myöhemmin</span>
+          <span class="font-display font-medium text-sm wf-blue">Šajā nedēļas nogalē</span>
+          <span class="font-display font-semibold text-xl wf-grey">Padarysiu rytoj</span>
+          <span class="font-display font-medium text-sm wf-blue -rotate-1">Senare</span>
+          <span class="font-display font-medium text-base wf-grey -rotate-1">Tänä viikonloppuna</span>
+          <span class="font-display font-semibold text-2xl wf-blue">Später</span>
+          <span class="font-display font-medium text-base wf-grey">Next week</span>
+          <span class="font-display font-medium text-base wf-blue rotate-1">Bald</span>
+          <span class="font-display font-semibold text-xl wf-grey -rotate-1">La próxima semana</span>
+          <span class="font-display font-medium text-sm wf-blue">Luego</span>
+          <span class="font-display font-medium text-2xl wf-grey -rotate-2">În curând</span>
+          <span class="font-display font-semibold text-sm wf-blue">Gör det imorgon</span>
+          <span class="font-display font-medium text-sm wf-grey -rotate-1">Weekendul acesta</span>
+          <span class="font-display font-medium text-base wf-blue">Lo haré mañana</span>
+          <span class="font-display font-semibold text-xl wf-grey">Más tarde</span>
+          <span class="font-display font-medium text-base wf-blue">Este fin de semana</span>
+          <span class="font-display font-medium text-sm wf-grey rotate-2">Tänä viikonloppuna</span>
+          <span class="font-display font-semibold text-xl wf-blue">This weekend</span>
+          <span class="font-display font-medium text-xl wf-grey rotate-1">Mâine</span>
+          <span class="font-display font-medium text-xl wf-blue rotate-1">Dieses Wochenende</span>
+          <span class="font-display font-semibold text-xl wf-grey">Nicht heute</span>
+          <span class="font-display font-medium text-base wf-blue -rotate-1">La próxima semana</span>
+          <span class="font-display font-medium text-lg wf-grey -rotate-1">Nästa vecka</span>
+          <span class="font-display font-semibold text-sm wf-blue">Nächste Woche</span>
+          <span class="font-display font-medium text-lg wf-grey">Snart</span>
+          <span class="font-display font-medium text-sm wf-blue">Ei tänään</span>
+          <span class="font-display font-semibold text-2xl wf-grey rotate-2">Morgen</span>
+          <span class="font-display font-medium text-sm wf-blue -rotate-2">Rytoj</span>
+          <span class="font-display font-medium text-base wf-grey -rotate-2">Izdarīšu rīt</span>
+          <span class="font-display font-semibold text-2xl wf-blue -rotate-2">Bald</span>
+          <span class="font-display font-medium text-base wf-grey">Dieses Wochenende</span>
+          <span class="font-display font-medium text-sm wf-blue -rotate-1">Kitą savaitę</span>
+          <span class="font-display font-semibold text-2xl wf-grey">I'll do it tomorrow</span>
+          <span class="font-display font-medium text-2xl wf-blue -rotate-2">Ensi viikolla</span>
+          <span class="font-display font-medium text-xl wf-grey">Nicht heute</span>
+          <span class="font-display font-semibold text-lg wf-blue -rotate-1">Pian</span>
+          <span class="font-display font-medium text-lg wf-grey -rotate-1">Teen sen huomenna</span>
+          <span class="font-display font-medium text-lg wf-blue">Teen sen huomenna</span>
+          <span class="font-display font-semibold text-base wf-grey rotate-1">Imorgon</span>
+          <span class="font-display font-medium text-xl wf-blue">Drīz</span>
+          <span class="font-display font-medium text-sm wf-grey">Šį savaitgalį</span>
+          <span class="font-display font-semibold text-xl wf-blue -rotate-2">Ne šodien</span>
+          <span class="font-display font-medium text-sm wf-grey -rotate-1">Izdarīšu rīt</span>
+          <span class="font-display font-medium text-2xl wf-blue rotate-1">Mañana</span>
+          <span class="font-display font-semibold text-base wf-grey">Später</span>
+          <span class="font-display font-medium text-sm wf-blue -rotate-1">Ahora no</span>
+          <span class="font-display font-medium text-lg wf-grey rotate-1">I'll reply later</span>
+          <span class="font-display font-semibold text-base wf-blue">Drīz</span>
+          <span class="font-display font-medium text-2xl wf-grey rotate-1">Nākamnedēļ</span>
+          <span class="font-display font-medium text-2xl wf-blue">Gör det imorgon</span>
+          <span class="font-display font-semibold text-2xl wf-grey rotate-1">Pian</span>
+          <span class="font-display font-medium text-sm wf-blue rotate-2">I'll reply later</span>
+          <span class="font-display font-medium text-lg wf-grey -rotate-2">Huomenna</span>
+          <span class="font-display font-semibold text-sm wf-blue rotate-2">Este fin de semana</span>
+          <span class="font-display font-medium text-lg wf-grey rotate-1">Mañana</span>
+          <span class="font-display font-medium text-2xl wf-blue -rotate-1">Later today</span>
+          <span class="font-display font-semibold text-lg wf-grey -rotate-1">Den här helgen</span>
+          <span class="font-display font-medium text-lg wf-blue">Rīt</span>
+          <span class="font-display font-medium text-lg wf-grey">Luego</span>
+          <span class="font-display font-semibold text-sm wf-blue">Myöhemmin</span>
+          <span class="font-display font-medium text-lg wf-grey">Ahora no</span>
+          <span class="font-display font-medium text-sm wf-blue">Vēlāk</span>
+          <span class="font-display font-semibold text-base wf-grey rotate-1">Ne šodien</span>
+          <span class="font-display font-medium text-base wf-blue">Mai târziu</span>
+          <span class="font-display font-medium text-2xl wf-grey">Săptămâna viitoare</span>
+          <span class="font-display font-semibold text-2xl wf-blue">Later</span>
+          <span class="font-display font-medium text-sm wf-grey -rotate-2">Más tarde</span>
+          <span class="font-display font-medium text-base wf-blue">Vėliau</span>
+      </div>
+    </div>
 
     <div class="relative max-w-6xl mx-auto px-6 md:px-10 pt-16 md:pt-24 pb-20 md:pb-28 grid md:grid-cols-12 gap-12 items-center">
 
@@ -279,7 +434,7 @@ html, body, a, button, select, input {
           <svg viewBox="0 -15 460 185" class="w-full h-auto overflow-visible" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: an email is forwarded, processed, then returned as a reminder">
             <path id="forward-path" d="M 4 60 C 90 60, 90 12, 176 12 C 262 12, 262 108, 348 108 C 400 108, 410 108, 440 108"
                   fill="none" stroke="#1C1E27" stroke-width="1.5" class="path-line"/>
-            
+
             <circle cx="8" cy="60" r="4" fill="#FF5500"/>
             <circle cx="440" cy="108" r="4" fill="#FF8844"/>
 
@@ -315,7 +470,7 @@ html, body, a, button, select, input {
             <text x="348" y="146" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="en" class="hidden">Reminder returns</text>
           </svg>
         </div>
-        
+
         <p class="mt-4 text-xs text-mute text-center">
           <span data-lang="lt">Vienas el. laiškas į vidų. Vienas atgal, laiku.</span>
           <span data-lang="en" class="hidden">One email in. One email back, on time.</span>
@@ -324,6 +479,9 @@ html, body, a, button, select, input {
 
     </div>
   </section>
+
+</body>
+</html>
 
   <section class="border-t border-hair">
     <div class="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
