@@ -542,9 +542,11 @@
     .story-email, .story-settings, .story-saved, .story-reminder { opacity: 1 !important; transform: none !important; position: relative !important; top: auto !important; left: auto !important; right: auto !important; }
   }
 
-  /* Interactive Animation Track Loops with Initial State Fallbacks */
-  .story-email, .story-ai, .story-settings, .story-saved, .story-reminder {
-    opacity: 0; /* Forces them to stay hidden before the loop triggers */
+  /* Interactive Animation Track Loops with Desktop-Only Initial State Fallbacks */
+  @media (min-width: 768px) {
+    .story-email, .story-ai, .story-settings, .story-saved, .story-reminder {
+      opacity: 0; /* Keeps desktop cards hidden until their animation keyframe begins */
+    }
   }
 
   .story-scene.is-playing .story-email { animation: story-email 10s ease-in-out infinite both; }
@@ -582,6 +584,7 @@
     90%, 96% { opacity: 1; transform: translateY(0); }
     100% { opacity: 0; transform: translateY(-6px); }
   }
+
 
  
 
