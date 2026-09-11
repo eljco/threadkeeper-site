@@ -871,6 +871,110 @@
   }
 
 </style>
+
+<style id="story-polish-v2">
+  /* Final story pass: one animation per element, no competing keyframes. */
+  .story-scene.is-playing .story-email {
+    animation: tk-story-email 10s ease-in-out infinite !important;
+    will-change: opacity, transform;
+  }
+  .story-scene.is-playing .story-ai {
+    animation: tk-story-ai 10s ease-in-out infinite !important;
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  .story-scene.is-playing .story-settings {
+    animation: tk-story-settings 10s ease-in-out infinite !important;
+    will-change: opacity, transform;
+  }
+  .story-scene.is-playing .story-saved {
+    animation: tk-story-saved 10s ease-in-out infinite !important;
+    will-change: opacity, transform;
+  }
+  .story-scene.is-playing .story-reminder {
+    animation: tk-story-reminder 10s ease-in-out infinite !important;
+    will-change: opacity, transform;
+  }
+
+  /* Keep the AI copy on a single composited layer. The old pseudo-element
+     animation was visually flickering against the card during transitions. */
+  .story-ai strong::after {
+    animation: none !important;
+    content: '...';
+  }
+
+  .story-saved {
+    left: 24px !important;
+    right: 24px !important;
+    bottom: 78px !important;
+    text-align: left;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .story-reminder {
+    left: 24px !important;
+    right: 24px !important;
+    bottom: 22px !important;
+    top: auto !important;
+    width: auto !important;
+    max-width: none !important;
+    box-sizing: border-box;
+    padding: 13px 16px !important;
+    text-align: left !important;
+    border-radius: 11px !important;
+  }
+
+  .story-reminder strong {
+    margin-top: 5px !important;
+    line-height: 1.3 !important;
+  }
+
+  @keyframes tk-story-email {
+    0%, 5% { opacity: 0; transform: translate3d(0, 10px, 0); }
+    11%, 58% { opacity: 1; transform: translate3d(0, 0, 0); }
+    65%, 100% { opacity: 0; transform: translate3d(0, -5px, 0); }
+  }
+
+  @keyframes tk-story-ai {
+    0%, 18% { opacity: 0; transform: translate3d(0, 8px, 0); }
+    25%, 58% { opacity: 1; transform: translate3d(0, 0, 0); }
+    65%, 100% { opacity: 0; transform: translate3d(0, -5px, 0); }
+  }
+
+  @keyframes tk-story-settings {
+    0%, 38% { opacity: 0; transform: translate3d(0, 8px, 0) scale(.99); }
+    45%, 74% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+    81%, 100% { opacity: 0; transform: translate3d(0, -5px, 0) scale(.99); }
+  }
+
+  @keyframes tk-story-saved {
+    0%, 75% { opacity: 0; transform: translate3d(0, 5px, 0); }
+    81%, 93% { opacity: 1; transform: translate3d(0, 0, 0); }
+    100% { opacity: 0; transform: translate3d(0, -3px, 0); }
+  }
+
+  @keyframes tk-story-reminder {
+    0%, 84% { opacity: 0; transform: translate3d(0, 10px, 0); }
+    90%, 97% { opacity: 1; transform: translate3d(0, 0, 0); }
+    100% { opacity: 0; transform: translate3d(0, -4px, 0); }
+  }
+
+  @media (max-width: 640px) {
+    .story-saved { left: 18px !important; right: 18px !important; bottom: 96px !important; }
+    .story-reminder { left: 18px !important; right: 18px !important; bottom: 20px !important; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .story-email, .story-ai, .story-settings, .story-saved, .story-reminder {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .story-ai strong::after { animation: none !important; }
+  }
+</style>
 </head>
 
 <body class="bg-ink text-bone font-body antialiased">
