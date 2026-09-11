@@ -165,6 +165,71 @@
       100% { offset-distance: 100%; opacity: 0; }
     }
   }
+  /* Loop cleanup: no blackout overlay, no ghosted email, and a centered reminder handoff. */
+  .story-scene.is-playing::after {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .story-scene.is-playing .story-email {
+      animation: story-email-clean 10s ease-in-out infinite;
+    }
+    .story-scene.is-playing .story-ai {
+      animation: story-ai-clean 10s ease-in-out infinite;
+    }
+    .story-scene.is-playing .story-settings {
+      animation: story-settings-clean 10s ease-in-out infinite;
+    }
+    .story-scene.is-playing .story-saved {
+      animation: story-saved-clean 10s ease-in-out infinite;
+    }
+    .story-scene.is-playing .story-reminder {
+      animation: story-reminder-clean 10s ease-in-out infinite;
+    }
+
+    @keyframes story-email-clean {
+      0%, 4% { opacity: 0; transform: translateY(12px); }
+      9%, 66% { opacity: 1; transform: translateY(0); }
+      74%, 100% { opacity: 0; transform: translateY(-7px); }
+    }
+
+    @keyframes story-ai-clean {
+      0%, 18% { opacity: 0; transform: translateY(10px); }
+      24%, 62% { opacity: 1; transform: translateY(0); }
+      70%, 100% { opacity: 0; transform: translateY(-6px); }
+    }
+
+    @keyframes story-settings-clean {
+      0%, 40% { opacity: 0; transform: translateY(10px) scale(0.985); }
+      47%, 80% { opacity: 1; transform: translateY(0) scale(1); }
+      86%, 100% { opacity: 0; transform: translateY(-7px) scale(0.985); }
+    }
+
+    @keyframes story-saved-clean {
+      0%, 80% { opacity: 0; transform: translateY(7px); filter: blur(2px); }
+      86%, 94% { opacity: 1; transform: translateY(0); filter: blur(0); }
+      100% { opacity: 0; transform: translateY(-4px); filter: blur(1px); }
+    }
+
+    @keyframes story-reminder-clean {
+      0%, 88% { opacity: 0; transform: translate(-50%, 20px) scale(0.985); }
+      92% { opacity: 0.9; transform: translate(-50%, 4px) scale(0.995); }
+      96% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -7px) scale(0.985); }
+    }
+  }
+
+  .story-reminder {
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    top: 50%;
+    width: min(92%, 430px);
+    text-align: center;
+    transform: translate(-50%, 20px);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .pulse-dot { display: none; }
   }
