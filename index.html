@@ -400,6 +400,8 @@
     border: 1px solid rgba(255,85,0,0.35);
     border-radius: 10px;
     background: rgba(255,85,0,0.08);
+    opacity: 0;
+    transform: translateY(10px);
   }
 
   .story-ai strong,
@@ -538,6 +540,7 @@
   }
 
   .story-scene.is-playing .story-email { animation: story-email 10s ease-in-out infinite; }
+  .story-scene.is-playing .story-ai { animation: story-ai 10s ease-in-out infinite; }
   .story-scene.is-playing .story-settings { animation: story-settings 10s ease-in-out infinite; }
   .story-scene.is-playing .story-saved { animation: story-saved 10s ease-in-out infinite; }
   .story-scene.is-playing .story-reminder { animation: story-reminder 10s ease-in-out infinite; }
@@ -546,6 +549,12 @@
     0%, 8% { opacity: 0; transform: translateY(14px); }
     18%, 72% { opacity: 1; transform: translateY(0); }
     82%, 100% { opacity: 0.45; transform: translateY(-4px); }
+  }
+
+  @keyframes story-ai {
+    0%, 25% { opacity: 0; transform: translateY(10px); }
+    32%, 72% { opacity: 1; transform: translateY(0); }
+    80%, 100% { opacity: 0; transform: translateY(-6px); }
   }
 
   @keyframes story-settings {
