@@ -454,6 +454,8 @@
   .story-slider-thumb { position: absolute; top: 50%; left: 30%; width: 14px; height: 14px; border-radius: 50%; background: #FF7733; box-shadow: 0 0 0 5px rgba(255,85,0,0.12); transform: translate(-50%, -50%); }
   .story-settings output { display: block; margin-top: 8px; color: #FF7733; font-family: 'Space Grotesk', sans-serif; font-size: 20px; }
 
+  .story-settings output::after { content: ''; }
+
   body.light-theme .story-scene {
     border-color: #D2D4DE;
     background: linear-gradient(145deg, #FFFFFF, #EAEAEE);
@@ -577,6 +579,15 @@
 
   .story-scene.is-playing .story-slider-fill { animation: story-slider-fill 10s ease-in-out infinite; }
   .story-scene.is-playing .story-slider-thumb { animation: story-slider-thumb 10s ease-in-out infinite; }
+  .story-scene.is-playing .story-settings output {
+    font-size: 0;
+  }
+
+  .story-scene.is-playing .story-settings output::after {
+    content: '24 hours';
+    font-size: 20px;
+    animation: story-hours 10s steps(1, end) infinite;
+  }
 
   @keyframes story-slider-fill {
     0%, 49% { width: 30%; }
@@ -586,6 +597,14 @@
   @keyframes story-slider-thumb {
     0%, 49% { left: 30%; }
     66%, 100% { left: 64%; }
+  }
+
+  @keyframes story-hours {
+    0%, 49% { content: '24 hours'; }
+    50%, 56% { content: '36 hours'; }
+    57%, 63% { content: '48 hours'; }
+    64%, 70% { content: '60 hours'; }
+    71%, 100% { content: '72 hours'; }
   }
 
 </style>
