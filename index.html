@@ -452,19 +452,21 @@
     100% { content: '...'; }
   }
 
- .story-settings::after {
-  content: '';
-  position: absolute;
-  top: 39px;
-  left: 18%;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #FF7733;
-  box-shadow: 0 0 0 5px rgba(255,85,0,0.12), 0 0 14px rgba(255,85,0,0.65);
-  opacity: 0;
-}
-  
+  .story-settings {
+    position: absolute;
+    right: 24px;
+    top: 152px;
+    width: min(42%, 230px);
+    padding: 16px;
+    border: 1px solid #3A3D4B;
+    border-radius: 10px;
+    background: #151720;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
   .story-settings::after {
     content: '';
     position: absolute;
