@@ -187,6 +187,26 @@
   }
   .donate-pulse { animation: donate-pulse 0.4s ease-out; }
 
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-reveal,
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     @keyframes hero-enter {
       from { opacity: 0; transform: translateY(18px); }
@@ -224,6 +244,208 @@
     .hero-diagram {
       animation: diagram-float 5s ease-in-out 1s infinite;
     }
+
+    .story-scene.is-playing .story-cursor {
+      animation: story-cursor 10s ease-in-out infinite;
+    }
+
+    .story-scene.is-playing .story-email {
+      animation: story-email 10s ease-in-out infinite;
+    }
+
+    .story-scene.is-playing .story-settings {
+      animation: story-settings 10s ease-in-out infinite;
+    }
+
+    .story-scene.is-playing .story-saved {
+      animation: story-saved 10s ease-in-out infinite;
+    }
+
+    .story-scene.is-playing .story-reminder {
+      animation: story-reminder 10s ease-in-out infinite;
+    }
+
+    @keyframes story-cursor {
+      0%, 10% { left: 18%; top: 70%; opacity: 0; }
+      18% { opacity: 1; }
+      34% { left: 67%; top: 63%; }
+      45% { left: 67%; top: 78%; }
+      53% { left: 82%; top: 75%; }
+      63%, 100% { left: 86%; top: 42%; opacity: 0; }
+    }
+
+    @keyframes story-email {
+      0%, 8% { opacity: 0; transform: translateY(14px); }
+      18%, 72% { opacity: 1; transform: translateY(0); }
+      82%, 100% { opacity: 0.45; transform: translateY(-4px); }
+    }
+
+    @keyframes story-settings {
+      0%, 42% { opacity: 0; transform: translateY(10px) scale(0.98); pointer-events: none; }
+      48%, 72% { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+      80%, 100% { opacity: 0; transform: translateY(-8px) scale(0.98); }
+    }
+
+    @keyframes story-saved {
+      0%, 55% { opacity: 0; transform: translateY(5px); }
+      62%, 82% { opacity: 1; transform: translateY(0); }
+      90%, 100% { opacity: 0; }
+    }
+
+    @keyframes story-reminder {
+      0%, 72% { opacity: 0; transform: translateY(18px); }
+      80%, 92% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-6px); }
+    }
+  }
+
+  .story-scene {
+    position: relative;
+    min-height: 390px;
+    overflow: hidden;
+    border: 1px solid #1C1E27;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #111319, #08090D);
+    padding: 24px;
+  }
+
+  .story-window-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 22px;
+  }
+
+  .story-window-bar span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2B2E3B;
+  }
+
+  .story-window-bar span:first-child { background: #FF5500; }
+
+  .story-email {
+    position: absolute;
+    left: 24px;
+    top: 72px;
+    width: min(58%, 360px);
+    padding: 18px;
+    border: 1px solid #2B2E3B;
+    border-radius: 12px;
+    background: #0D0E13;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.24);
+  }
+
+  .story-email small,
+  .story-ai small,
+  .story-reminder small {
+    color: #8A8D9B;
+    font-size: 11px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  .story-email h3 {
+    margin: 12px 0 8px;
+    color: #F5F6F8;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 19px;
+  }
+
+  .story-email p {
+    color: #8A8D9B;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .story-ai {
+    position: absolute;
+    top: 72px;
+    right: 24px;
+    width: 30%;
+    min-width: 150px;
+    padding: 14px;
+    border: 1px solid rgba(255,85,0,0.35);
+    border-radius: 10px;
+    background: rgba(255,85,0,0.08);
+  }
+
+  .story-ai strong,
+  .story-reminder strong { display: block; margin-top: 8px; color: #F5F6F8; font-size: 14px; }
+
+  .story-ai strong::after {
+    content: '...';
+    color: #FF7733;
+    animation: story-dots 1.2s steps(4, end) infinite;
+  }
+
+  @keyframes story-dots {
+    0%, 20% { content: ''; }
+    45% { content: '.'; }
+    70% { content: '..'; }
+    100% { content: '...'; }
+  }
+
+  .story-settings {
+    position: absolute;
+    right: 24px;
+    top: 152px;
+    width: min(42%, 230px);
+    padding: 16px;
+    border: 1px solid #3A3D4B;
+    border-radius: 10px;
+    background: #151720;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  }
+
+  .story-settings label { display: block; color: #8A8D9B; font-size: 11px; margin-bottom: 9px; }
+  .story-settings input { width: 100%; accent-color: #FF5500; }
+  .story-settings output { display: block; margin-top: 8px; color: #FF7733; font-family: 'Space Grotesk', sans-serif; font-size: 20px; }
+
+  .story-saved {
+    position: absolute;
+    left: 24px;
+    bottom: 26px;
+    color: #FF8844;
+    font-size: 13px;
+  }
+
+  .story-reminder {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 22px;
+    padding: 14px 16px;
+    border: 1px solid rgba(255,119,51,0.45);
+    border-radius: 10px;
+    background: rgba(255,85,0,0.12);
+  }
+
+  .story-cursor {
+    position: absolute;
+    z-index: 3;
+    width: 0;
+    height: 0;
+    border-top: 13px solid #F5F6F8;
+    border-right: 8px solid transparent;
+    filter: drop-shadow(2px 3px 2px rgba(0,0,0,0.5));
+  }
+
+  @media (max-width: 640px) {
+    .story-scene { min-height: 470px; padding: 18px; }
+    .story-email { left: 18px; top: 68px; width: calc(100% - 36px); }
+    .story-ai { left: 18px; right: auto; top: 235px; width: calc(100% - 36px); }
+    .story-settings { left: 18px; right: auto; top: 305px; width: calc(100% - 36px); }
+    .story-saved, .story-reminder { left: 18px; right: 18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .story-cursor { display: none; }
+    .story-email, .story-settings, .story-saved, .story-reminder { opacity: 1; transform: none; }
+    .story-settings { top: 152px; }
+    .story-saved { bottom: 26px; }
+    .story-reminder { bottom: 22px; }
   }
 
 </style>
@@ -519,10 +741,87 @@
     </div>
   </section>
 
+  <section id="product-story" class="border-t border-hair scroll-reveal">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28 grid md:grid-cols-2 gap-12 items-center">
+      <div class="max-w-xl">
+        <p class="font-display text-sm text-indigo-soft mb-5">
+          <span data-lang="lt">Tavo paštas. Tavo laikas.</span>
+          <span data-lang="en" class="hidden">Your inbox. Your timing.</span>
+        </p>
+        <h2 class="font-display font-semibold text-3xl sm:text-4xl tracking-tight text-bone">
+          <span data-lang="lt">Persiųsk. Nustatyk. Pamiršk.</span>
+          <span data-lang="en" class="hidden">Forward it. Set it. Forget it.</span>
+        </h2>
+        <p class="mt-5 text-mute leading-relaxed">
+          <span data-lang="lt">Threadkeeper pagauna laišką, leidžia pasirinkti priminimo laiką ir sugrąžina jį tada, kai tau jo iš tikrųjų reikia.</span>
+          <span data-lang="en" class="hidden">Threadkeeper catches the email, lets you choose when to be reminded, then brings it back exactly when it matters.</span>
+        </p>
+      </div>
+
+      <div class="story-scene" data-story-scene>
+        <div class="story-window-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="story-email">
+          <small>Inbox / forwarded</small>
+          <h3>Can we move our meeting?</h3>
+          <p>Hey, Thursday at 14:00 works for me. Let me know if that still suits you.</p>
+        </div>
+        <div class="story-ai">
+          <small>Threadkeeper AI</small>
+          <strong>Reading the thread</strong>
+        </div>
+        <div class="story-settings">
+          <label for="story-delay">Remind me before the event</label>
+          <input id="story-delay" type="range" min="1" max="72" value="24" aria-label="Reminder timing">
+          <output>24 hours</output>
+        </div>
+        <div class="story-saved">&#10003; Reminder saved for 24 hours before</div>
+        <div class="story-reminder">
+          <small>2 days later</small>
+          <strong>Reminder: reply to “Can we move our meeting?”</strong>
+        </div>
+        <div class="story-cursor" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      const revealItems = document.querySelectorAll('.scroll-reveal');
+      const storyScenes = document.querySelectorAll('[data-story-scene]');
+      const storyDelay = document.getElementById('story-delay');
+      const storyDelayOutput = storyDelay ? storyDelay.nextElementSibling : null;
+
+      if (storyDelay && storyDelayOutput) {
+        storyDelay.addEventListener('input', () => {
+          storyDelayOutput.value = storyDelay.value + ' hours';
+        });
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        revealItems.forEach((item) => item.classList.add('is-visible'));
+        storyScenes.forEach((scene) => scene.classList.add('is-playing'));
+        return;
+      }
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          if (entry.target.matches('#product-story')) {
+            entry.target.querySelector('[data-story-scene]').classList.add('is-playing');
+          }
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.18 });
+
+      revealItems.forEach((item) => revealObserver.observe(item));
+    })();
+  </script>
+
 </body>
 </html>
 
-  <section class="border-t border-hair">
+  <section class="border-t border-hair scroll-reveal">
     <div class="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
       <div class="max-w-xl mb-14">
         <h2 class="font-display font-semibold text-3xl sm:text-4xl tracking-tight text-bone">
@@ -598,7 +897,7 @@
     </div>
   </section>
 <!-- Pre-order / Pricing Section -->
-<section id="pricing" class="border-t border-hair">
+<section id="pricing" class="border-t border-hair scroll-reveal">
   <div class="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
     <div class="max-w-xl mx-auto text-center mb-16">
       <h2 class="font-display font-semibold text-3xl sm:text-4xl tracking-tight text-bone">
@@ -709,7 +1008,7 @@
 </section>
 
 <!-- Fund the AI: community funding progress bar -->
-<section id="fund-the-ai" class="border-t border-hair">
+<section id="fund-the-ai" class="border-t border-hair scroll-reveal">
   <div class="max-w-2xl mx-auto px-6 md:px-10 py-20 md:py-28">
 
     <div class="text-center mb-10">
@@ -807,7 +1106,7 @@
 </section>
 
 <!-- Bilingual Compliance FAQ Section -->
-<section id="faq" class="border-t border-hair bg-surface/20">
+<section id="faq" class="border-t border-hair bg-surface/20 scroll-reveal">
   <div class="max-w-4xl mx-auto px-6 py-20">
     <div class="text-center mb-12">
       <h2 class="font-display font-semibold text-3xl tracking-tight text-bone">D.U.K. / FAQ</h2>
