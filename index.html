@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="lt" class="scroll-smooth">
 <head> 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSI+PHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSIjMDAwMDAwIi8+PHJlY3QgeD0iMyIgeT0iNSIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE0IiByeD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY3QjM1IiBzdHJva2Utd2lkdGg9IjEuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTMgN2w5IDUuNyBMMjEgNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY3QjM1IiBzdHJva2Utd2lkdGg9IjEuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%230B1830'/%3E%3Crect x='3' y='5' width='18' height='14' rx='3' fill='none' stroke='%238C96A8' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M3 7l9 5.7L21 7' fill='none' stroke='%238C96A8' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Threadkeeper | Sprendimas tiems, kurie sako „Padarysiu Rytoj“</title>
@@ -14,18 +14,18 @@
     theme: {
       extend: {
         colors: {
-          ink: '#030304',
-          surface: '#0D0E13',
-          surface2: '#111319',
-          hair: '#1C1E27',
-          bone: '#F5F6F8',
-          mute: '#8A8D9B',
+          ink: '#0B1830',
+          surface: '#12213D',
+          surface2: '#172849',
+          hair: '#1D2F52',
+          bone: '#F3EFE6',
+          mute: '#8C96A8',
           indigo: {
-            DEFAULT: '#FF5500',
-            soft: '#FF7733',
-            deep: '#CC4400',
+            DEFAULT: '#8C96A8',
+            soft: '#B4BBC9',
+            deep: '#6F7A90',
           },
-          sky: '#FF8844',
+          sky: '#9AA3B5',
         },
         fontFamily: {
           display: ['"Space Grotesk"', 'sans-serif'],
@@ -41,44 +41,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-  html { background-color: #030304; }
+  html { background-color: #0B1830; }
   body {
     font-family: 'Inter', sans-serif;
-    background-color: #030304;
+    background-color: #0B1830;
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.3s, color 0.3s;
   }
 
   body.light-theme {
-    background-color: #F5F6F8 !important;
-    color: #030304 !important;
+    background-color: #F3EFE6 !important;
+    color: #0B1830 !important;
   }
-  body.light-theme .text-bone { color: #030304 !important; }
-  body.light-theme .bg-surface { background-color: #EAEAEE !important; border-color: #D2D4DE !important; }
-  body.light-theme .border-hair { border-color: #D2D4DE !important; }
-  body.light-theme .text-mute { color: #525666 !important; }
+  body.light-theme .text-bone { color: #0B1830 !important; }
+  body.light-theme .bg-surface { background-color: #E6E1D4 !important; border-color: #CFC9B9 !important; }
+  body.light-theme .border-hair { border-color: #CFC9B9 !important; }
+  body.light-theme .text-mute { color: #4A5670 !important; }
   body.light-theme .bg-surface\/60 {
-    background-color: #EAEAEE !important;
-    border-color: #D2D4DE !important;
+    background-color: #E6E1D4 !important;
+    border-color: #CFC9B9 !important;
   }
   body.light-theme .bg-ink {
     background-color: #FFFFFF !important;
-    border-color: #D2D4DE !important;
+    border-color: #CFC9B9 !important;
   }
   body.light-theme .border-indigo\/40 {
-    border-color: #FF5500 !important;
+    border-color: #8C96A8 !important;
   }
 
   .font-display { font-family: 'Space Grotesk', sans-serif; }
 
   a:focus-visible, button:focus-visible, input:focus-visible {
-    outline: 2px solid #FF7733;
+    outline: 2px solid #B4BBC9;
     outline-offset: 3px;
     border-radius: 4px;
   }
 
   .hero-glow {
-    background: radial-gradient(60% 55% at 78% 20%, rgba(255,85,0,0.10) 0%, rgba(255,85,0,0) 70%);
+    background: radial-gradient(60% 55% at 78% 20%, rgba(140,150,168,0.10) 0%, rgba(140,150,168,0) 70%);
   }
 
   .word-fill {
@@ -100,16 +100,16 @@
   
   /* Text message bubble styling with higher visibility */
   .word-fill .wf-grey { 
-    color: #F5F6F8; 
-    background-color: rgba(28, 30, 39, 0.85); 
+    color: #F3EFE6; 
+    background-color: rgba(29,47,82, 0.85); 
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 14px 14px 14px 4px;
     margin-right: auto;
   }
   .word-fill .wf-blue { 
     color: #FFFFFF; 
-    background-color: rgba(255, 85, 0, 0.28); 
-    border: 1px solid rgba(255, 119, 51, 0.45);
+    background-color: rgba(140,150,168, 0.28); 
+    border: 1px solid rgba(180,187,201, 0.45);
     border-radius: 14px 14px 4px 14px;
     margin-left: auto;
   }
@@ -130,27 +130,27 @@
   /* Messenger-style outgoing bubbles */
   .word-fill .wf-blue {
     color: #FFFFFF;
-    background-color: #2563EB;
-    border-color: #60A5FA;
+    background-color: #1D2F52;
+    border-color: #8C96A8;
     border-radius: 14px 14px 4px 14px;
     margin-left: auto;
   }
 
   body.light-theme .word-fill .wf-blue {
     color: #FFFFFF;
-    background-color: #2563EB;
-    border-color: #60A5FA;
+    background-color: #1D2F52;
+    border-color: #8C96A8;
   }
 
   body.light-theme .word-fill .wf-grey { 
-    color: #111319; 
+    color: #172849; 
     background-color: rgba(210, 212, 222, 0.85); 
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
   body.light-theme .word-fill .wf-blue { 
     color: #FFFFFF; 
-    background-color: #2563EB; 
-    border: 1px solid #60A5FA;
+    background-color: #1D2F52; 
+    border: 1px solid #8C96A8;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -253,11 +253,11 @@
     stroke-dasharray: 4 6;
   }
 
-  ::selection { background: #FF5500; color: #FFFFFF; }
-  ::-webkit-selection { background: #FF5500; color: #FFFFFF; }
+  ::selection { background: #8C96A8; color: #FFFFFF; }
+  ::-webkit-selection { background: #8C96A8; color: #FFFFFF; }
 
   html, body, a, button, select, input {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'%3E%3Cpath d='M2,2 L11,20 L14,14 L20,11 Z' fill='%23FF5500' stroke='%23000000' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, auto !important;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'%3E%3Cpath d='M2,2 L11,20 L14,14 L20,11 Z' fill='%238C96A8' stroke='%23000000' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, auto !important;
   }
 
   .wave-layer {
@@ -333,7 +333,7 @@
 
     @keyframes bubble-breathe {
       0%, 100% { filter: brightness(0.9); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-      50% { filter: brightness(1.2); box-shadow: 0 4px 18px rgba(255,85,0,0.18); }
+      50% { filter: brightness(1.2); box-shadow: 0 4px 18px rgba(140,150,168,0.18); }
     }
 
     @keyframes diagram-float {
@@ -450,9 +450,9 @@
     position: relative;
     min-height: 450px;
     overflow: hidden;
-    border: 1px solid #1C1E27;
+    border: 1px solid #1D2F52;
     border-radius: 16px;
-    background: linear-gradient(145deg, #111319, #08090D);
+    background: linear-gradient(145deg, #172849, #08122A);
     padding: 24px;
   }
 
@@ -463,7 +463,7 @@
     z-index: 20;
     pointer-events: none;
     border-radius: inherit;
-    background: linear-gradient(145deg, #111319, #08090D);
+    background: linear-gradient(145deg, #172849, #08122A);
     opacity: 0;
   }
 
@@ -478,10 +478,10 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #2B2E3B;
+    background: #2E4270;
   }
 
-  .story-window-bar span:first-child { background: #FF5500; }
+  .story-window-bar span:first-child { background: #8C96A8; }
 
   .story-email {
     position: absolute;
@@ -489,9 +489,9 @@
     top: 72px;
     width: min(58%, 360px);
     padding: 18px;
-    border: 1px solid #2B2E3B;
+    border: 1px solid #2E4270;
     border-radius: 12px;
-    background: #0D0E13;
+    background: #12213D;
     box-shadow: 0 18px 40px rgba(0,0,0,0.24);
     opacity: 0;
     transform: translateY(14px);
@@ -500,7 +500,7 @@
   .story-email small,
   .story-ai small,
   .story-reminder small {
-    color: #8A8D9B;
+    color: #8C96A8;
     font-size: 11px;
     letter-spacing: .04em;
     text-transform: uppercase;
@@ -508,13 +508,13 @@
 
   .story-email h3 {
     margin: 12px 0 8px;
-    color: #F5F6F8;
+    color: #F3EFE6;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 19px;
   }
 
   .story-email p {
-    color: #8A8D9B;
+    color: #8C96A8;
     font-size: 13px;
     line-height: 1.6;
   }
@@ -526,19 +526,19 @@
     width: 30%;
     min-width: 150px;
     padding: 14px;
-    border: 1px solid rgba(255,85,0,0.35);
+    border: 1px solid rgba(140,150,168,0.35);
     border-radius: 10px;
-    background: rgba(255,85,0,0.08);
+    background: rgba(140,150,168,0.08);
     opacity: 0;
     transform: translateY(10px);
   }
 
   .story-ai strong,
-  .story-reminder strong { display: block; margin-top: 8px; color: #F5F6F8; font-size: 14px; }
+  .story-reminder strong { display: block; margin-top: 8px; color: #F3EFE6; font-size: 14px; }
 
   .story-ai strong::after {
     content: '...';
-    color: #FF7733;
+    color: #B4BBC9;
     animation: story-dots 1.2s steps(4, end) infinite;
   }
 
@@ -555,9 +555,9 @@
     top: 152px;
     width: min(42%, 230px);
     padding: 16px;
-    border: 1px solid #3A3D4B;
+    border: 1px solid #3A5084;
     border-radius: 10px;
-    background: #151720;
+    background: #172849;
     box-shadow: 0 18px 40px rgba(0,0,0,0.35);
     pointer-events: none;
     opacity: 0;
@@ -572,59 +572,59 @@
     width: 9px;
     height: 9px;
     border-radius: 50%;
-    background: #FF7733;
-    box-shadow: 0 0 0 5px rgba(255,85,0,0.12), 0 0 14px rgba(255,85,0,0.65);
+    background: #B4BBC9;
+    box-shadow: 0 0 0 5px rgba(140,150,168,0.12), 0 0 14px rgba(140,150,168,0.65);
     opacity: 0;
   }
 
-  .story-settings label { display: block; color: #8A8D9B; font-size: 11px; margin-bottom: 14px; }
-  .story-slider-track { position: relative; height: 6px; border-radius: 999px; background: #2B2E3B; }
-  .story-slider-fill { position: absolute; inset: 0 auto 0 0; width: 30%; border-radius: inherit; background: #FF5500; }
-  .story-slider-thumb { position: absolute; top: 50%; left: 30%; width: 14px; height: 14px; border-radius: 50%; background: #FF7733; box-shadow: 0 0 0 5px rgba(255,85,0,0.12); transform: translate(-50%, -50%); }
-  .story-settings output { display: block; margin-top: 8px; color: #FF7733; font-family: 'Space Grotesk', sans-serif; font-size: 20px; }
+  .story-settings label { display: block; color: #8C96A8; font-size: 11px; margin-bottom: 14px; }
+  .story-slider-track { position: relative; height: 6px; border-radius: 999px; background: #2E4270; }
+  .story-slider-fill { position: absolute; inset: 0 auto 0 0; width: 30%; border-radius: inherit; background: #8C96A8; }
+  .story-slider-thumb { position: absolute; top: 50%; left: 30%; width: 14px; height: 14px; border-radius: 50%; background: #B4BBC9; box-shadow: 0 0 0 5px rgba(140,150,168,0.12); transform: translate(-50%, -50%); }
+  .story-settings output { display: block; margin-top: 8px; color: #B4BBC9; font-family: 'Space Grotesk', sans-serif; font-size: 20px; }
 
   .story-settings output::after { content: ''; }
 
   body.light-theme .story-scene {
-    border-color: #D2D4DE;
-    background: linear-gradient(145deg, #FFFFFF, #EAEAEE);
+    border-color: #CFC9B9;
+    background: linear-gradient(145deg, #FFFFFF, #E6E1D4);
   }
 
   body.light-theme .story-email {
-    border-color: #D2D4DE;
+    border-color: #CFC9B9;
     background: #FFFFFF;
-    box-shadow: 0 18px 40px rgba(17,19,25,0.12);
+    box-shadow: 0 18px 40px rgba(11,24,48,0.12);
   }
 
   body.light-theme .story-email h3,
   body.light-theme .story-ai strong,
   body.light-theme .story-reminder strong {
-    color: #030304;
+    color: #0B1830;
   }
 
   body.light-theme .story-ai {
-    border-color: rgba(204,68,0,0.35);
-    background: rgba(255,85,0,0.08);
+    border-color: rgba(111,122,144,0.35);
+    background: rgba(140,150,168,0.08);
   }
 
   body.light-theme .story-settings {
-    border-color: #D2D4DE;
-    background: #F5F6F8;
-    box-shadow: 0 18px 40px rgba(17,19,25,0.16);
+    border-color: #CFC9B9;
+    background: #F3EFE6;
+    box-shadow: 0 18px 40px rgba(11,24,48,0.16);
   }
 
-  body.light-theme .story-slider-track { background: #D2D4DE; }
+  body.light-theme .story-slider-track { background: #CFC9B9; }
 
   body.light-theme .story-reminder {
-    border-color: rgba(204,68,0,0.45);
-    background: rgba(255,85,0,0.10);
+    border-color: rgba(111,122,144,0.45);
+    background: rgba(140,150,168,0.10);
   }
 
   .story-saved {
     position: absolute;
     left: 24px;
     bottom: 142px;
-    color: #FF8844;
+    color: #9AA3B5;
     font-size: 13px;
     opacity: 0;
     transform: translateY(5px);
@@ -636,9 +636,9 @@
     right: 24px;
     bottom: 22px;
     padding: 14px 16px;
-    border: 1px solid rgba(255,119,51,0.45);
+    border: 1px solid rgba(180,187,201,0.45);
     border-radius: 10px;
-    background: rgba(255,85,0,0.12);
+    background: rgba(140,150,168,0.12);
     opacity: 0;
     transform: translateY(18px);
   }
@@ -648,7 +648,7 @@
     z-index: 3;
     width: 0;
     height: 0;
-    border-top: 13px solid #F5F6F8;
+    border-top: 13px solid #F3EFE6;
     border-right: 8px solid transparent;
     filter: drop-shadow(2px 3px 2px rgba(0,0,0,0.5));
   }
@@ -835,14 +835,14 @@
     min-height: 400px;
     padding: 22px;
     border-radius: 18px;
-    background: #f8f9fb;
-    border-color: #dfe2e8;
-    box-shadow: 0 20px 55px rgba(17,19,25,.08);
+    background: #F8F5EE;
+    border-color: #DAD4C4;
+    box-shadow: 0 20px 55px rgba(11,24,48,.08);
     isolation: isolate;
   }
   .story-window-bar { margin-bottom: 0; }
-  .story-window-bar span { background: #c9ccd4; }
-  .story-window-bar span:first-child { background: #ff5500; }
+  .story-window-bar span { background: #CFC9B9; }
+  .story-window-bar span:first-child { background: #8C96A8; }
 
   .story-email,
   .story-ai,
@@ -862,9 +862,9 @@
   .story-settings,
   .story-reminder {
     background: #fff;
-    border-color: #e1e4ea;
-    color: #171922;
-    box-shadow: 0 12px 30px rgba(17,19,25,.08);
+    border-color: #DDD7C8;
+    color: #0B1830;
+    box-shadow: 0 12px 30px rgba(11,24,48,.08);
   }
 
   .story-email {
@@ -876,9 +876,9 @@
   }
   .story-email small,
   .story-ai small,
-  .story-reminder small { color: #8b8f9c; }
-  .story-email h3 { color:#171922; margin:10px 0 7px; font-size:18px; }
-  .story-email p { color:#737887; font-size:12.5px; line-height:1.55; }
+  .story-reminder small { color: #6B7690; }
+  .story-email h3 { color:#0B1830; margin:10px 0 7px; font-size:18px; }
+  .story-email p { color:#4A5670; font-size:12.5px; line-height:1.55; }
 
   .story-ai {
     top: 78px;
@@ -887,12 +887,12 @@
     min-width: 0;
     padding: 12px 13px;
     border-radius: 12px;
-    border: 1px solid #f0c7b5;
-    background: #fff7f3;
-    box-shadow: 0 12px 30px rgba(17,19,25,.06);
+    border: 1px solid #C3C9D6;
+    background: #FBF8F1;
+    box-shadow: 0 12px 30px rgba(11,24,48,.06);
     z-index: 4;
   }
-  .story-ai strong { color:#242631; font-size:12px; }
+  .story-ai strong { color:#0B1830; font-size:12px; }
   .story-ai strong::after {
     content: '';
     animation: none !important;
@@ -907,17 +907,17 @@
     background: #fff;
     z-index: 5;
   }
-  .story-settings label { color:#747987; margin-bottom:11px; }
-  .story-slider-track { background:#e6e8ed; }
-  .story-slider-fill { background:#ff5500; transition: width 120ms linear; }
-  .story-slider-thumb { background:#ff6a1a; box-shadow:0 0 0 4px rgba(255,85,0,.10); transition:left 120ms linear; }
-  .story-settings output { color:#e85a12; font-size:18px; }
+  .story-settings label { color:#4A5670; margin-bottom:11px; }
+  .story-slider-track { background:#E4DFD1; }
+  .story-slider-fill { background:#8C96A8; transition: width 120ms linear; }
+  .story-slider-thumb { background:#B4BBC9; box-shadow:0 0 0 4px rgba(140,150,168,.10); transition:left 120ms linear; }
+  .story-settings output { color:#1D2F52; font-size:18px; }
 
   .story-saved {
     left: 22px;
     right: 22px;
     bottom: 102px;
-    color:#4f8a63;
+    color:#1D2F52;
     font-size:11px;
     font-weight:600;
     line-height:1.4;
@@ -934,13 +934,13 @@
     box-sizing:border-box;
     padding:13px 15px;
     text-align:left;
-    border:1px solid #f2bda6;
+    border:1px solid #AEB6C4;
     border-radius:13px;
-    background:#fff7f3;
+    background:#FBF8F1;
     z-index: 6;
   }
-  .story-reminder small { display:block; color:#b47762; font-size:9px; }
-  .story-reminder strong { margin-top:5px; color:#272127; font-size:12px; line-height:1.35; }
+  .story-reminder small { display:block; color:#5E6A86; font-size:9px; }
+  .story-reminder strong { margin-top:5px; color:#0B1830; font-size:12px; line-height:1.35; }
 
   /* Visible state — applied by JS, not CSS animation. */
   .story-scene.tk-email .story-email,
@@ -1008,7 +1008,7 @@
   /* Final visibility + responsive hardening. Prevent sections from disappearing if an observer is delayed. */
   html, body { min-height: 100%; }
   body.light-theme, body.light-theme main, body.light-theme section, body.light-theme footer {
-    background-color: #F5F6F8 !important;
+    background-color: #F3EFE6 !important;
   }
   body.light-theme section.border-t { background: transparent !important; }
   .scroll-reveal {
@@ -1070,7 +1070,7 @@
       height: 24px;
       border: 0;
       filter: drop-shadow(0 1px 2px rgba(0,0,0,.16));
-      background: center / 20px 24px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='24' viewBox='0 0 20 24'%3E%3Cpath d='M2 1.5v17.2l4.9-4.4 3.3 7.1 2.2-1-3.3-7.1H16L2 1.5Z' fill='none' stroke='%235d6470' stroke-width='1.45' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background: center / 20px 24px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='24' viewBox='0 0 20 24'%3E%3Cpath d='M2 1.5v17.2l4.9-4.4 3.3 7.1 2.2-1-3.3-7.1H16L2 1.5Z' fill='none' stroke='%235E6A86' stroke-width='1.45' stroke-linejoin='round'/%3E%3C/svg%3E");
       opacity: 0;
       z-index: 12;
     }
@@ -1092,6 +1092,11 @@
     }
   }
 
+
+/* Navy & ivory: dark navy text on slate buttons, readable accents in light theme */
+.bg-indigo, .hover\:bg-indigo:hover, .hover\:bg-indigo-deep:hover, #tk-gmail-btn { color: #0B1830 !important; }
+body.light-theme .text-indigo-soft { color: #1D2F52 !important; }
+::selection { background: #8C96A8; color: #0B1830; }
 </style>
 </head>
 
@@ -1102,8 +1107,8 @@
       <a href="#top" class="flex items-center gap-2 sm:gap-2.5 shrink-0 min-w-0">
        <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-indigo/10 border border-indigo/30">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 6.5L12 13L21 6.5" stroke="#FF7733" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M3 6.5C3 5.67157 3.67157 5 4.5 5H19.5C20.3284 5 21 5.67157 21 6.5V17.5C21 18.3284 20.3284 19 19.5 19H4.5C3.67157 19 3 18.3284 3 17.5V6.5Z" stroke="#FF7733" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M3 6.5L12 13L21 6.5" stroke="#B4BBC9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 6.5C3 5.67157 3.67157 5 4.5 5H19.5C20.3284 5 21 5.67157 21 6.5V17.5C21 18.3284 20.3284 19 19.5 19H4.5C3.67157 19 3 18.3284 3 17.5V6.5Z" stroke="#B4BBC9" stroke-width="1.8" stroke-linejoin="round"/>
           </svg>
         </span>
         <span class="font-display font-semibold text-base sm:text-lg tracking-tight text-bone truncate">Threadkeeper</span>
@@ -1338,12 +1343,12 @@
         <div class="hero-diagram rounded-xl border border-hair bg-surface/60 p-6 sm:p-8">
           <svg viewBox="0 -15 460 185" class="w-full h-auto overflow-visible" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: an email is forwarded, processed, then returned as a reminder">
             <path id="forward-path" d="M 4 60 C 90 60, 90 12, 176 12 C 262 12, 262 108, 348 108 C 400 108, 410 108, 440 108"
-                  fill="none" stroke="#1C1E27" stroke-width="1.5" class="path-line"/>
+                  fill="none" stroke="#1D2F52" stroke-width="1.5" class="path-line"/>
 
-            <circle cx="8" cy="60" r="4" fill="#FF5500"/>
-            <circle cx="440" cy="108" r="4" fill="#FF8844"/>
+            <circle cx="8" cy="60" r="4" fill="#8C96A8"/>
+            <circle cx="440" cy="108" r="4" fill="#9AA3B5"/>
 
-            <circle r="4.5" fill="#FF7733">
+            <circle r="4.5" fill="#B4BBC9">
               <animateMotion 
                 path="M 4 60 C 90 60, 90 12, 176 12 C 262 12, 262 108, 348 108 C 400 108, 410 108, 440 108" 
                 dur="4.5s" 
@@ -1351,28 +1356,28 @@
               />
             </circle>
             <g transform="translate(0,42)">
-              <rect x="0" y="0" width="46" height="34" rx="6" fill="#0D0E13" stroke="#2B2E3B"/>
-              <path d="M4 6 L23 19 L42 6" stroke="#8A8D9B" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <rect x="4" y="4" width="38" height="26" rx="3" fill="none" stroke="#8A8D9B" stroke-width="1.4"/>
+              <rect x="0" y="0" width="46" height="34" rx="6" fill="#12213D" stroke="#2E4270"/>
+              <path d="M4 6 L23 19 L42 6" stroke="#8C96A8" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="4" y="4" width="38" height="26" rx="3" fill="none" stroke="#8C96A8" stroke-width="1.4"/>
             </g>
-            <text x="23" y="94" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="lt">Persiųski mums</text>
-            <text x="23" y="94" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="en" class="hidden">You forward it</text>
+            <text x="23" y="94" text-anchor="middle" font-family="Inter" font-size="10" fill="#8C96A8" data-lang="lt">Persiųski mums</text>
+            <text x="23" y="94" text-anchor="middle" font-family="Inter" font-size="10" fill="#8C96A8" data-lang="en" class="hidden">You forward it</text>
 
             <g transform="translate(153,-6)">
-              <rect x="0" y="0" width="46" height="34" rx="6" fill="#0D0E13" stroke="#FF5500"/>
-              <circle cx="23" cy="17" r="7" fill="none" stroke="#FF7733" stroke-width="1.4"/>
-              <path d="M23 10 L23 17 L27 20" stroke="#FF7733" stroke-width="1.4" stroke-linecap="round"/>
+              <rect x="0" y="0" width="46" height="34" rx="6" fill="#12213D" stroke="#8C96A8"/>
+              <circle cx="23" cy="17" r="7" fill="none" stroke="#B4BBC9" stroke-width="1.4"/>
+              <path d="M23 10 L23 17 L27 20" stroke="#B4BBC9" stroke-width="1.4" stroke-linecap="round"/>
             </g>
-            <text x="176" y="46" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="lt">D.I. perskaito</text>
-            <text x="176" y="46" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="en" class="hidden">AI reads it</text>
+            <text x="176" y="46" text-anchor="middle" font-family="Inter" font-size="10" fill="#8C96A8" data-lang="lt">D.I. perskaito</text>
+            <text x="176" y="46" text-anchor="middle" font-family="Inter" font-size="10" fill="#8C96A8" data-lang="en" class="hidden">AI reads it</text>
 
             <g transform="translate(325,90)">
-              <rect x="0" y="0" width="46" height="34" rx="6" fill="#0D0E13" stroke="#FF8844"/>
-              <path d="M23 8 C18 8, 15 12, 15 17 L15 22 L12 25 L34 25 L31 22 L31 17 C31 12, 28 8, 23 8 Z" fill="none" stroke="#FF8844" stroke-width="1.3" stroke-linejoin="round"/>
-              <path d="M20 25 C20 27.2, 21.3 28.5, 23 28.5 C24.7 28.5, 26 27.2, 26 25" fill="none" stroke="#FF8844" stroke-width="1.3"/>
+              <rect x="0" y="0" width="46" height="34" rx="6" fill="#12213D" stroke="#9AA3B5"/>
+              <path d="M23 8 C18 8, 15 12, 15 17 L15 22 L12 25 L34 25 L31 22 L31 17 C31 12, 28 8, 23 8 Z" fill="none" stroke="#9AA3B5" stroke-width="1.3" stroke-linejoin="round"/>
+              <path d="M20 25 C20 27.2, 21.3 28.5, 23 28.5 C24.7 28.5, 26 27.2, 26 25" fill="none" stroke="#9AA3B5" stroke-width="1.3"/>
             </g>
-            <text x="348" y="146" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="lt">Priminimas grįžta</text>
-            <text x="348" y="146" text-anchor="middle" font-family="Inter" font-size="10" fill="#8A8D9B" data-lang="en" class="hidden">Reminder returns</text>
+            <text x="348" y="146" text-anchor="middle" font-family="Inter" font-size="10" fill="#8C96A8" data-lang="lt">Priminimas grįžta</text>
+            <text x="348" y="146" text-anchor="middle" font-family="Inter" font-size="10" fill="#8C96A8" data-lang="en" class="hidden">Reminder returns</text>
           </svg>
         </div>
 
@@ -1551,9 +1556,9 @@
 
         <div class="bg-surface p-8 flex flex-col gap-5">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 8L12 14L21 8" stroke="#FF7733" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            <rect x="3" y="5" width="18" height="14" rx="2" stroke="#FF7733" stroke-width="1.7"/>
-            <path d="M14 11L17.5 14.5L14 18" stroke="#FF5500" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 8L12 14L21 8" stroke="#B4BBC9" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="3" y="5" width="18" height="14" rx="2" stroke="#B4BBC9" stroke-width="1.7"/>
+            <path d="M14 11L17.5 14.5L14 18" stroke="#8C96A8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <div>
             <h3 class="font-display text-lg text-bone mb-2">
@@ -1569,12 +1574,12 @@
 
         <div class="bg-surface p-8 flex flex-col gap-5">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="6" y="3" width="12" height="9" rx="2" stroke="#FF7733" stroke-width="1.7"/>
-            <path d="M9 21V16.5C9 15.6716 9.67157 15 10.5 15H13.5C14.3284 15 15 15.6716 15 16.5V21" stroke="#FF7733" stroke-width="1.7" stroke-linecap="round"/>
-            <circle cx="9.5" cy="7" r="0.9" fill="#FF5500"/>
-            <circle cx="14.5" cy="7" r="0.9" fill="#FF5500"/>
-            <path d="M4 12V9C4 8.44772 4.44772 8 5 8H6" stroke="#FF5500" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M20 12V9C20 8.44772 19.5523 8 19 8H18" stroke="#FF5500" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="6" y="3" width="12" height="9" rx="2" stroke="#B4BBC9" stroke-width="1.7"/>
+            <path d="M9 21V16.5C9 15.6716 9.67157 15 10.5 15H13.5C14.3284 15 15 15.6716 15 16.5V21" stroke="#B4BBC9" stroke-width="1.7" stroke-linecap="round"/>
+            <circle cx="9.5" cy="7" r="0.9" fill="#8C96A8"/>
+            <circle cx="14.5" cy="7" r="0.9" fill="#8C96A8"/>
+            <path d="M4 12V9C4 8.44772 4.44772 8 5 8H6" stroke="#8C96A8" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M20 12V9C20 8.44772 19.5523 8 19 8H18" stroke="#8C96A8" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
           <div>
             <h3 class="font-display text-lg text-bone mb-2">
@@ -1590,9 +1595,9 @@
 
         <div class="bg-surface p-8 flex flex-col gap-5">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="13" r="8" stroke="#FF7733" stroke-width="1.7"/>
-            <path d="M12 9V13L14.8 14.8" stroke="#FF5500" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M9 2H15" stroke="#FF7733" stroke-width="1.7" stroke-linecap="round"/>
+            <circle cx="12" cy="13" r="8" stroke="#B4BBC9" stroke-width="1.7"/>
+            <path d="M12 9V13L14.8 14.8" stroke="#8C96A8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 2H15" stroke="#B4BBC9" stroke-width="1.7" stroke-linecap="round"/>
           </svg>
           <div>
             <h3 class="font-display text-lg text-bone mb-2">
@@ -1754,10 +1759,10 @@
              class="h-full bg-indigo relative overflow-hidden transition-[width] duration-700 ease-out"
              style="width: 0%;">
           <svg class="wave-layer wave-back" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,55 C150,95 350,15 600,55 C850,95 1050,15 1200,55 L1200,100 L0,100 Z" fill="#FF7733"></path>
+            <path d="M0,55 C150,95 350,15 600,55 C850,95 1050,15 1200,55 L1200,100 L0,100 Z" fill="#B4BBC9"></path>
           </svg>
           <svg class="wave-layer wave-front" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,60 C150,20 350,95 600,52 C850,15 1050,90 1200,50 L1200,100 L0,100 Z" fill="#CC4400"></path>
+            <path d="M0,60 C150,20 350,95 600,52 C850,15 1050,90 1200,50 L1200,100 L0,100 Z" fill="#6F7A90"></path>
           </svg>
           <div class="wave-shimmer"></div>
         </div>
@@ -2168,7 +2173,7 @@
       </a>
 
       <div class="flex items-center gap-2 mb-6">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="#FBBF24" xmlns="http://www.w3.org/2000/svg">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#8C96A8" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 2.5l2.9 6.1 6.6.7-4.9 4.6 1.3 6.6-5.9-3.4-5.9 3.4 1.3-6.6-4.9-4.6 6.6-.7z"/>
         </svg>
         <span class="font-display text-lg text-bone">0 / 5</span>
@@ -2428,7 +2433,7 @@
     function tkSetAuthStatus(msg, isError) {
       const el = document.getElementById('tk-auth-status');
       el.textContent = msg;
-      el.style.color = isError ? '#FF5500' : '#8A8D9B';
+      el.style.color = isError ? '#8C96A8' : '#8C96A8';
     }
 
     function tkRenderAuthState(session) {
@@ -2591,7 +2596,7 @@
         status.textContent = currentLang === 'lt' 
           ? 'Per daug užklausų! Palaukite 30 sekundžių.' 
           : 'Too many requests! Please wait 30 seconds.';
-        status.style.color = '#FF5500';
+        status.style.color = '#8C96A8';
         return;
       }
 
@@ -2599,7 +2604,7 @@
         status.textContent = currentLang === 'lt' 
           ? 'Šis el. paštas jau užregistruotas!' 
           : 'This email is already signed up!';
-        status.style.color = '#FF5500';
+        status.style.color = '#8C96A8';
         return;
       }
 
@@ -2620,7 +2625,7 @@
           status.textContent = currentLang === 'lt'
             ? 'Ačiū! Užregistruota sėkmingai.'
             : 'Thank you! Successfully signed up.';
-          status.style.color = '#FF5500';
+          status.style.color = '#8C96A8';
           emailInput.value = '';
         } else {
           throw new Error('Formspree error');
@@ -2629,7 +2634,7 @@
         status.textContent = currentLang === 'lt'
           ? 'Įvyko klaida. Bandykite dar kartą.'
           : 'An error occurred. Please try again.';
-        status.style.color = '#FF5500';
+        status.style.color = '#8C96A8';
       } finally {
         button.disabled = false;
         button.innerHTML = originalButtonText;
@@ -2786,49 +2791,49 @@
   #tk-gear {
     position: fixed; bottom: 24px; right: 24px; z-index: 9998;
     width: 48px; height: 48px; border-radius: 50%;
-    background: #0D0E13; border: 1px solid #1C1E27;
+    background: #12213D; border: 1px solid #1D2F52;
     display: none; align-items: center; justify-content: center;
     cursor: pointer; transition: border-color .2s, transform .2s;
   }
-  #tk-gear:hover { border-color: #FF7733; transform: rotate(25deg); }
-  #tk-gear svg { width: 20px; height: 20px; stroke: #8A8D9B; }
-  #tk-gear:hover svg { stroke: #FF7733; }
+  #tk-gear:hover { border-color: #B4BBC9; transform: rotate(25deg); }
+  #tk-gear svg { width: 20px; height: 20px; stroke: #8C96A8; }
+  #tk-gear:hover svg { stroke: #B4BBC9; }
 
   #tk-modal-backdrop {
     position: fixed; inset: 0; z-index: 9999;
-    background: rgba(3,3,4,.7);
+    background: rgba(11,24,48,.7);
     backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
     display: none; align-items: center; justify-content: center; padding: 20px;
   }
   #tk-modal {
     position: relative; width: 100%; max-width: 420px;
-    background: #0D0E13; border: 1px solid #1C1E27; border-radius: 14px;
-    padding: 28px; font-family: 'Inter', sans-serif; color: #F5F6F8;
+    background: #12213D; border: 1px solid #1D2F52; border-radius: 14px;
+    padding: 28px; font-family: 'Inter', sans-serif; color: #F3EFE6;
   }
   #tk-modal h3 { font-family: 'Space Grotesk', sans-serif; font-size: 18px; margin: 0 0 20px 0; }
   .tk-field { margin-bottom: 20px; }
   .tk-label {
-    display: block; font-size: 12px; color: #8A8D9B; margin-bottom: 8px;
+    display: block; font-size: 12px; color: #8C96A8; margin-bottom: 8px;
     text-transform: uppercase; letter-spacing: .03em;
   }
   #tk-gmail-btn {
     width: 100%; padding: 12px; border-radius: 8px; border: none;
-    background: #FF5500; color: #fff; font-weight: 600; font-size: 14px;
+    background: #8C96A8; color: #fff; font-weight: 600; font-size: 14px;
     cursor: pointer; transition: background .2s;
   }
-  #tk-gmail-btn:hover { background: #CC4400; }
+  #tk-gmail-btn:hover { background: #6F7A90; }
   #tk-forward-addr {
     font-family: 'SFMono-Regular', Consolas, monospace; font-size: 13px;
-    background: #030304; border: 1px solid #1C1E27; border-radius: 8px;
-    padding: 10px 12px; color: #FF7733;
+    background: #0B1830; border: 1px solid #1D2F52; border-radius: 8px;
+    padding: 10px 12px; color: #B4BBC9;
     display: flex; justify-content: space-between; align-items: center; gap: 10px;
   }
-  #tk-copy-btn { background: none; border: none; color: #8A8D9B; cursor: pointer; font-size: 12px; flex-shrink: 0; }
-  #tk-copy-btn:hover { color: #F5F6F8; }
-  #tk-slider { width: 100%; accent-color: #FF5500; }
+  #tk-copy-btn { background: none; border: none; color: #8C96A8; cursor: pointer; font-size: 12px; flex-shrink: 0; }
+  #tk-copy-btn:hover { color: #F3EFE6; }
+  #tk-slider { width: 100%; accent-color: #8C96A8; }
   #tk-slider-value { font-family: 'Space Grotesk', sans-serif; font-size: 22px; margin-top: 6px; }
-  #tk-slider-status { font-size: 11px; color: #8A8D9B; margin-top: 6px; height: 14px; }
-  #tk-close-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; color: #8A8D9B; font-size: 20px; cursor: pointer; line-height: 1; }
+  #tk-slider-status { font-size: 11px; color: #8C96A8; margin-top: 6px; height: 14px; }
+  #tk-close-btn { position: absolute; top: 18px; right: 18px; background: none; border: none; color: #8C96A8; font-size: 20px; cursor: pointer; line-height: 1; }
 </style>
 
 <div id="tk-gear" aria-label="Account settings">
